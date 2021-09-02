@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PleyerSclipt : MonoBehaviour
 {
-    [SerializeField] float _speed;
-    [SerializeField] float _flap;
-    [SerializeField] float _limitspeed;
+    [SerializeField] float speed;
+    [SerializeField] float flap;
+    [SerializeField] float limitspeed;
     [SerializeField] Vector2 force;
+    [SerializeField] Animator animator;
     private Rigidbody2D rb;
     bool isJump = false;
 
@@ -19,43 +20,60 @@ public class PleyerSclipt : MonoBehaviour
     // 物理演算をしたい場合はFixedUpdateを使うのが一般的
     void FixedUpdate()
     {
-        float horizontalKey = Input.GetAxisRaw("Horizontal");
-
+        float _horizontalKey = Input.GetAxisRaw("Horizontal");
+        animator.SetInteger("speed", (int)_horizontalKey);
         //右入力で左向きに動く
-        if (horizontalKey > 0)
+        if (_horizontalKey > 0)
         {
-            rb.AddForce(Vector2.right * _speed);
-            if (rb.velocity.magnitude > _limitspeed)
+            if (this.gameObject.transform.localScale.x < 0)
+            {
+                this.transform.localScale = new Vector2(1, 1);
+            }
+
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+
+            
+
+            if (rb.velocity.magnitude > limitspeed)
             {
                 rb.AddForce(-force);
             }
         }
         //左入力で左向きに動く
-        else if (horizontalKey < 0)
+        else if (_horizontalKey < 0)
         {
-            rb.AddForce(Vector2.left * _speed);
-            if (rb.velocity.magnitude > _limitspeed)
+            if (this.gameObject.transform.localScale.x > 0)
+            {
+                this.transform.localScale = new Vector2(-1, 1);
+            }
+
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+
+            
+
+            if (rb.velocity.magnitude > limitspeed)
             {
                 rb.AddForce(force);
             }
         }
-        //ボタンを話すと止まる
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
-
 
         if (Input.GetKeyDown("space") && !isJump)
-            {
-                rb.AddForce(Vector2.up * _flap);
-                isJump = true;
-            }
-        Application.targetFrameRate = 60;
+        {
+             animator.SetTrigger("jump");
+             animator.SetBool("ground", false);
+             rb.AddForce(Vector2.up * flap ,ForceMode2D.Force);
+             isJump = true;
+        }
 
+        Debug.Log(_horizontalKey);
     }
     void OnCollisionEnter2D(Collision2D other)
     {
+        animator.SetBool("ground",true);
         isJump = false;
+    }
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
     }
 }
