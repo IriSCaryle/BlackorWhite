@@ -7,38 +7,35 @@ public class Lazer : MonoBehaviour
 
     [SerializeField] MoveType moveType;
 
-    [Header("Common")]
-    [SerializeField] float time;
+    [Header("Common")] 
     [SerializeField] float coolTime;
     [SerializeField] float distance;
     [SerializeField] GameObject lazerParent;
     [SerializeField] GameObject lazerPivot;
     [SerializeField] GameObject lazer;
-
-    bool isStart = false;
-    bool isFinish = false;
-    bool isWrap = false;
     bool coolDown = false;
-    float nowCoolTime;
+    [SerializeField] float nowCoolTime;
     [Header("NoMove")]
+    [SerializeField] float time;
     [SerializeField] Vector3 axis;
     [SerializeField] float angle;
+    bool isOn = false;
+    [SerializeField]float nowCountTime;
     [Header("Rotate")]
     [SerializeField] float moveTime;
     [SerializeField] float nowtimeS;
     [SerializeField] float nowtimeF;
     [SerializeField] float angle1;
     [SerializeField] float angle2;
-    [Header("MoveHorizontal")]
-    [SerializeField] Vector3 pos1;
-    [SerializeField] Vector3 pos2;
+    bool isStart = false;
+    bool isFinish = false;
+    bool isWrap = false;
     RaycastHit2D hit;
 
     enum MoveType
     {
         NoMove = 1,
         Rotate = 2,
-        MoveHorizontal = 3
     }
 
 
@@ -47,29 +44,25 @@ public class Lazer : MonoBehaviour
         switch ((int)moveType)
         {
             case 1:
-                lazer.transform.rotation = Quaternion.AngleAxis(angle, axis);
-                isStart = true;
-                isFinish = false;
+                lazerParent.transform.rotation = Quaternion.AngleAxis(angle, axis);
                 coolDown = false;
-                isWrap = false;
+  
+                isOn = true;
+                nowCountTime = time;
+                nowCoolTime = coolTime;
                 break;
             case 2:
                 isStart = true;
                 isFinish = false;
                 coolDown = false;
                 isWrap = false;
-                break;
-            case 3:
-                isStart = true;
-                isFinish = false;
-                coolDown = false;
-                isWrap = false;
+                nowCoolTime = coolTime;
                 break;
         }
 
         Application.targetFrameRate = 60;
 
-        nowCoolTime = coolTime;
+        
     }
     void Start()
     {
@@ -77,17 +70,37 @@ public class Lazer : MonoBehaviour
     }
     void Update()
     {
-        
-        hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
-        Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red,10,false);
-        if (hit.collider)
+        switch ((int)moveType)
         {
-            if (hit.collider.gameObject.tag == "Player")
-            {
-                Debug.Log("あたった");
-            }
+            case 1:
+                Count();              
+                break;
+            case 2:
+                hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+                Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
+                if (hit.collider)
+                {
+                    if (hit.collider.gameObject.tag == "Player")
+                    {
+                        Debug.Log("あたった");
+                    }
+                }
+                break;
+            case 3:
+                hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+                Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
+                if (hit.collider)
+                {
+                    if (hit.collider.gameObject.tag == "Player")
+                    {
+                        Debug.Log("あたった");
+                    }
+                }
+                break;
         }
-        CountDown();
+
+       
+        CoolCountDown();
     }
 
     // Update is called once per frame
@@ -96,8 +109,6 @@ public class Lazer : MonoBehaviour
         switch ((int)moveType)
         {
             case 1:
-
-
                 break;
             case 2:
                 if (isStart)
@@ -129,18 +140,11 @@ public class Lazer : MonoBehaviour
                     }
                 }    
                 break;
-            case 3:
-               
-                break;
-
         }
-
-
-
     }
 
  
-    void CountDown()
+    void CoolCountDown()
     {
         if (coolDown)
         {
@@ -149,22 +153,61 @@ public class Lazer : MonoBehaviour
 
             if (nowCoolTime < 0)
             {
-                if (isWrap)
+                switch ((int)moveType)
                 {
-                    nowtimeF = 0;
-                    isFinish = true;
-                }
-                else
-                {
-                    nowtimeS = 0;
-                    isStart = true;
+                    case 1:
+                        nowCountTime = time;
+                        isOn = true;
+                        break;
+                    case 2:
+                        if (isWrap)
+                        {
+                            nowtimeF = 0;
+                            isFinish = true;
+                        }
+                        else
+                        {
+                            nowtimeS = 0;
+                            isStart = true;
+                        }
+                        
+                        break;
+                  
+                    
                 }
                 coolDown = false;
+
             }
         }
     }
 
-  
+    void Count()
+    {
+        if (isOn)
+        {
+            nowCountTime -= Time.deltaTime;
+
+            
+            Debug.Log("レーザー展開中");
+            hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+            Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
+            if (hit.collider)
+            {
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    Debug.Log("あたった");
+                }
+            }
+
+            if (nowCountTime < 0)
+            {
+                Debug.Log("レーザー終了");
+                isOn = false;
+                nowCoolTime = coolTime;
+                coolDown = true;
+            }
+        }
+    }
   
 
 }
