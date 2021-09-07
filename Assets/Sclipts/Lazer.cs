@@ -116,7 +116,7 @@ public class Lazer : MonoBehaviour
                     nowtimeS += moveTime * Time.deltaTime;
                     float _angleS = Mathf.LerpAngle(angle1, angle2, nowtimeS);
                     lazerParent.transform.eulerAngles = new Vector3(0, 0, _angleS);
-                    Debug.Log("_angleS:"+_angleS);
+                 //   Debug.Log("_angleS:"+_angleS);
                     if (_angleS == angle2)
                     {
                         nowCoolTime = coolTime;
@@ -130,7 +130,7 @@ public class Lazer : MonoBehaviour
                     nowtimeF += moveTime * Time.deltaTime;
                     float _angleF = Mathf.LerpAngle(angle2, angle1, nowtimeF);
                     lazerParent.transform.eulerAngles = new Vector3(0, 0, _angleF);
-                    Debug.Log("_angleF:" + _angleF);
+                  //  Debug.Log("_angleF:" + _angleF);
                     if (_angleF == angle1)
                     {
                         nowCoolTime = coolTime;
