@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class MessageBoard : MonoBehaviour
 {
     [Header("メッセージ"), SerializeField,TextArea(1,6)]
     string message;
-
+    [SerializeField] BlurChanger blur;
+    [SerializeField] Text text;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +20,13 @@ public class MessageBoard : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+  
+
+    private void OnTriggerStay(Collider other)
     {
-        if(collision.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player")
         {
-            return;
+            Debug.Log("操作ポップアップしています");
         }
-        Debug.Log("messageBoard:"+message);
-            
     }
 }
