@@ -14,6 +14,7 @@ public class BlurChanger : MonoBehaviour
     void Start()
     {
         isBlur = false;
+        isNormal = false ;
         _interpolation = 0;
     }
 

@@ -220,6 +220,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &67378327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67378329}
+  - component: {fileID: 67378328}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &67378328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67378327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d04bd97c45c81458511b967c9eb17b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - message: "\u30C6\u30B9\u30C8\n\u3053\u308C\u306F\u30C6\u30B9\u30C8\u3067\u3059\n\u30A8\u30E2\u3044"
+  - message: 
+--- !u!4 &67378329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67378327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.334193, y: -3.1479478, z: -15.877016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &76191499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1246,7 +1292,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0149793625, y: 1.6785707}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1257,7 +1303,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.92, y: 3.5500002}
+  m_Size: {x: 6.526513, y: 6.9071417}
   m_EdgeRadius: 0
 --- !u!212 &832876298
 SpriteRenderer:
@@ -1337,7 +1383,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: "\u30C6\u30B9\u30C8"
   blur: {fileID: 795302454}
+  messageList: {fileID: 67378328}
   text: {fileID: 972493086}
+  messageID: 0
 --- !u!1 &836793142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2652,7 +2700,7 @@ PrefabInstance:
     - target: {fileID: 1173537222620112424, guid: 86d1d46926ef42c468db8966982fbb64,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.7
+      value: 3.43
       objectReference: {fileID: 0}
     - target: {fileID: 1173537222620112424, guid: 86d1d46926ef42c468db8966982fbb64,
         type: 3}
