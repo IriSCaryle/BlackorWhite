@@ -916,7 +916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4775630089381241688}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5209029, y: 0.1400001, z: -54.14219}
+  m_LocalPosition: {x: 1.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2787679501983182479}
@@ -935,7 +935,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShotSpeed: 1000
-  FiringBlockPrefab: {fileID: 0}
+  FiringBlockPrefab: {fileID: 2437747193586354013, guid: 23b8670ff607608469117ebd2e931f94,
+    type: 3}
 --- !u!1 &6803903084615895724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1011,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &4775630089873475775
 CapsuleCollider2D:
@@ -1045,3 +1046,4 @@ MonoBehaviour:
   limitspeed: 10
   force: {x: 10, y: 0}
   animator: {fileID: 3220476075915773747}
+  Shooter: {fileID: 4775630089381241688}

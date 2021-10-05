@@ -15,7 +15,16 @@ public class Shooter : MonoBehaviour
     public void Shot()
     {
         GameObject Bullet = (GameObject)Instantiate(FiringBlockPrefab, transform.position, Quaternion.identity);
-        Rigidbody BulletRigidBody = Bullet.GetComponent<Rigidbody>();
-        BulletRigidBody.AddForce(Vector2.one * ShotSpeed);
+        var parentTransform = this.transform.parent.localScale;
+        if (this.transform.parent.localScale.x >= 1)
+        {
+            Rigidbody2D BulletRigidBody2D = Bullet.GetComponent<Rigidbody2D>();
+            BulletRigidBody2D.AddForce(Vector2.right * ShotSpeed);
+        }
+        else if(this.transform.parent.localScale .x < 0)
+        {
+            Rigidbody2D BulletRigidBody2D = Bullet.GetComponent<Rigidbody2D>();
+            BulletRigidBody2D.AddForce(Vector2.left * ShotSpeed);
+        }
     }
 }

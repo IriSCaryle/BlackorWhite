@@ -9,6 +9,8 @@ public class PleyerSclipt : MonoBehaviour
     [SerializeField] float limitspeed;
     [SerializeField] Vector2 force;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject Shooter;
+    Quaternion ShooterRot;
     private Rigidbody2D rb;
     bool isJump = false;
 
@@ -28,6 +30,7 @@ public class PleyerSclipt : MonoBehaviour
             if (this.gameObject.transform.localScale.x < 0)
             {
                 this.transform.localScale = new Vector2(1, 1);
+
             }
 
             rb.velocity = new Vector2(speed, rb.velocity.y);
@@ -45,6 +48,8 @@ public class PleyerSclipt : MonoBehaviour
             if (this.gameObject.transform.localScale.x > 0)
             {
                 this.transform.localScale = new Vector2(-1, 1);
+                ShooterRot = Shooter.transform.rotation;
+                ShooterRot.y = 180;
             }
 
             rb.velocity = new Vector2(-speed, rb.velocity.y);
