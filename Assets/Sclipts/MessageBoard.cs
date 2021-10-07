@@ -5,8 +5,7 @@ using UnityEngine.Playables;
 using UnityEngine.UI;
 public class MessageBoard : MonoBehaviour
 {
-    [Header("メッセージ"), SerializeField, TextArea(1, 6)]
-    string message;
+    
     [SerializeField] MessageList messageList;
     [SerializeField] Text text;
 
@@ -55,6 +54,7 @@ public class MessageBoard : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         isExit = true;
+        isEnter = false;
         target = null;
     }
 
@@ -76,7 +76,7 @@ public class MessageBoard : MonoBehaviour
         blurAnimator.SetTrigger("stop");
         messageAnimator.SetTrigger("stop");
         isopend = false;
-        isEnter = false;
+
         Time.timeScale = 1;
 
     }
