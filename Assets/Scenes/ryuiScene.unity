@@ -1148,10 +1148,10 @@ GameObject:
   m_Component:
   - component: {fileID: 814818536}
   - component: {fileID: 814818535}
-  - component: {fileID: 814818534}
   - component: {fileID: 814818533}
+  - component: {fileID: 814818534}
   m_Layer: 0
-  m_Name: BOW_Switch (1)
+  m_Name: BOW_Invert_Switch_test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1192,11 +1192,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 814818532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1e42d72cdf1f64294e35496b24be16, type: 3}
+  m_Script: {fileID: 11500000, guid: d171806a2a55d934791e204f4d4125f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leverOnPos: {x: 0, y: -0.32}
-  leverOffPos: {x: 0, y: 0.32}
+  leverOnPos: {x: 0, y: 0.32}
+  leverOffPos: {x: 0, y: -0.32}
   isOn: 0
   lever: {fileID: 1255254775}
   speed: 10
@@ -1816,7 +1816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255254775}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.32, z: 0}
+  m_LocalPosition: {x: 0, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 814818536}
@@ -2909,6 +2909,26 @@ PrefabInstance:
     - target: {fileID: 6297440767231762197, guid: d30e6398adbcd0646a16fc29136df4c5,
         type: 3}
       propertyPath: switchDoor_param.switchObj2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297440767231762197, guid: d30e6398adbcd0646a16fc29136df4c5,
+        type: 3}
+      propertyPath: isInvert
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297440767231762197, guid: d30e6398adbcd0646a16fc29136df4c5,
+        type: 3}
+      propertyPath: invertSwitchDoor_param.changeNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297440767231762197, guid: d30e6398adbcd0646a16fc29136df4c5,
+        type: 3}
+      propertyPath: switchDoor_param.changeNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297440767231762197, guid: d30e6398adbcd0646a16fc29136df4c5,
+        type: 3}
+      propertyPath: invertSwitchDoor_param.switchObj
       value: 
       objectReference: {fileID: 814818534}
     - target: {fileID: 6297440767231762198, guid: d30e6398adbcd0646a16fc29136df4c5,

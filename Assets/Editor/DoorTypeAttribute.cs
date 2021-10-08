@@ -9,6 +9,9 @@ public class DoorTypeAttribute : Editor
     SerializedProperty _list;
     public override void OnInspectorGUI()
     {
+        EditorGUI.BeginChangeCheck();
+
+
         Door obj = target as Door;
 
         _list = serializedObject.FindProperty("switchObjs");
@@ -56,12 +59,24 @@ public class DoorTypeAttribute : Editor
                 obj.switchDoor_param.changeNum = EditorGUILayout.IntField("スイッチの数", obj.switchDoor_param.changeNum);
                 obj.switchDoor_param.switchObj = EditorGUILayout.ObjectField("スイッチ1", obj.switchDoor_param.switchObj, typeof(Switch), true) as Switch;
                 obj.switchDoor_param.switchObj2 = EditorGUILayout.ObjectField("スイッチ2", obj.switchDoor_param.switchObj2, typeof(Switch), true) as Switch;
+                obj.isInvert = EditorGUILayout.Toggle("反転スイッチ", obj.isInvert);
+                if (obj.isInvert)
+                {
+                    obj.invertSwitchDoor_param.changeNum = EditorGUILayout.IntField("スイッチの数", obj.invertSwitchDoor_param.changeNum);
+                    obj.invertSwitchDoor_param.switchObj = EditorGUILayout.ObjectField("スイッチ1", obj.invertSwitchDoor_param.switchObj, typeof(InvertSwitch), true) as InvertSwitch;
+                    obj.invertSwitchDoor_param.switchObj2 = EditorGUILayout.ObjectField("スイッチ2", obj.invertSwitchDoor_param.switchObj2, typeof(InvertSwitch), true) as InvertSwitch;
+                }
                 
                 break;
             case Door.DoorType.TimeDoor:
                 obj.timeDoor_param.cooltime = EditorGUILayout.FloatField("閉まる時間", obj.timeDoor_param.cooltime);
                 obj.timeDoor_param.time = EditorGUILayout.FloatField("開く時間", obj.timeDoor_param.time);
                 break;
+        }
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(obj);
         }
     }
 }

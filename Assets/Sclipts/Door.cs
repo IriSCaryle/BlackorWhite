@@ -24,10 +24,11 @@ public class Door : MonoBehaviour
     public SwitchDoor switchDoor_param;
     public TimeDoor timeDoor_param;
 
+    public InvertSwitchDoor invertSwitchDoor_param;
 
     public bool isOpen;
 
-
+    public bool isInvert;
     void OnDrawGizmos()
     {
         switch (doorType)
@@ -63,7 +64,7 @@ public class Door : MonoBehaviour
 
                 break;
             case DoorType.SwitchDoor:
-                CheckSwitch();
+                CheckSwitches();
                 break;
             case DoorType.TimeDoor:
 
@@ -84,7 +85,33 @@ public class Door : MonoBehaviour
         }
     }
 
-    void CheckSwitch()
+    void CheckSwitches()
+    {
+        if (!isInvert)
+        {
+            if (CheckSwitch())
+            {
+                isOpen = true;
+            }
+            else
+            {
+                isOpen = false;
+            }
+        }
+        else
+        {
+            if (CheckSwitch() && CheckInvertSwitch()){
+
+                isOpen = true;
+            }
+            else
+            {
+                isOpen = false;
+            }
+        }
+    }
+
+    bool CheckSwitch()
     {
         switch (switchDoor_param.changeNum)
         {
@@ -94,27 +121,63 @@ public class Door : MonoBehaviour
             case 1:
                 if (switchDoor_param.switchObj.isOn)
                 {
-                    isOpen = true;
+                    return true;
                 }
                 else
                 {
-                    isOpen = false;
+                    return false;
                 }
-                break;
+                
             case 2:
-                if(switchDoor_param.switchObj.isOn && switchDoor_param.switchObj2.isOn)
+                if (switchDoor_param.switchObj.isOn && switchDoor_param.switchObj2.isOn)
                 {
-                    isOpen = true;
+                    return true;
                 }
                 else
                 {
-                    isOpen = false;
-                }
-                break;
+                    return false;
+                }  
+            default:
+                return false;
+                
         }
+
+        return false;
     }
 
-   
+
+   bool CheckInvertSwitch()
+    {
+        switch (invertSwitchDoor_param.changeNum)
+        {
+            case 0:
+                Debug.LogError("スイッチの数が0です");
+                break;
+            case 1:
+                if (invertSwitchDoor_param.switchObj.isOn)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 2:
+                if (invertSwitchDoor_param.switchObj.isOn && invertSwitchDoor_param.switchObj2.isOn)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            default:
+                return false;
+        }
+
+        return false;
+    }
 
     
 }
@@ -129,7 +192,15 @@ public class SwitchDoor
     public int changeNum;
     public Switch switchObj;
     public Switch switchObj2;
+    
+}
 
+[System.Serializable]
+public class InvertSwitchDoor
+{
+    public int changeNum;
+    public InvertSwitch switchObj;
+    public InvertSwitch switchObj2;
 }
 
 [System.Serializable]
@@ -141,3 +212,4 @@ public class TimeDoor
 
 
 }
+
