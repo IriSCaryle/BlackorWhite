@@ -13,6 +13,8 @@ public class MessageBoard : MonoBehaviour
 
     [SerializeField] Animator messageAnimator;
     [SerializeField] Animator blurAnimator;
+    [Header("UI")]
+    [SerializeField] PopUpUI popUpUI;
     GameObject target;
     bool isopend;
     bool isEnter;
@@ -35,7 +37,7 @@ public class MessageBoard : MonoBehaviour
                 {
                     OpenMessage();
                 }
-                else if (Input.GetKeyDown(KeyCode.E) && isopend == true)
+                else if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)&& isopend == true)
                 {
                     CloseMessage();
                 }
@@ -49,6 +51,7 @@ public class MessageBoard : MonoBehaviour
         isEnter = true;
         isExit = false;
         target = collision.gameObject;
+        popUpUI.isFadeIn = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -56,6 +59,7 @@ public class MessageBoard : MonoBehaviour
         isExit = true;
         isEnter = false;
         target = null;
+        popUpUI.isFadeOut = true;
     }
 
     void OpenMessage()
