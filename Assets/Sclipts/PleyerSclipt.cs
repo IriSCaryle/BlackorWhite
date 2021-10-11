@@ -13,6 +13,7 @@ public class PleyerSclipt : MonoBehaviour
     Quaternion ShooterRot;
     private Rigidbody2D rb;
     bool isJump = false;
+    public bool freeze;
 
     void Start()
     {
@@ -22,55 +23,57 @@ public class PleyerSclipt : MonoBehaviour
     // 物理演算をしたい場合はFixedUpdateを使うのが一般的
     void FixedUpdate()
     {
-        float _horizontalKey = Input.GetAxisRaw("Horizontal");
-        animator.SetInteger("speed", (int)_horizontalKey);
-        //右入力で左向きに動く
-        if (_horizontalKey > 0)
+        if (!freeze)
         {
-            if (this.gameObject.transform.localScale.x < 0)
+            float _horizontalKey = Input.GetAxisRaw("Horizontal");
+            animator.SetInteger("speed", (int)_horizontalKey);
+            //右入力で左向きに動く
+            if (_horizontalKey > 0)
             {
-                this.transform.localScale = new Vector2(1, 1);
+                if (this.gameObject.transform.localScale.x < 0)
+                {
+                    this.transform.localScale = new Vector2(1, 1);
 
+                }
+
+                rb.velocity = new Vector2(speed, rb.velocity.y);
+
+
+
+                if (rb.velocity.magnitude > limitspeed)
+                {
+                    rb.AddForce(-force);
+                }
+            }
+            //左入力で左向きに動く
+            else if (_horizontalKey < 0)
+            {
+                if (this.gameObject.transform.localScale.x > 0)
+                {
+                    this.transform.localScale = new Vector2(-1, 1);
+                    ShooterRot = Shooter.transform.rotation;
+                    ShooterRot.y = 180;
+                }
+
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
+
+
+
+                if (rb.velocity.magnitude > limitspeed)
+                {
+                    rb.AddForce(force);
+                }
             }
 
-            rb.velocity = new Vector2(speed, rb.velocity.y);
-
-            
-
-            if (rb.velocity.magnitude > limitspeed)
+            if (Input.GetKeyDown("space") && !isJump)
             {
-                rb.AddForce(-force);
+                animator.SetTrigger("jump");
+                animator.SetBool("ground", false);
+                rb.AddForce(Vector2.up * flap, ForceMode2D.Force);
+                isJump = true;
             }
         }
-        //左入力で左向きに動く
-        else if (_horizontalKey < 0)
-        {
-            if (this.gameObject.transform.localScale.x > 0)
-            {
-                this.transform.localScale = new Vector2(-1, 1);
-                ShooterRot = Shooter.transform.rotation;
-                ShooterRot.y = 180;
-            }
 
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
-
-            
-
-            if (rb.velocity.magnitude > limitspeed)
-            {
-                rb.AddForce(force);
-            }
-        }
-
-        if (Input.GetKeyDown("space") && !isJump)
-        {
-             animator.SetTrigger("jump");
-             animator.SetBool("ground", false);
-             rb.AddForce(Vector2.up * flap ,ForceMode2D.Force);
-             isJump = true;
-        }
-
-        Debug.Log(_horizontalKey);
     }
     void OnCollisionEnter2D(Collision2D other)
     {

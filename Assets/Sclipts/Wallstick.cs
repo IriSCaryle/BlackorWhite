@@ -11,7 +11,7 @@ public class Wallstick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-            if (GameObject.FindGameObjectWithTag("Wall"))
+            if (collision .gameObject.tag=="Wall"|| collision.gameObject.tag=="Bullet" )
             {
                 Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
                 rb.bodyType = RigidbodyType2D.Kinematic;
