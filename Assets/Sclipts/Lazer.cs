@@ -21,6 +21,7 @@ public class Lazer : MonoBehaviour
     [SerializeField] float angle;
     bool isOn = false;
     [SerializeField]float nowCountTime;
+    [SerializeField] LazerMove lazerMove;
     [Header("Rotate")]
     [SerializeField] float moveTime;
     [SerializeField] float nowtimeS;
@@ -41,6 +42,8 @@ public class Lazer : MonoBehaviour
 
     void Awake()
     {
+       
+
         switch ((int)moveType)
         {
             case 1:
@@ -66,36 +69,19 @@ public class Lazer : MonoBehaviour
     }
     void Start()
     {
-
+        Debug.Log("moveType:" + (int)moveType);
     }
     void Update()
     {
         switch ((int)moveType)
         {
             case 1:
+               
                 Count();              
                 break;
             case 2:
-                hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
-                Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
-                if (hit.collider)
-                {
-                    if (hit.collider.gameObject.tag == "Player")
-                    {
-                        Debug.Log("あたった");
-                    }
-                }
-                break;
-            case 3:
-                hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
-                Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
-                if (hit.collider)
-                {
-                    if (hit.collider.gameObject.tag == "Player")
-                    {
-                        Debug.Log("あたった");
-                    }
-                }
+               
+                MoveRay();
                 break;
         }
 
@@ -103,6 +89,18 @@ public class Lazer : MonoBehaviour
         CoolCountDown();
     }
 
+    void MoveRay()
+    {
+        hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+        Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
+        if (hit.collider)
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                Debug.Log("あたった");
+            }
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -113,6 +111,10 @@ public class Lazer : MonoBehaviour
             case 2:
                 if (isStart)
                 {
+                    if (lazerMove != null)
+                    {
+                        lazerMove.Fire();
+                    }
                     nowtimeS += moveTime * Time.deltaTime;
                     float _angleS = Mathf.LerpAngle(angle1, angle2, nowtimeS);
                     lazerParent.transform.eulerAngles = new Vector3(0, 0, _angleS);
@@ -127,6 +129,10 @@ public class Lazer : MonoBehaviour
                 }
                 if (isFinish)
                 {
+                    if (lazerMove != null)
+                    {
+                        lazerMove.UnFire();
+                    }
                     nowtimeF += moveTime * Time.deltaTime;
                     float _angleF = Mathf.LerpAngle(angle2, angle1, nowtimeF);
                     lazerParent.transform.eulerAngles = new Vector3(0, 0, _angleF);
@@ -176,6 +182,10 @@ public class Lazer : MonoBehaviour
                     
                 }
                 coolDown = false;
+                if (lazerMove != null)
+                {
+                    lazerMove.Fire();
+                }
 
             }
         }
@@ -201,6 +211,10 @@ public class Lazer : MonoBehaviour
 
             if (nowCountTime < 0)
             {
+                if (lazerMove != null)
+                {
+                    lazerMove.UnFire();
+                }
                 Debug.Log("レーザー終了");
                 isOn = false;
                 nowCoolTime = coolTime;
