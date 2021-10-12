@@ -5,14 +5,13 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] Animator blurAnimator;
-
+    [SerializeField] Animator menuAnimator;
     [SerializeField]bool isOpen;
-    [SerializeField] bool isClose;
+
     // Start is called before the first frame update
     void Start()
     { 
         isOpen = false;
-        isClose=false;
     }
 
     // Update is called once per frame
@@ -45,9 +44,13 @@ public class MenuManager : MonoBehaviour
     void StartAnimation()
     {
         blurAnimator.SetTrigger("start");
+        menuAnimator.SetTrigger("start");
+        Time.timeScale = 0;
     }
     void StopAnination()
     {
         blurAnimator.SetTrigger("stop");
+        menuAnimator.SetTrigger("stop");
+        Time.timeScale = 1;
     }
 }
