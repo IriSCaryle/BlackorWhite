@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6297440767231762198}
   - component: {fileID: 6297440767231762199}
+  - component: {fileID: 7507660657449416318}
   - component: {fileID: 6297440767231762197}
   - component: {fileID: 6297440767231762196}
   m_Layer: 0
@@ -84,6 +85,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7507660657449416318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297440767231762184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8025803458117b4981f0a4bbfb5dba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraName: InvertCam
+  isRender: 0
+  sprite: {fileID: 6297440767231762199}
+  isTransparent: 0
+  colorValue: 0
+  changeSpeed: 3
+  playerSclipt: {fileID: 0}
+  defaultColor: 1
 --- !u!114 &6297440767231762197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,13 +125,18 @@ MonoBehaviour:
   automaticDoor_param:
     closeTime: 0
   switchDoor_param:
-    changeNum: 2
+    changeNum: 1
     switchObj: {fileID: 0}
     switchObj2: {fileID: 0}
   timeDoor_param:
     time: 0
     cooltime: 0
+  invertSwitchDoor_param:
+    changeNum: 1
+    switchObj: {fileID: 0}
+    switchObj2: {fileID: 0}
   isOpen: 0
+  isInvert: 1
 --- !u!61 &6297440767231762196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,6 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6297440767890537241}
   - component: {fileID: 6297440767890537240}
+  - component: {fileID: 8473569437601239995}
   - component: {fileID: 6297440767890537255}
   m_Layer: 0
   m_Name: BOW_Door
@@ -219,6 +246,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8473569437601239995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297440767890537242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8025803458117b4981f0a4bbfb5dba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraName: InvertCam
+  isRender: 0
+  sprite: {fileID: 6297440767890537240}
+  isTransparent: 0
+  colorValue: 0
+  changeSpeed: 3
+  playerSclipt: {fileID: 0}
+  defaultColor: 1
 --- !u!61 &6297440767890537255
 BoxCollider2D:
   m_ObjectHideFlags: 0

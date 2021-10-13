@@ -14,15 +14,29 @@ public class PleyerSclipt : MonoBehaviour
     private Rigidbody2D rb;
     bool isJump = false;
     public bool freeze;
+    public bool avility;
+    public WorldType worldType;
 
+    public WorldType defaultWorld;
+    public enum WorldType 
+    {
+        Black =0,
+        White =1,
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
 
+        worldType = WorldType.Black;
+    }
+    private void Update()
+    {
+        ObserbKeys();
+    }
     // 物理演算をしたい場合はFixedUpdateを使うのが一般的
     void FixedUpdate()
     {
+        
         if (!freeze)
         {
             float _horizontalKey = Input.GetAxisRaw("Horizontal");
@@ -74,6 +88,28 @@ public class PleyerSclipt : MonoBehaviour
             }
         }
 
+    }
+
+
+    void ObserbKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            avility = true;
+            switch (worldType)
+            {
+                case WorldType.Black:
+                    worldType = WorldType.White;
+                    break;
+                case WorldType.White:
+                    worldType = WorldType.Black;
+                    break;
+            }
+        }
+        else
+        {
+            avility = false;
+        }
     }
     void OnCollisionEnter2D(Collision2D other)
     {
