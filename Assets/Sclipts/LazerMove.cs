@@ -18,7 +18,7 @@ public class LazerMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isFire)
         {

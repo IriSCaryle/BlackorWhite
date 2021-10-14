@@ -15,6 +15,10 @@ public class PleyerSclipt : MonoBehaviour
     bool isJump = false;
     public bool freeze;
     public bool avility;
+    [Header("色反転のクールタイム")]
+    public float limitCoolTime =3;
+    public float nowCoolTime;
+    bool avilityCoolTime;
     public WorldType worldType;
 
     public WorldType defaultWorld;
@@ -31,12 +35,13 @@ public class PleyerSclipt : MonoBehaviour
     }
     private void Update()
     {
-        ObserbKeys();
+        
     }
     // 物理演算をしたい場合はFixedUpdateを使うのが一般的
     void FixedUpdate()
     {
-        
+        ObserbKeys();
+        AvilityCoolCountDown();
         if (!freeze)
         {
             float _horizontalKey = Input.GetAxisRaw("Horizontal");
@@ -47,7 +52,6 @@ public class PleyerSclipt : MonoBehaviour
                 if (this.gameObject.transform.localScale.x < 0)
                 {
                     this.transform.localScale = new Vector2(1, 1);
-
                 }
 
                 rb.velocity = new Vector2(speed, rb.velocity.y);
@@ -89,13 +93,26 @@ public class PleyerSclipt : MonoBehaviour
         }
 
     }
+    void AvilityCoolCountDown()
+    {
+        if (avilityCoolTime)
+        {
+            nowCoolTime += Time.deltaTime;
 
+            if (nowCoolTime >= limitCoolTime)
+            {
+                nowCoolTime = 0;
+                avilityCoolTime = false;
+            }
+        }
+    }
 
     void ObserbKeys()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !avilityCoolTime)
         {
-            avility = true;
+            
+            avility = true;          
             switch (worldType)
             {
                 case WorldType.Black:
@@ -105,10 +122,12 @@ public class PleyerSclipt : MonoBehaviour
                     worldType = WorldType.Black;
                     break;
             }
+            avilityCoolTime = true;
         }
         else
         {
-            avility = false;
+           avility = false;
+            
         }
     }
     void OnCollisionEnter2D(Collision2D other)

@@ -53,4 +53,10 @@ public class MenuManager : MonoBehaviour
         menuAnimator.SetTrigger("stop");
         Time.timeScale = 1;
     }
+
+    public void OnStop()
+    {
+        isOpen = false;
+        CheckBool();
+    }
 }

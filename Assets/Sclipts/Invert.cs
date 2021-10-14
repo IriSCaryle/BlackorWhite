@@ -12,11 +12,18 @@ public class Invert : MonoBehaviour
     [SerializeField] SpriteRenderer sprite;
     [Header("オブジェクトをワールドの色と同化するようにするか")]
     [SerializeField] bool isTransparent;
+    [Header("色変化値")] 
     [SerializeField, Range(0f, 1f)] float colorValue;
+    [Header("色遷移速度")]
     [SerializeField] float changeSpeed;
+    [Header("プレイヤースクリプト")]
     [SerializeField] PleyerSclipt playerSclipt;
-
+    [Header("コライダー")]
+    [SerializeField] BoxCollider2D collider2D;
+    [Header("オブジェクトの初期色")]
     public DefalutColor defaultColor;
+    [Header("オブジェクトのisTriggerの初期値")]
+    [SerializeField] bool defaultIsTrigger;
 
 
     bool isBlack = false;
@@ -31,7 +38,14 @@ public class Invert : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (GetComponent<BoxCollider2D>())
+        {
+            collider2D = GetComponent<BoxCollider2D>();
+        }
+        if (playerSclipt == null)
+        {
+            playerSclipt = GameObject.FindGameObjectWithTag("Player").GetComponent<PleyerSclipt>();
+        }
     }
 
 
@@ -48,9 +62,41 @@ public class Invert : MonoBehaviour
             ChangeColorRender();
             isRender = false;
         }
+        else if(isTransparent)
+        {
+            if (playerSclipt.avility)
+            {
+                CheckWorldColor();
+            }
+        }
     }
 
-
+    void CheckWorldColor()
+    {
+        if ((int)defaultColor == (int)playerSclipt.worldType)
+        {
+            Debug.Log("Invert:色が同化したので判定を削除します-"+gameObject.name);
+            if (collider2D != null && defaultIsTrigger == true)
+            {
+                collider2D.isTrigger = true;
+            }
+            else if(collider2D != null && defaultIsTrigger == false)
+            {
+                collider2D.isTrigger = true;
+            }
+        }
+        else
+        {
+            if (collider2D != null && defaultIsTrigger == true)
+            {
+                collider2D.isTrigger = true;
+            }
+            else if (collider2D != null && defaultIsTrigger == false)
+            {
+                collider2D.isTrigger = false;
+            }
+        }
+    }
 
     void isRendered()
     {
