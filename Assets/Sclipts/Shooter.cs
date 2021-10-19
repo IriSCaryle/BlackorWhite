@@ -8,6 +8,8 @@ public class Shooter : MonoBehaviour
     [SerializeField] float ShotSpeed;
     public GameObject FiringBlockPrefab;
     public bool freeze;
+    [SerializeField]GameObject Bulletpool;
+    [SerializeField] BulletPoolManager bulletPoolManager;
     void FixedUpdate()
     {
         if (!freeze)
@@ -18,17 +20,26 @@ public class Shooter : MonoBehaviour
 
     public void Shot()
     {
-        GameObject Bullet = (GameObject)Instantiate(FiringBlockPrefab, transform.position, Quaternion.identity);
-        var parentTransform = this.transform.parent.localScale;
+        GameObject Bullet = bulletPoolManager.FindBullet();
+        
+  
         if (this.transform.parent.localScale.x >= 1)
         {
+            Bullet.transform.position = gameObject.transform.position;
             Rigidbody2D BulletRigidBody2D = Bullet.GetComponent<Rigidbody2D>();
+            Wallstick wallstick = Bullet.GetComponent<Wallstick>();
+            wallstick.rb.bodyType = RigidbodyType2D.Dynamic;
             BulletRigidBody2D.AddForce(Vector2.right * ShotSpeed);
+            Debug.Log("Bullet:Addforce");
         }
         else if(this.transform.parent.localScale .x < 0)
         {
+            Bullet.transform.position = gameObject.transform.position;
             Rigidbody2D BulletRigidBody2D = Bullet.GetComponent<Rigidbody2D>();
+            Wallstick wallstick = Bullet.GetComponent<Wallstick>();
+            wallstick.rb.bodyType = RigidbodyType2D.Dynamic;
             BulletRigidBody2D.AddForce(Vector2.left * ShotSpeed);
+            Debug.Log("Bullet:Addforce");
         }
     }
 }
