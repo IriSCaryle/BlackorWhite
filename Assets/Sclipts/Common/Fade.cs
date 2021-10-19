@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Fade : MonoBehaviour
 {
     [SerializeField] Image FadeImage;
-    bool isFadein;
-    bool isFadeout;
+    [SerializeField]bool isFadein;
+    [SerializeField]bool isFadeout;
     float fadetime;
-    float alpha;
-  
-    
+    [SerializeField]float alpha;
+
+    string nextSceneName;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         fadetime = 0;
         isFadein = false;
@@ -23,7 +24,6 @@ public class Fade : MonoBehaviour
     {
         if (isFadein)
         {
-            
              alpha -= Time.deltaTime / fadetime;
             Debug.Log(alpha +"1f" + Time.deltaTime);
             if (alpha <= 0) 
@@ -43,27 +43,37 @@ public class Fade : MonoBehaviour
             {
                 isFadeout = false;
                 Debug.Log("フェード終了");
-                
+                if (nextSceneName != "")
+                {
+                    SceneManager.LoadScene(nextSceneName);
+                }
+                else
+                {
+                    Debug.LogWarning("シーンネームがありません現状維持します");
+                }
             }
             FadeImage.color = new Color(0, 0, 0, alpha);
         }
     }
     public void FadeIn(float time)
     {
-        FadeImage.gameObject.SetActive(true);
-        fadetime = time;
         alpha = 1;
+        FadeImage.color = Color.black;
+        FadeImage.gameObject.SetActive(true);
         
+        fadetime = time;
         isFadein = true;
         Debug.Log("フェードイン開始" );
         Debug.Log("初期:" + alpha);
        
     }
-    public void FadeOut(float time)
+    public void FadeOut(float time,string sceneName)
     {
+        alpha = 0;
         FadeImage.gameObject.SetActive(true);
         fadetime = time;
-        alpha = 0;
+        
+        nextSceneName = sceneName;
         isFadeout = true;
         Debug.Log("フェードアウト開始" );
         Debug.Log("初期:" + alpha);
