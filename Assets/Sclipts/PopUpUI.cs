@@ -16,12 +16,17 @@ public class PopUpUI : MonoBehaviour
         Color color = text1.color;
         color.a = 0;
         text1.color = color;
-        text2.color = color;
+        //text2.color = color;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isFadeIn && isFadeOut)
+        {
+            isFadeOut = true;
+            isFadeIn = false;
+        }
         if (isFadeIn)
         {
             Color color = text1.color;

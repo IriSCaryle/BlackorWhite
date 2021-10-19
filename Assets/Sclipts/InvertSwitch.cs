@@ -17,6 +17,7 @@ public class InvertSwitch : MonoBehaviour
     public float speed;
 
     bool isRange;
+    [SerializeField] PopUpUI popUpUI;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +61,7 @@ public class InvertSwitch : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             isRange = true;
+            popUpUI.isFadeIn = true;
         }
     }
 
@@ -68,6 +70,7 @@ public class InvertSwitch : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             isRange = false;
+            popUpUI.isFadeOut = true;
         }
     }
 }

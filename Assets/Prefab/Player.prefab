@@ -937,6 +937,7 @@ MonoBehaviour:
   ShotSpeed: 1000
   FiringBlockPrefab: {fileID: 2437747193586354013, guid: 23b8670ff607608469117ebd2e931f94,
     type: 3}
+  freeze: 0
 --- !u!1 &6803903084615895724
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,10 +950,11 @@ GameObject:
   - component: {fileID: 3220476075915773747}
   - component: {fileID: 4775630089873475770}
   - component: {fileID: 4775630089873475775}
+  - component: {fileID: 1329131710472042224}
   - component: {fileID: 4775630089873475771}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1026,9 +1028,39 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2193873}
-  m_Size: {x: 0.5, y: 1.4387746}
+  m_Offset: {x: 0, y: -0.21151543}
+  m_Size: {x: 0.5, y: 1.6329498}
   m_Direction: 0
+--- !u!114 &1329131710472042224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803903084615895724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04fb31d7b6a9e74c957eedb8d4728cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraName: InvertCam
+  isRender: 0
+  rigs:
+  - {fileID: 2133701908681895664}
+  - {fileID: 2133701909633944618}
+  - {fileID: 2133701908962029282}
+  - {fileID: 2133701908163697567}
+  - {fileID: 2133701908298311016}
+  - {fileID: 2133701908398613765}
+  - {fileID: 2133701908162978931}
+  - {fileID: 2133701909639224585}
+  - {fileID: 2133701909235891052}
+  - {fileID: 2133701907807814618}
+  isTransparent: 0
+  colorValue: 0
+  changeSpeed: 3
+  playerSclipt: {fileID: 4775630089873475771}
+  defaultColor: 1
 --- !u!114 &4775630089873475771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,3 +1079,7 @@ MonoBehaviour:
   force: {x: 10, y: 0}
   animator: {fileID: 3220476075915773747}
   Shooter: {fileID: 4775630089381241688}
+  freeze: 0
+  avility: 0
+  worldType: 0
+  defaultWorld: 0

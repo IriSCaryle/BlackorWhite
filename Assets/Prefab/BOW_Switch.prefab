@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4322832045575590650}
   - component: {fileID: 4322832045575590645}
+  - component: {fileID: 1518174788}
   m_Layer: 0
   m_Name: Switch_Lever
   m_TagString: Untagged
@@ -81,6 +82,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1518174788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322832045575590651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8025803458117b4981f0a4bbfb5dba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraName: InvertCam
+  isRender: 0
+  sprite: {fileID: 4322832045575590645}
+  isTransparent: 1
+  colorValue: 0
+  changeSpeed: 3
+  playerSclipt: {fileID: 0}
+  defaultColor: 1
 --- !u!1 &4322832046565906922
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +113,7 @@ GameObject:
   - component: {fileID: 4322832046565906916}
   - component: {fileID: 4322832046565906917}
   - component: {fileID: 4322832046565906919}
+  - component: {fileID: 8524820043365881876}
   - component: {fileID: 4322832046565906918}
   m_Layer: 0
   m_Name: BOW_Switch
@@ -182,6 +204,26 @@ MonoBehaviour:
   isOn: 0
   lever: {fileID: 4322832045575590651}
   speed: 10
+--- !u!114 &8524820043365881876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322832046565906922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8025803458117b4981f0a4bbfb5dba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraName: InvertCam
+  isRender: 0
+  sprite: {fileID: 4322832046565906917}
+  isTransparent: 1
+  colorValue: 0
+  changeSpeed: 3
+  playerSclipt: {fileID: 0}
+  defaultColor: 1
 --- !u!61 &4322832046565906918
 BoxCollider2D:
   m_ObjectHideFlags: 0

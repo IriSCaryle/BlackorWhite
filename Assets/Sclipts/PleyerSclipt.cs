@@ -14,15 +14,34 @@ public class PleyerSclipt : MonoBehaviour
     private Rigidbody2D rb;
     bool isJump = false;
     public bool freeze;
+    public bool avility;
+    [Header("色反転のクールタイム")]
+    public float limitCoolTime =3;
+    public float nowCoolTime;
+    bool avilityCoolTime;
+    public WorldType worldType;
 
+    public WorldType defaultWorld;
+    public enum WorldType 
+    {
+        Black =0,
+        White =1,
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
 
+        worldType = WorldType.Black;
+    }
+    private void Update()
+    {
+        
+    }
     // 物理演算をしたい場合はFixedUpdateを使うのが一般的
     void FixedUpdate()
     {
+        ObserbKeys();
+        AvilityCoolCountDown();
         if (!freeze)
         {
             float _horizontalKey = Input.GetAxisRaw("Horizontal");
@@ -33,7 +52,6 @@ public class PleyerSclipt : MonoBehaviour
                 if (this.gameObject.transform.localScale.x < 0)
                 {
                     this.transform.localScale = new Vector2(1, 1);
-
                 }
 
                 rb.velocity = new Vector2(speed, rb.velocity.y);
@@ -74,6 +92,43 @@ public class PleyerSclipt : MonoBehaviour
             }
         }
 
+    }
+    void AvilityCoolCountDown()
+    {
+        if (avilityCoolTime)
+        {
+            nowCoolTime += Time.deltaTime;
+
+            if (nowCoolTime >= limitCoolTime)
+            {
+                nowCoolTime = 0;
+                avilityCoolTime = false;
+            }
+        }
+    }
+
+    void ObserbKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && !avilityCoolTime)
+        {
+            
+            avility = true;          
+            switch (worldType)
+            {
+                case WorldType.Black:
+                    worldType = WorldType.White;
+                    break;
+                case WorldType.White:
+                    worldType = WorldType.Black;
+                    break;
+            }
+            avilityCoolTime = true;
+        }
+        else
+        {
+           avility = false;
+            
+        }
     }
     void OnCollisionEnter2D(Collision2D other)
     {

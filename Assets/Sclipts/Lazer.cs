@@ -69,7 +69,7 @@ public class Lazer : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log("moveType:" + (int)moveType);
+        Debug.Log("Lazer:moveType:" + (int)moveType);
     }
     void Update()
     {
@@ -97,7 +97,7 @@ public class Lazer : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Player")
             {
-                Debug.Log("あたった");
+                Debug.Log("Lazer:あたった");
             }
         }
     }
@@ -198,14 +198,14 @@ public class Lazer : MonoBehaviour
             nowCountTime -= Time.deltaTime;
 
             
-            Debug.Log("レーザー展開中");
+            Debug.Log("Lazer:レーザー展開中");
             hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
             Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
             if (hit.collider)
             {
                 if (hit.collider.gameObject.tag == "Player")
                 {
-                    Debug.Log("あたった");
+                    Debug.Log("Lazer:あたった");
                 }
             }
 
@@ -215,7 +215,7 @@ public class Lazer : MonoBehaviour
                 {
                     lazerMove.UnFire();
                 }
-                Debug.Log("レーザー終了");
+                Debug.Log("Lazer:レーザー終了");
                 isOn = false;
                 nowCoolTime = coolTime;
                 coolDown = true;
