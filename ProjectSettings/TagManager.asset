@@ -11,6 +11,7 @@ TagManager:
   - SaveManager
   - Ground
   - Enemy
+  - SettingData
   layers:
   - Default
   - TransparentFX
