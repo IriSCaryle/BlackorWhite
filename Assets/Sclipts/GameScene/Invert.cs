@@ -78,7 +78,7 @@ public class Invert : MonoBehaviour
             Debug.Log("Invert:色が同化したので判定を削除します-"+gameObject.name);
             if (collider2D != null && defaultIsTrigger == true)
             {
-                collider2D.isTrigger = true;
+                collider2D.enabled = false;
             }
             else if(collider2D != null && defaultIsTrigger == false)
             {
@@ -89,7 +89,7 @@ public class Invert : MonoBehaviour
         {
             if (collider2D != null && defaultIsTrigger == true)
             {
-                collider2D.isTrigger = true;
+                collider2D.enabled = true;
             }
             else if (collider2D != null && defaultIsTrigger == false)
             {

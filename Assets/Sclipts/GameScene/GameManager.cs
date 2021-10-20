@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject SpawnPoint;
+    [SerializeField] int StageNum;
     [SerializeField] SaveManager saveManager;
     [SerializeField] GameObject player;
     [SerializeField] Fade fade;
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
     void SaveData()
     {
         saveManager.save.PlayerPos = player.transform.position;
-        saveManager.save.StageNum = 1;
+        saveManager.save.StageNum = StageNum;
         saveManager.Save();
     }
 
@@ -58,6 +60,15 @@ public class GameManager : MonoBehaviour
         SaveData();
         Time.timeScale = 1;
         fade.FadeOut(1,"TitleScene");
+    }
+
+    public void Retry()
+    {
+        saveManager.save.PlayerPos = SpawnPoint.transform.position;
+        saveManager.save.StageNum = StageNum;
+        saveManager.Save();
+        Time.timeScale = 1;
+        fade.FadeOut(1, "SelectWorldScene");
     }
 
     // Update is called once per frame

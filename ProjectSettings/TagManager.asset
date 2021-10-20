@@ -9,6 +9,9 @@ TagManager:
   - MoveFloor
   - InvertCam
   - SaveManager
+  - Ground
+  - Enemy
+  - SettingData
   layers:
   - Default
   - TransparentFX
