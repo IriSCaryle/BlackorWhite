@@ -58,6 +58,10 @@ public class TitleManager : MonoBehaviour
 
     }
     
+    public void _OnClickReset()
+    {
+        saveManager.SaveDataReset();
+    }
     public void OnClickQuit()
     {
         Application.Quit();

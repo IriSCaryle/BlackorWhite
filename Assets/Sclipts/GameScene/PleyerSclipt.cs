@@ -9,7 +9,11 @@ public class PleyerSclipt : MonoBehaviour
     [SerializeField] float limitspeed;
     [SerializeField] Vector2 force;
     [SerializeField] Animator animator;
+    [SerializeField] Animator DeadAnimator;
     [SerializeField] GameObject Shooter;
+    [SerializeField] ParticleSystem DeadParticle;
+    [SerializeField] GameObject Rigs;
+    [SerializeField] CapsuleCollider2D playerCollider;
     Quaternion ShooterRot;
     private Rigidbody2D rb;
     bool isJump = false;
@@ -35,7 +39,6 @@ public class PleyerSclipt : MonoBehaviour
     }
     private void Update()
     {
-        
     }
     // 物理演算をしたい場合はFixedUpdateを使うのが一般的
     void FixedUpdate()
@@ -132,9 +135,38 @@ public class PleyerSclipt : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-        animator.SetBool("ground",true);
+        
+        animator.SetBool("ground", true);
         isJump = false;
+        if(other.gameObject.tag == "Enemy")
+        {
+            animator.SetInteger("speed",0);
+            freeze = true;
+            StartCoroutine("Dead");
+        }
     }
+
+    IEnumerator Dead()
+    {
+        yield return new WaitForSeconds(1);
+
+        Rigs.SetActive(false);
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        playerCollider.enabled = false;
+        DeadParticle.Play();
+
+        yield return new WaitForSeconds(2);
+
+        Time.timeScale = 0;
+        DeadAnimator.SetTrigger("GameOver");
+        Debug.Log("Dead:終了");
+        yield break;
+    }
+
+    void OnParticleSystemStopped()
+    {
+    }
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
