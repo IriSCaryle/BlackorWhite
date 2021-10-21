@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// 現在 反転オプション表示用のboolが機能しないため停止中
+/// スイッチのオンオフが反対のスイッチ動作
+/// 基本的にはSwitchと同じ
 /// </summary>
 public class InvertSwitch : MonoBehaviour
 {
-  public Vector2 leverOnPos;
+  public Vector2 leverOnPos;//On状態の位置
 
-    public Vector2 leverOffPos;
+    public Vector2 leverOffPos;//off状態の位置
 
-    public bool isOn;
+    public bool isOn;//Onであるか
 
-    public GameObject lever;
+    public GameObject lever;//レバー部分
 
-    public float speed;
+    public float speed;//移動速度
 
-    bool isRange;
-    [SerializeField] PopUpUI popUpUI;
+    bool isRange;//範囲内にいるか
+    [SerializeField] PopUpUI popUpUI;//ガイド表示
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,7 @@ public class InvertSwitch : MonoBehaviour
         CheckOnTrigger();
     }
 
-    void OnOffSwitch()
+    void OnOffSwitch()//スイッチ移動動作
     {
         if (isOn)
         {
@@ -44,7 +45,7 @@ public class InvertSwitch : MonoBehaviour
         }
     }
 
-    void CheckOnTrigger()
+    void CheckOnTrigger()//範囲内に入っている時の
     {
         if (isRange)
         {

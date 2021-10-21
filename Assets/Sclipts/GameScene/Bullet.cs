@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 放つブロックのスクリプト
+/// </summary>
 public class Bullet : MonoBehaviour
 {
-    public bool isActive;
-    public float life;
-    [SerializeField]float nowLife;
-    bool iscollision;
-    public Vector2 defaultPos;
+    public bool isActive;//ブロックを使用しているかどうか(プールオブジェクトのため)
+    public float life;//壁にぶつかってから生存する時間
+    [SerializeField]float nowLife;//残り生存時間
+    bool iscollision;//壁や弾にぶつかったか
+    public Vector2 defaultPos;//プール位置
     // Start is called before the first frame update
     
     void Start()

@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// ブロックを管理するスクリプト
+/// </summary>
 public class BulletPoolManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> bullets;
-    [SerializeField] List<Bullet> bulletsScripts;
-    [SerializeField] int bulletLimits;
-    [SerializeField] float bulletLifeTime;
-    [SerializeField] GameObject bullet;
-    [SerializeField] GameObject defaultPos;
+    [SerializeField] List<GameObject> bullets;//ブロック
+    [SerializeField] List<Bullet> bulletsScripts;//各ブロックのスクリプト
+    [SerializeField] int bulletLimits;//生成する弾の数
+    [SerializeField] float bulletLifeTime;//弾の生存時間
+    [SerializeField] GameObject bullet;//ブロックのプレハブ
+    [SerializeField] GameObject defaultPos;//プール位置
     // Start is called before the first frame update
     void Start()
     {

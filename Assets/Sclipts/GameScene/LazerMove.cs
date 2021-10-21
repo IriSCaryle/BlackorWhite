@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// レーザー照射動作
+/// </summary>
 public class LazerMove : MonoBehaviour
 {
-
+    [Header("スピード")]
     [SerializeField] float Speed;
+    [Header("スプライト")]
     [SerializeField] SpriteRenderer spriteRenderer;
+    [Header("レーザーの距離")]
     [SerializeField] float Limit;
+    [Header("照射判定")]
      public bool isFire;
      public bool isUnFire;
     // Start is called before the first frame update
@@ -20,7 +25,7 @@ public class LazerMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isFire)
+        if (isFire)//照射動作
         {
             Vector2 vec = new Vector2(0, Speed * Time.deltaTime);
             spriteRenderer.size += vec;
@@ -30,7 +35,7 @@ public class LazerMove : MonoBehaviour
                 isFire = false;
             }
         }
-        if (isUnFire)
+        if (isUnFire)//解除動作
         {
             Vector2 vec = new Vector2(0, Speed * Time.deltaTime);
             spriteRenderer.size -= vec;

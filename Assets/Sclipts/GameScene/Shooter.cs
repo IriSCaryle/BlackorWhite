@@ -2,13 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// ブロックを発射するスクリプトなど プールスクリプトとの橋渡し
+/// </summary>
 public class Shooter : MonoBehaviour
 {
+    [Header("発射速度")]
     [SerializeField] float ShotSpeed;
+    [Header("ブロックのプレハブ")]
     public GameObject FiringBlockPrefab;
+    [Header("プレイヤースクリプト")]
     [SerializeField] PleyerSclipt PleyerSclipt;
+    [Header("プールオブジェクト")]
     [SerializeField]GameObject Bulletpool;
+    [Header("プールマネージャー")]
     [SerializeField] BulletPoolManager bulletPoolManager;
     void Update()
     {
@@ -18,11 +25,11 @@ public class Shooter : MonoBehaviour
         }
     }
 
-    public void Shot()
+    public void Shot()//ブロック動作
     {
-        GameObject Bullet = bulletPoolManager.FindBullet();
+        GameObject Bullet = bulletPoolManager.FindBullet();//プールマネージャから発射可能なオブジェクトを検索・取得
         
-  
+        //発射動作
         if (this.transform.parent.localScale.x >= 1)
         {
             Bullet.transform.position = gameObject.transform.position;

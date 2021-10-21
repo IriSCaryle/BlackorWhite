@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// レーザー
+/// </summary>
 public class Lazer : MonoBehaviour
 {
-
+    [Header("動作タイプ")]
     [SerializeField] MoveType moveType;
 
     [Header("Common")] 
@@ -32,8 +34,11 @@ public class Lazer : MonoBehaviour
     bool isFinish = false;
     bool isWrap = false;
     RaycastHit2D hit;
+    [Header("ゲームマネージャー")]
     [SerializeField] GameManager gameManager;
+    [Header("プレイヤー")]
     [SerializeField] PleyerSclipt pleyerSclipt;
+    [Header("デフォルトの色")]
     [SerializeField]DefaultColor defaultColor;
     enum MoveType
     {
@@ -50,8 +55,6 @@ public class Lazer : MonoBehaviour
 
     void Awake()
     {
-       
-
         switch ((int)moveType)
         {
             case 1:
@@ -69,11 +72,7 @@ public class Lazer : MonoBehaviour
                 isWrap = false;
                 nowCoolTime = coolTime;
                 break;
-        }
-
-        Application.targetFrameRate = 60;
-
-        
+        }         
     }
     void Start()
     {
@@ -97,7 +96,7 @@ public class Lazer : MonoBehaviour
         CoolCountDown();
     }
 
-    void MoveRay()
+    void MoveRay()//レーザーの回転に沿ってRayを発射する動作
     {
         if ((int)defaultColor != (int)pleyerSclipt.worldType)
         {
@@ -121,7 +120,7 @@ public class Lazer : MonoBehaviour
             case 1:
                 break;
             case 2:
-                if (isStart)
+                if (isStart)//レーザーを左に回転させる動作
                 {
                     if (lazerMove != null)
                     {
@@ -139,7 +138,7 @@ public class Lazer : MonoBehaviour
                         coolDown = true;
                     }
                 }
-                if (isFinish)
+                if (isFinish)//レーザーを右に回転させる動作
                 {
                     if (lazerMove != null)
                     {
@@ -162,7 +161,7 @@ public class Lazer : MonoBehaviour
     }
 
  
-    void CoolCountDown()
+    void CoolCountDown()//クールタイムを数える動作
     {
         if (coolDown)
         {
@@ -203,7 +202,7 @@ public class Lazer : MonoBehaviour
         }
     }
 
-    void Count()
+    void Count()//レーザーが照射されている時間を計り、オンオフする動作
     {
         if (isOn)
         {

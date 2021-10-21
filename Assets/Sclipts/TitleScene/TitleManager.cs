@@ -5,22 +5,26 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class TitleManager : MonoBehaviour
 {
-
+    [Header("フェードスクリプト")]
     [SerializeField] Fade fade;
+    [Header("セーブ管理スクリプト")]
     [SerializeField] SaveManager saveManager;
+    [Header("コンティニューボタン")]
     [SerializeField] Button continueButton;
+    [Header("デバッグボタン(ryuiSceneへ移動したい際に使用)")]
     [SerializeField] bool isDebug;
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
-        if (saveManager.Load()){
+        if (saveManager.Load()){//セーブデータをロード
             continueButton.interactable = true;
             //--デバッグ用--//
             //saveManager.SaveDataReset();
         }
         else
         {
+            //設定がない場合continueボタンを非表示
             Text[] texts = continueButton.gameObject.GetComponentsInChildren<Text>();
             Debug.Log(texts[0]);
             Color color = texts[0].color;
@@ -40,7 +44,7 @@ public class TitleManager : MonoBehaviour
         
     }
 
-    public void OnClickStart()
+    public void OnClickStart()//スタートボタン動作
     {
         if (isDebug)
         {
@@ -55,9 +59,9 @@ public class TitleManager : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
-    public void OnClickContinue()
+    public void OnClickContinue()//コンティニューボタン動作
     {
-        if (isDebug)
+        if (isDebug)//デバッグ使用時
         {
             saveManager.save.StageNum = 0;
             saveManager.Save();
@@ -68,16 +72,16 @@ public class TitleManager : MonoBehaviour
         PlayerPrefs.SetInt("Load?",1);
         PlayerPrefs.Save();
     }
-    public void OnClickSetting()
+    public void OnClickSetting()//設定ボタン動作
     {
         fade.FadeOut(1, "SettingScene");
     }
     
-    public void _OnClickReset()
+    public void _OnClickReset()//セーブデータ削除ボダン動作
     {
         saveManager.SaveDataReset();
     }
-    public void OnClickQuit()
+    public void OnClickQuit()//終了ボタン動作
     {
         Application.Quit();
     }

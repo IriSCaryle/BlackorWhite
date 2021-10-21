@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    [Header("各アニメーター")]
     [SerializeField] Animator blurAnimator;
     [SerializeField] Animator menuAnimator;
+    [Header("メニューが開かれているか")]
     [SerializeField]bool isOpen;
+    [Header("プレイヤースクリプト")]
     [SerializeField] PleyerSclipt pleyerSclipt;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,7 @@ public class MenuManager : MonoBehaviour
         CheckKey();
     }
 
-    void CheckKey()
+    void CheckKey()//キーを検出
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -30,7 +33,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    void CheckBool()
+    void CheckBool()//isOpenを監視する関数
     {
         if (isOpen)
         {
@@ -43,7 +46,7 @@ public class MenuManager : MonoBehaviour
             StopAnination();
         }
     }
-    void StartAnimation()
+    void StartAnimation()//アニメーション監視関数
     {
         blurAnimator.SetTrigger("start");
         menuAnimator.SetTrigger("start");

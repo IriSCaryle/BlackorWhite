@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// 反転動作のスクリプト
+/// </summary>
 public class Invert : MonoBehaviour
 {
     [Header("カメラ名")]
     [SerializeField] string cameraName;
     [Header("オブジェクトがカメラに写っているか")]
     public bool isRender = false;
+    /// 
+    /// サブカメラはメインカメラよりも範囲が広く設定されメインカメラに映る前にあらかじめ
+    /// このオブジェクトがサブカメラに映っているか判定を取るために使いました
+    /// 
     [Header("Sprite")]
     [SerializeField] SpriteRenderer sprite;
     [Header("オブジェクトをワールドの色と同化するようにするか")]
@@ -38,11 +45,11 @@ public class Invert : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GetComponent<BoxCollider2D>())
+        if (GetComponent<BoxCollider2D>())//ボックスコライダーがあれば取得
         {
             collider2D = GetComponent<BoxCollider2D>();
         }
-        if (playerSclipt == null)
+        if (playerSclipt == null)//プレイヤースクリプトが無ければタグから取得
         {
             playerSclipt = GameObject.FindGameObjectWithTag("Player").GetComponent<PleyerSclipt>();
         }
@@ -54,7 +61,7 @@ public class Invert : MonoBehaviour
     {
         if (!isTransparent)
         {
-            if (playerSclipt.avility)
+            if (playerSclipt.avility)//Qが押された判定
             {
                 isRendered();
 
@@ -64,16 +71,16 @@ public class Invert : MonoBehaviour
         }
         else if(isTransparent)
         {
-            if (playerSclipt.avility)
+            if (playerSclipt.avility)//Qが押された判定
             {
                 CheckWorldColor();
             }
         }
     }
 
-    void CheckWorldColor()
+    void CheckWorldColor()//(*)世界の色をチェックし背景と同化した場合はコライダーをオフにします   /* (*)世界の色:プレイヤースクリプト参照 */
     {
-        if ((int)defaultColor == (int)playerSclipt.worldType)
+        if ((int)defaultColor == (int)playerSclipt.worldType)//同化した場合
         {
             Debug.Log("Invert:色が同化したので判定を削除します-"+gameObject.name);
             if (collider2D != null && defaultIsTrigger == true)
@@ -85,7 +92,7 @@ public class Invert : MonoBehaviour
                 collider2D.isTrigger = true;
             }
         }
-        else
+        else//していない場合
         {
             if (collider2D != null && defaultIsTrigger == true)
             {
@@ -98,7 +105,7 @@ public class Invert : MonoBehaviour
         }
     }
 
-    void isRendered()
+    void isRendered()//サブカメラに写っているか
     {
         if (isRender)
         {
@@ -112,7 +119,7 @@ public class Invert : MonoBehaviour
         }
     }
 
-    void ChangeInvertBool()
+    void ChangeInvertBool()//カメラに映っている際,黒と白の色を遷移させる動作切り替え
     {
 
         if (sprite.color == Color.black)
@@ -125,7 +132,7 @@ public class Invert : MonoBehaviour
         
     }
 
-    void ChangeColorRender()
+    void ChangeColorRender()//色遷移動作
     {
         if (isBlack)
         {
@@ -153,7 +160,7 @@ public class Invert : MonoBehaviour
         }
     }
 
-    void ChangeColorNotRender()
+    void ChangeColorNotRender()//映っていない場合の動作です,映っていない場合は軽量化のためすぐ切り替わるようになっています
     {
 
         if (sprite.color == Color.white)
@@ -168,7 +175,7 @@ public class Invert : MonoBehaviour
         }
     }
 
-    private void OnWillRenderObject()
+    private void OnWillRenderObject()//カメラのタグが合っていればカメラに映った際isRendeeがtrueを返します
     {
         if (Camera.current.tag == cameraName)
         {

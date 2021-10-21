@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// オブジェクトの上に表示するテキストの動作
+/// </summary>
 public class PopUpUI : MonoBehaviour
 {
+    [Header("表示するテキスト")]
     [SerializeField] Text text1;
     [SerializeField] Text text2;
+    [Header("フェードスピード")]
     [SerializeField] float speed;
+    [Header("フェード状況")]
     public bool isFadeIn;
 
     public bool isFadeOut;
@@ -22,6 +28,7 @@ public class PopUpUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //フェードイン&フェードアウト動作
         if (isFadeIn && isFadeOut)
         {
             isFadeOut = true;

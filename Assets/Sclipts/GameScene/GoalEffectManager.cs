@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// ゴールエフェクトの管理
+/// </summary>
 public class GoalEffectManager : MonoBehaviour
 {
     [SerializeField] RawImage rawImage;

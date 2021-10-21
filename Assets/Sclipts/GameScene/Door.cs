@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// ドアというか扉のスクリプト
+/// </summary>
 public class Door : MonoBehaviour
-{
-    public Vector2 closePos;
-    public Vector2 openPos;
+{  
+    public Vector2 closePos;//閉じているときの位置
+    public Vector2 openPos;//開けているときの位置
+    public GameObject doorObj;//prefab
+    public float speed;//開閉速度
 
-    public GameObject doorObj;
-
-    public float speed;
-
-
-    public DoorType doorType;
+    public DoorType doorType;//ドアの開閉条件
     public enum DoorType
     {
         AutomaticDooor,
@@ -20,26 +19,28 @@ public class Door : MonoBehaviour
         TimeDoor,
 
     }
+
+  
     public AutomaticDoor automaticDoor_param;
     public SwitchDoor switchDoor_param;
     public TimeDoor timeDoor_param;
 
     public InvertSwitchDoor invertSwitchDoor_param;
 
-    public bool isOpen;
+    public bool isOpen;//空いているか
 
-    public bool isInvert;
+    public bool isInvert;//
     void OnDrawGizmos()
     {
         switch (doorType)
         {
-            case DoorType.AutomaticDooor:
+            case DoorType.AutomaticDooor://自動ドア
             
                 break;
-            case DoorType.SwitchDoor:
+            case DoorType.SwitchDoor://スイッチでドアが開きます
 
                 break;
-            case DoorType.TimeDoor:
+            case DoorType.TimeDoor://時間でドアが開きます
 
                 break;
         }
@@ -73,7 +74,7 @@ public class Door : MonoBehaviour
     }
 
 
-    void OpenClose()
+    void OpenClose()//ドアの開閉動作
     {
         if (isOpen)
         {
@@ -85,7 +86,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    void CheckSwitches()
+    void CheckSwitches()//スイッチを監視します
     {
         if (!isInvert)
         {
@@ -111,7 +112,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    bool CheckSwitch()
+    bool CheckSwitch()//指定したスイッチが切り替わっているか判定します
     {
         switch (switchDoor_param.changeNum)
         {
@@ -146,7 +147,7 @@ public class Door : MonoBehaviour
     }
 
 
-   bool CheckInvertSwitch()
+   bool CheckInvertSwitch()//スイッチの方向が反転したスイッチを反転します
     {
         switch (invertSwitchDoor_param.changeNum)
         {
@@ -182,12 +183,12 @@ public class Door : MonoBehaviour
     
 }
 [System.Serializable]
-public class AutomaticDoor
+public class AutomaticDoor//自動ドアクラス
 {
     public float closeTime;
 }
 [System.Serializable]
-public class SwitchDoor
+public class SwitchDoor//スイッチドアクラス
 {
     public int changeNum;
     public Switch switchObj;
@@ -196,7 +197,7 @@ public class SwitchDoor
 }
 
 [System.Serializable]
-public class InvertSwitchDoor
+public class InvertSwitchDoor//反転スイッチドアクラス
 {
     public int changeNum;
     public InvertSwitch switchObj;
@@ -204,7 +205,7 @@ public class InvertSwitchDoor
 }
 
 [System.Serializable]
-public class TimeDoor
+public class TimeDoor//時間ドアクラス
 {
     public float time;
 

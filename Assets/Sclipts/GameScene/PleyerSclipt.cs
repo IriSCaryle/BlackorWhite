@@ -1,30 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// プレイヤースクリプト
+/// </summary>
 public class PleyerSclipt : MonoBehaviour
-{
+{   
+    [Header("速度")]
     [SerializeField] float speed;
+    [Header("ジャンプ力")]
     [SerializeField] float flap;
+    [Header("制限速度")]
     [SerializeField] float limitspeed;
+    [Header("力の向き")]
     [SerializeField] Vector2 force;
+    [Header("各アニメーター")]
     [SerializeField] Animator animator;
     [SerializeField] Animator DeadAnimator;
+    [Header("ブロックが発射される親")]
     [SerializeField] GameObject Shooter;
+    [Header("死亡パーティクル")]
     [SerializeField] ParticleSystem DeadParticle;
+    [Header("リグ親")]
     [SerializeField] GameObject Rigs;
+    [Header("カプセルコライダー")]
     [SerializeField] CapsuleCollider2D playerCollider;
     Quaternion ShooterRot;
     private Rigidbody2D rb;
     bool isJump = false;
+    [Header("プレイヤー停止")]
     public bool freeze;
+    [Header("アビリティ使用")]
     public bool avility;
     [Header("色反転のクールタイム")]
     public float limitCoolTime =3;
+    [Header("現在のクールタイム")]
     public float nowCoolTime;
-    bool avilityCoolTime;
-    public WorldType worldType;
 
+    bool avilityCoolTime;
+    [Header("現在の世界の色")]
+    public WorldType worldType;
+    [Header("初期の世界の色")]
     public WorldType defaultWorld;
     public enum WorldType 
     {
@@ -44,7 +60,7 @@ public class PleyerSclipt : MonoBehaviour
         {
             ObserbKeys();
             AvilityCoolCountDown();
-
+            //---ジャンプ動作---//
             if (Input.GetKeyDown("space") && !isJump)
             {
                 animator.SetTrigger("jump");
@@ -57,6 +73,7 @@ public class PleyerSclipt : MonoBehaviour
     // 物理演算をしたい場合はFixedUpdateを使うのが一般的
     void FixedUpdate()
     {
+        //---------移動動作----------//
         if (!freeze)
         {
             float _horizontalKey = Input.GetAxisRaw("Horizontal");
@@ -101,7 +118,7 @@ public class PleyerSclipt : MonoBehaviour
 
 
     }
-    void AvilityCoolCountDown()
+    void AvilityCoolCountDown()//色反転アビリティのクールダウン動作
     {
         if (avilityCoolTime)
         {
@@ -115,7 +132,7 @@ public class PleyerSclipt : MonoBehaviour
         }
     }
 
-    void ObserbKeys()
+    void ObserbKeys()//アビリティ発動キーの監視
     {
         if (Input.GetKeyDown(KeyCode.Q) && !avilityCoolTime)
         {
@@ -138,7 +155,7 @@ public class PleyerSclipt : MonoBehaviour
             
         }
     }
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)//各コライダーとぶつかった時の動作
     {
         
         animator.SetBool("ground", true);
@@ -149,7 +166,7 @@ public class PleyerSclipt : MonoBehaviour
             PlayerDead();
         }
 
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Goal")
         {
             PlayerGoal();
         }
@@ -157,20 +174,20 @@ public class PleyerSclipt : MonoBehaviour
 
     
 
-    public void PlayerGoal()
+    public void PlayerGoal()//ゴール時の動作
     {
         freeze = true;
         animator.SetInteger("speed", 0);
     }
 
-    public void PlayerDead()
+    public void PlayerDead()//死んだ時の動作と演出再生
     {
         freeze = true;
         animator.SetInteger("speed", 0); 
         StartCoroutine("Dead");
     }
 
-    public void PlayerLazerDead()
+    public void PlayerLazerDead()//レーザーで死亡した際の動作と演出再生
     {
         freeze = true;
         animator.SetInteger("speed", 0);
@@ -202,15 +219,12 @@ public class PleyerSclipt : MonoBehaviour
         yield break;
     }
 
-    void OnParticleSystemStopped()
+    void OnParticleSystemStopped()//パーティクルが終わった際に時間速度を０にする
     {
         Time.timeScale = 0;
     }
 
 
 
-    private void Awake()
-    {
-        Application.targetFrameRate = 60;
-    }
+   
 }

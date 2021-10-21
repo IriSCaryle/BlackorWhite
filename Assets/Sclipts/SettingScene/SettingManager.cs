@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// 設定シーンの管理
+/// </summary>
 public class SettingManager : MonoBehaviour
 {
+    [Header("設定データ管理スクリプト")]
     [SerializeField] SettingDataManager settingDataManager;
+    [Header("フェードスクリプト")]
     [SerializeField] Fade fade;
+    [Header("適用ボタン")]
     [SerializeField] Button applyButton;
+    [Header("各ドロップダウン")]
     [SerializeField] Dropdown resolusion;
     [SerializeField] Dropdown windowMode;
+    [Header("各スライド")]
     [SerializeField] Slider bgm;
     [SerializeField] Slider se;
     // Start is called before the first frame update
@@ -21,7 +29,7 @@ public class SettingManager : MonoBehaviour
     }
 
 
-    void LoadSettings()
+    void LoadSettings()//現在の設定をスライダーやドロップダウンに適用
     {
         settingDataManager.Load();
         switch (settingDataManager.settingData.resolutionX)
@@ -59,7 +67,7 @@ public class SettingManager : MonoBehaviour
         se.value = settingDataManager.settingData.seVolume;
     }
 
-    public void OnValueChanged()
+    public void OnValueChanged()//変更が加われた際に適用ボタンを表示する
     {
         if (!applyButton.gameObject.activeSelf)
         {
@@ -67,12 +75,12 @@ public class SettingManager : MonoBehaviour
         }
     }
 
-    public void OnClickBack()
+    public void OnClickBack()//戻るボタン動作
     {
         fade.FadeOut(1,"TitleScene");
     }
 
-    public void OnClickApply()
+    public void OnClickApply()//適用ボタン動作
     {
         AssignResolution();
         AssignWindowMode();
@@ -100,7 +108,7 @@ public class SettingManager : MonoBehaviour
         }
         
     }
-    void AssignResolution()
+    void AssignResolution()//設定データに解像度を設定
     {
         switch (resolusion.value)
         {
@@ -123,7 +131,7 @@ public class SettingManager : MonoBehaviour
         }
     }
 
-    void AssignWindowMode()
+    void AssignWindowMode()//画面タイプを設定データに設定
     {
         switch (windowMode.value)
         {
@@ -140,7 +148,7 @@ public class SettingManager : MonoBehaviour
         }
     }
 
-    void AssignBGM_SE()
+    void AssignBGM_SE()//音量を設定データに設定
     {
         settingDataManager.settingData.bgmVolume = bgm.value;
         settingDataManager.settingData.seVolume = se.value;

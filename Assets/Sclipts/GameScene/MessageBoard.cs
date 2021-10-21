@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
+/// <summary>
+/// メッセージボード   
+/// </summary>
 public class MessageBoard : MonoBehaviour
 {
-    
+    [Header("メッセージリスト")]
     [SerializeField] MessageList messageList;
+    [Header("メッセージテキスト")]
     [SerializeField] Text text;
-
-    [SerializeField] int messageID;
-
+    [Header("メッセージID")]
+    [SerializeField] int messageID;//MessageList.messagesの要素数を指定
+    [Header("各アニメーター")]
     [SerializeField] Animator messageAnimator;
     [SerializeField] Animator blurAnimator;
     [Header("UI")]
@@ -19,6 +23,7 @@ public class MessageBoard : MonoBehaviour
     bool isopend;
     bool isEnter;
     bool isExit;
+    [Header("プレイヤースクリプト")]
     [SerializeField] PleyerSclipt pleyerSclipt;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +34,7 @@ public class MessageBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isEnter && !isExit)
+        if (isEnter && !isExit)//範囲内にいるのがプレイヤーだった場合にメッセージを表示する動作
         {
             if (target.gameObject.tag == "Player")
             {
@@ -63,9 +68,8 @@ public class MessageBoard : MonoBehaviour
         popUpUI.isFadeOut = true;
     }
 
-    void OpenMessage()
+    void OpenMessage()//メッセージを表示する動作
     {
-
         GetMessage();
         blurAnimator.SetTrigger("start");
         isopend = true;
@@ -74,10 +78,8 @@ public class MessageBoard : MonoBehaviour
         Time.timeScale = 0;
         
     }
-    void CloseMessage()
-    {
-
-        
+    void CloseMessage()//メッセージを非表示にする動作
+    {   
         blurAnimator.SetTrigger("stop");
         messageAnimator.SetTrigger("stop");
         isopend = false;
@@ -94,7 +96,7 @@ public class MessageBoard : MonoBehaviour
         pleyerSclipt.freeze = false;
     }
 
-    public void GetMessage()
+    public void GetMessage()//メッセージリストからメッセージを取得する関数
     {
         Debug.Log("事前にメッセージを追加");
         text.text = messageList.messages[messageID].message;

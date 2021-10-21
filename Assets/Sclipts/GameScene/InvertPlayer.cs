@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Invertスクリプトのプレイヤー版(リグごとにSpriteRendererが分かれてるため)
+/// Invertとほとんど変わらないです
 /// </summary>
 public class InvertPlayer : MonoBehaviour
 {
