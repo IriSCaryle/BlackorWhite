@@ -49,7 +49,7 @@ public class SettingDataManager : MonoBehaviour
     public void Save()
     {
         string json = JsonUtility.ToJson(settingData);
-        StreamWriter streamWriter = new StreamWriter(filePath);
+        StreamWriter streamWriter = new StreamWriter(filePath,false);
         streamWriter.Write(json);
         streamWriter.Flush();
         streamWriter.Close();

@@ -104,7 +104,9 @@ MonoBehaviour:
   colorValue: 0
   changeSpeed: 3
   playerSclipt: {fileID: 0}
+  collider2D: {fileID: 0}
   defaultColor: 1
+  defaultIsTrigger: 0
 --- !u!114 &6297440767231762197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +267,9 @@ MonoBehaviour:
   colorValue: 0
   changeSpeed: 3
   playerSclipt: {fileID: 0}
+  collider2D: {fileID: 0}
   defaultColor: 1
+  defaultIsTrigger: 0
 --- !u!61 &6297440767890537255
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Enemy
   - SettingData
+  - Goal
   layers:
   - Default
   - TransparentFX

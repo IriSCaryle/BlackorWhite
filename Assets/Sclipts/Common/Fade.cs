@@ -57,6 +57,7 @@ public class Fade : MonoBehaviour
     }
     public void FadeIn(float time)
     {
+        
         alpha = 1;
         FadeImage.color = Color.black;
         FadeImage.gameObject.SetActive(true);

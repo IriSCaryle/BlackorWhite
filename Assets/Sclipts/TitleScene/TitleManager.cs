@@ -9,10 +9,11 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Fade fade;
     [SerializeField] SaveManager saveManager;
     [SerializeField] Button continueButton;
-    
+    [SerializeField] bool isDebug;
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         if (saveManager.Load()){
             continueButton.interactable = true;
             //--デバッグ用--//
@@ -41,13 +42,27 @@ public class TitleManager : MonoBehaviour
 
     public void OnClickStart()
     {
-        
-        fade.FadeOut(1,"ryuiScene");
-        PlayerPrefs.SetInt("Load?", 0);
-        PlayerPrefs.Save();
+        if (isDebug)
+        {
+            fade.FadeOut(1, "ryuiScene");
+            PlayerPrefs.SetInt("Load?", 0);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            fade.FadeOut(1, "Stage1Scene");
+            PlayerPrefs.SetInt("Load?", 0);
+            PlayerPrefs.Save();
+        }
     }
     public void OnClickContinue()
     {
+        if (isDebug)
+        {
+            saveManager.save.StageNum = 0;
+            saveManager.Save();
+        }
+       
         saveManager.Load();
         fade.FadeOut(1,"SelectWorldScene");
         PlayerPrefs.SetInt("Load?",1);
@@ -55,7 +70,7 @@ public class TitleManager : MonoBehaviour
     }
     public void OnClickSetting()
     {
-
+        fade.FadeOut(1, "SettingScene");
     }
     
     public void _OnClickReset()

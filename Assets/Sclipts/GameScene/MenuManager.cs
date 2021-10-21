@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] Animator blurAnimator;
     [SerializeField] Animator menuAnimator;
     [SerializeField]bool isOpen;
-
+    [SerializeField] PleyerSclipt pleyerSclipt;
     // Start is called before the first frame update
     void Start()
     { 
@@ -34,10 +34,12 @@ public class MenuManager : MonoBehaviour
     {
         if (isOpen)
         {
+            pleyerSclipt.freeze = true;
             StartAnimation();
         }
         else
         {
+            pleyerSclipt.freeze = false;
             StopAnination();
         }
     }

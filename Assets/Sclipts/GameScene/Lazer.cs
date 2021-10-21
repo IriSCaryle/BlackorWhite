@@ -32,11 +32,19 @@ public class Lazer : MonoBehaviour
     bool isFinish = false;
     bool isWrap = false;
     RaycastHit2D hit;
-
+    [SerializeField] GameManager gameManager;
+    [SerializeField] PleyerSclipt pleyerSclipt;
+    [SerializeField]DefaultColor defaultColor;
     enum MoveType
     {
         NoMove = 1,
         Rotate = 2,
+    }
+
+    enum DefaultColor
+    {
+        Black =0,
+        White =1,
     }
 
 
@@ -91,13 +99,17 @@ public class Lazer : MonoBehaviour
 
     void MoveRay()
     {
-        hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
-        Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
-        if (hit.collider)
+        if ((int)defaultColor != (int)pleyerSclipt.worldType)
         {
-            if (hit.collider.gameObject.tag == "Player")
+            hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+            Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
+            if (hit.collider)
             {
-                Debug.Log("Lazer:あたった");
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    Debug.Log("Lazer:あたった");
+                    gameManager.PlayerLazerDead();
+                }
             }
         }
     }
@@ -197,18 +209,21 @@ public class Lazer : MonoBehaviour
         {
             nowCountTime -= Time.deltaTime;
 
-            
-            Debug.Log("Lazer:レーザー展開中");
-            hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
-            Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
-            if (hit.collider)
+            if ((int)defaultColor != (int)pleyerSclipt.worldType)
             {
-                if (hit.collider.gameObject.tag == "Player")
+                Debug.Log("Lazer:レーザー展開中");
+                hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+                Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
+                if (hit.collider)
                 {
-                    Debug.Log("Lazer:あたった");
+                    if (hit.collider.gameObject.tag == "Player")
+                    {
+                        Debug.Log("Lazer:あたった");
+                        gameManager.PlayerLazerDead();
+                    }
                 }
-            }
 
+            }
             if (nowCountTime < 0)
             {
                 if (lazerMove != null)

@@ -8,13 +8,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] int StageNum;
     [SerializeField] SaveManager saveManager;
     [SerializeField] GameObject player;
+    [SerializeField] PleyerSclipt playerSclipt;
     [SerializeField] Fade fade;
+    [SerializeField] Animator blueAnimator;
+    [SerializeField] Animator goalAnimator;
     // Start is called before the first frame update
     void Awake()
     {
         Application.targetFrameRate = 60;
         saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
-
+        playerSclipt = player.GetComponent<PleyerSclipt>();
         CheckSave();
 
         if (PlayerPrefs.GetInt("Load?")==1)
@@ -57,8 +60,8 @@ public class GameManager : MonoBehaviour
 
     public void OnClickBackToMenu()
     {
-        SaveData();
         Time.timeScale = 1;
+        SaveData();
         fade.FadeOut(1,"TitleScene");
     }
 
@@ -70,6 +73,40 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         fade.FadeOut(1, "SelectWorldScene");
     }
+
+    public void PlayerLazerDead()
+    {
+        playerSclipt.PlayerLazerDead();
+    }
+
+    public void StageGoal()
+    {
+        playerSclipt.PlayerGoal();
+        
+        if (saveManager != null)
+        { 
+            saveManager.save.StageNum += 1;
+            saveManager.Save();
+        }
+
+        StartCoroutine("Goal");
+    }
+
+    IEnumerator Goal()
+    {
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 0;
+        blueAnimator.SetTrigger("start");
+        goalAnimator.SetTrigger("Goal");
+        yield break;
+    }
+
+    public void OnClickNextStage()
+    {
+        Time.timeScale = 1;
+        fade.FadeOut(1, "SelectWorldScene");
+    }
+    
 
     // Update is called once per frame
     void Update()

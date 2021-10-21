@@ -7,12 +7,12 @@ public class Shooter : MonoBehaviour
 {
     [SerializeField] float ShotSpeed;
     public GameObject FiringBlockPrefab;
-    public bool freeze;
+    [SerializeField] PleyerSclipt PleyerSclipt;
     [SerializeField]GameObject Bulletpool;
     [SerializeField] BulletPoolManager bulletPoolManager;
-    void FixedUpdate()
+    void Update()
     {
-        if (!freeze)
+        if (!PleyerSclipt.freeze)
         {
             if (Input.GetButtonDown("Fire1")) Shot();
         }

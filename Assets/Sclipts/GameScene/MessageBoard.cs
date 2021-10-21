@@ -19,6 +19,7 @@ public class MessageBoard : MonoBehaviour
     bool isopend;
     bool isEnter;
     bool isExit;
+    [SerializeField] PleyerSclipt pleyerSclipt;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +38,7 @@ public class MessageBoard : MonoBehaviour
                 {
                     OpenMessage();
                 }
-                else if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)&& isopend == true)
+                else if (Input.GetKeyDown(KeyCode.E)&& isopend == true)
                 {
                     CloseMessage();
                 }
@@ -65,7 +66,6 @@ public class MessageBoard : MonoBehaviour
     void OpenMessage()
     {
 
-
         GetMessage();
         blurAnimator.SetTrigger("start");
         isopend = true;
@@ -76,13 +76,22 @@ public class MessageBoard : MonoBehaviour
     }
     void CloseMessage()
     {
-     
+
+        
         blurAnimator.SetTrigger("stop");
         messageAnimator.SetTrigger("stop");
         isopend = false;
 
         Time.timeScale = 1;
 
+        Invoke("unfreezePlayer",0.1f);
+       
+
+    }
+
+    void unfreezePlayer()
+    {
+        pleyerSclipt.freeze = false;
     }
 
     public void GetMessage()

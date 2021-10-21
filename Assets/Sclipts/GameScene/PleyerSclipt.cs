@@ -39,12 +39,24 @@ public class PleyerSclipt : MonoBehaviour
     }
     private void Update()
     {
+        
+        if (!freeze)
+        {
+            ObserbKeys();
+            AvilityCoolCountDown();
+
+            if (Input.GetKeyDown("space") && !isJump)
+            {
+                animator.SetTrigger("jump");
+                animator.SetBool("ground", false);
+                rb.AddForce(Vector2.up * flap, ForceMode2D.Force);
+                isJump = true;
+            }
+        }
     }
     // 物理演算をしたい場合はFixedUpdateを使うのが一般的
     void FixedUpdate()
     {
-        ObserbKeys();
-        AvilityCoolCountDown();
         if (!freeze)
         {
             float _horizontalKey = Input.GetAxisRaw("Horizontal");
@@ -85,15 +97,8 @@ public class PleyerSclipt : MonoBehaviour
                     rb.AddForce(force);
                 }
             }
-
-            if (Input.GetKeyDown("space") && !isJump)
-            {
-                animator.SetTrigger("jump");
-                animator.SetBool("ground", false);
-                rb.AddForce(Vector2.up * flap, ForceMode2D.Force);
-                isJump = true;
-            }
         }
+
 
     }
     void AvilityCoolCountDown()
@@ -138,26 +143,60 @@ public class PleyerSclipt : MonoBehaviour
         
         animator.SetBool("ground", true);
         isJump = false;
+
+        if (other.gameObject.tag == "Enemy")
+        {
+            PlayerDead();
+        }
+
         if(other.gameObject.tag == "Enemy")
         {
-            animator.SetInteger("speed",0);
-            freeze = true;
-            StartCoroutine("Dead");
+            PlayerGoal();
         }
+    }
+
+    
+
+    public void PlayerGoal()
+    {
+        freeze = true;
+        animator.SetInteger("speed", 0);
+    }
+
+    public void PlayerDead()
+    {
+        freeze = true;
+        animator.SetInteger("speed", 0); 
+        StartCoroutine("Dead");
+    }
+
+    public void PlayerLazerDead()
+    {
+        freeze = true;
+        animator.SetInteger("speed", 0);
+        Rigs.SetActive(false);
+        DeadParticle.Play();
+       
+        StartCoroutine("LazerDead");
+    }
+
+    IEnumerator LazerDead()
+    {
+        yield return new WaitForSeconds(2);
+        DeadAnimator.SetTrigger("GameOver");
+        Debug.Log("Dead:終了");
+        Debug.Log("timescale1");
+        yield break;
     }
 
     IEnumerator Dead()
     {
         yield return new WaitForSeconds(1);
-
         Rigs.SetActive(false);
         rb.bodyType = RigidbodyType2D.Kinematic;
         playerCollider.enabled = false;
-        DeadParticle.Play();
-
+        DeadParticle.Play();        
         yield return new WaitForSeconds(2);
-
-        Time.timeScale = 0;
         DeadAnimator.SetTrigger("GameOver");
         Debug.Log("Dead:終了");
         yield break;
@@ -165,7 +204,10 @@ public class PleyerSclipt : MonoBehaviour
 
     void OnParticleSystemStopped()
     {
+        Time.timeScale = 0;
     }
+
+
 
     private void Awake()
     {

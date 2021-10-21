@@ -138,7 +138,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 0.34, y: 10}
+  m_Size: {x: 0.34, y: 9.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -156,9 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c297ee2176c4a946890f1f863103604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 100
   spriteRenderer: {fileID: 1173537221711411986}
-  Limit: 0
+  Limit: 9.7
   isFire: 0
   isUnFire: 0
 --- !u!1 &1173537222547114099
@@ -287,20 +287,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3c71db054d9e14ab2bdf3016353bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveType: 2
+  moveType: 1
   coolTime: 2
   distance: 10
   lazerParent: {fileID: 1173537222547114099}
   lazerPivot: {fileID: 1173537221076303143}
   lazer: {fileID: 0}
   nowCoolTime: 0
-  time: 5
+  time: 3
   axis: {x: 0, y: 0, z: 0}
   angle: 0
   nowCountTime: 0
-  lazerMove: {fileID: 0}
+  lazerMove: {fileID: 1289762974}
   moveTime: 1
   nowtimeS: 0
   nowtimeF: 0
   angle1: 30
   angle2: -30
+  gameManager: {fileID: 0}
+  pleyerSclipt: {fileID: 0}
+  defaultColor: 1

@@ -29,12 +29,12 @@ public class SelectWorldManager : MonoBehaviour
             case 0:
                 Debug.Log("ステージ0");
                 nowloadingText.SetActive(false);
-
+                fade.FadeOut(1, "ryuiScene");
                 break;
             case 1:
                 Debug.Log("ステージ1");
                 nowloadingText.SetActive(false);
-                fade.FadeOut(1, "ryuiScene");
+                fade.FadeOut(1, "Stage1Scene");
 
                 break;
             default :

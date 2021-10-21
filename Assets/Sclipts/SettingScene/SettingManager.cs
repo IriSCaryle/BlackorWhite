@@ -14,6 +14,7 @@ public class SettingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         settingDataManager = GameObject.FindGameObjectWithTag("SettingData").GetComponent<SettingDataManager>();
         LoadSettings();
         fade.FadeIn(1);
