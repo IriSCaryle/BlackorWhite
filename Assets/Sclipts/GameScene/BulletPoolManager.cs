@@ -12,6 +12,7 @@ public class BulletPoolManager : MonoBehaviour
     [SerializeField] float bulletLifeTime;//弾の生存時間
     [SerializeField] GameObject bullet;//ブロックのプレハブ
     [SerializeField] GameObject defaultPos;//プール位置
+    [SerializeField] PleyerSclipt playerScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,8 @@ public class BulletPoolManager : MonoBehaviour
             tmpBulletScript.isActive = false;
             tmpBulletScript.defaultPos = defaultPos.transform.position;
             tmpBulletScript.life = bulletLifeTime;
+            Invert tmpInvert = tmpBullet.GetComponent<Invert>();
+            tmpInvert.playerSclipt = playerScript;
             bulletsScripts.Add(tmpBulletScript);
             bullets.Add(tmpBullet);
             tmpBullet.SetActive(false);

@@ -16,7 +16,7 @@ public class Invert : MonoBehaviour
     /// このオブジェクトがサブカメラに映っているか判定を取るために使いました
     /// 
     [Header("Sprite")]
-    [SerializeField] SpriteRenderer sprite;
+    public SpriteRenderer sprite;
     [Header("オブジェクトをワールドの色と同化するようにするか")]
     [SerializeField] bool isTransparent;
     [Header("色変化値")] 
@@ -24,7 +24,7 @@ public class Invert : MonoBehaviour
     [Header("色遷移速度")]
     [SerializeField] float changeSpeed;
     [Header("プレイヤースクリプト")]
-    [SerializeField] PleyerSclipt playerSclipt;
+    public PleyerSclipt playerSclipt;
     [Header("コライダー")]
     [SerializeField] BoxCollider2D collider2D;
     [Header("オブジェクトの初期色")]
@@ -35,7 +35,7 @@ public class Invert : MonoBehaviour
 
     bool isBlack = false;
     bool isWhite = false;
-
+   
 
     public enum DefalutColor
     {
@@ -53,11 +53,34 @@ public class Invert : MonoBehaviour
         {
             playerSclipt = GameObject.FindGameObjectWithTag("Player").GetComponent<PleyerSclipt>();
         }
+
+        
+
+        CheckWorldColor();
     }
 
+    private void OnEnable()
+    {
+        if (gameObject.tag == "Bullet")
+        {
+            Debug.Log("Bullet:黒白検出");
+           
+            BulletCheckColor();
+        }
+    }
 
+   
+
+
+    public void BulletCheckColor()
+    {
+        if((int)defaultColor == (int)playerSclipt.worldType)
+        {
+            isRendered();
+        }
+    }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (!isTransparent)
         {
@@ -69,7 +92,7 @@ public class Invert : MonoBehaviour
             ChangeColorRender();
             isRender = false;
         }
-        else if(isTransparent)
+        if(isTransparent)
         {
             if (playerSclipt.avility)//Qが押された判定
             {
@@ -80,27 +103,30 @@ public class Invert : MonoBehaviour
 
     void CheckWorldColor()//(*)世界の色をチェックし背景と同化した場合はコライダーをオフにします   /* (*)世界の色:プレイヤースクリプト参照 */
     {
-        if ((int)defaultColor == (int)playerSclipt.worldType)//同化した場合
+        if (gameObject.tag != "Bullet")
         {
-            Debug.Log("Invert:色が同化したので判定を削除します-"+gameObject.name);
-            if (collider2D != null && defaultIsTrigger == true)
+            if ((int)defaultColor == (int)playerSclipt.worldType)//同化した場合
             {
-                collider2D.enabled = false;
+                Debug.Log("Invert:色が同化したので判定を削除します-" + gameObject.name);
+                if (collider2D != null && defaultIsTrigger == true)
+                {
+                    collider2D.enabled = false;
+                }
+                else if (collider2D != null && defaultIsTrigger == false)
+                {
+                    collider2D.isTrigger = true;
+                }
             }
-            else if(collider2D != null && defaultIsTrigger == false)
+            else//していない場合
             {
-                collider2D.isTrigger = true;
-            }
-        }
-        else//していない場合
-        {
-            if (collider2D != null && defaultIsTrigger == true)
-            {
-                collider2D.enabled = true;
-            }
-            else if (collider2D != null && defaultIsTrigger == false)
-            {
-                collider2D.isTrigger = false;
+                if (collider2D != null && defaultIsTrigger == true)
+                {
+                    collider2D.enabled = true;
+                }
+                else if (collider2D != null && defaultIsTrigger == false)
+                {
+                    collider2D.isTrigger = false;
+                }
             }
         }
     }
@@ -122,7 +148,7 @@ public class Invert : MonoBehaviour
     void ChangeInvertBool()//カメラに映っている際,黒と白の色を遷移させる動作切り替え
     {
 
-        if (sprite.color == Color.black)
+        if (sprite.color == Color.black )
         {
             isWhite = true;
         }else if (sprite.color == Color.white)
@@ -168,7 +194,7 @@ public class Invert : MonoBehaviour
             Debug.Log("invert:黒");
             sprite.color = Color.black;
         }
-        else if (sprite.color == Color.black)
+        else if (sprite.color == Color.black )
         {
             Debug.Log("invert:白");
             sprite.color = Color.white;

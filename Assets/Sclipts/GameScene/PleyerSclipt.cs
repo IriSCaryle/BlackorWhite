@@ -136,8 +136,7 @@ public class PleyerSclipt : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q) && !avilityCoolTime)
         {
-            
-            avility = true;          
+            avility = true;
             switch (worldType)
             {
                 case WorldType.Black:
@@ -147,6 +146,7 @@ public class PleyerSclipt : MonoBehaviour
                     worldType = WorldType.Black;
                     break;
             }
+            
             avilityCoolTime = true;
         }
         else
@@ -164,6 +164,10 @@ public class PleyerSclipt : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             PlayerDead();
+        }
+        if(other.gameObject.tag == "DeadZone")
+        {
+            PlayerLazerDead();
         }
 
         if(other.gameObject.tag == "Goal")

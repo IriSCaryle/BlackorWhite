@@ -14,10 +14,10 @@ public class Wallstick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-            if (collision .gameObject.tag=="Wall"|| collision.gameObject.tag=="Bullet" )
-            {
-                
-                rb.bodyType = RigidbodyType2D.Kinematic;
-            }
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Bullet")
+        {
+
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }       
     }
 }

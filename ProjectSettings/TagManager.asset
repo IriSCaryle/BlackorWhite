@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - SettingData
   - Goal
+  - DeadZone
   layers:
   - Default
   - TransparentFX

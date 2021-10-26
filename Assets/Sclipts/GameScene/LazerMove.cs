@@ -15,11 +15,15 @@ public class LazerMove : MonoBehaviour
     [Header("照射判定")]
      public bool isFire;
      public bool isUnFire;
+    public bool isChangeDistance;
+    [SerializeField]float objDistance;
+    [SerializeField] float stopOffset;
     // Start is called before the first frame update
     void Start()
     {
         isFire = false;
         isUnFire = false;
+        isChangeDistance = false;
     }
 
     // Update is called once per frame
@@ -45,11 +49,51 @@ public class LazerMove : MonoBehaviour
                 isUnFire = false;
             }
         }
+        if (isChangeDistance)
+        {
+            if (spriteRenderer.size.y >= objDistance + stopOffset)
+            {
+                Vector2 vec = new Vector2(0, Speed * Time.deltaTime);
+                spriteRenderer.size -= vec;
+                Debug.Log("isChangeDistance:" + vec + ",ditance:" + objDistance);
+                if (spriteRenderer.size.y <= objDistance + stopOffset)
+                {
+                    isChangeDistance = false;
+                }
+            }
+            if(spriteRenderer.size.y <= objDistance + stopOffset)
+            {
+                Vector2 vec = new Vector2(0, Speed * Time.deltaTime);
+                spriteRenderer.size += vec;
+                Debug.Log("isChangeDistance:" + vec + ",ditance:" + objDistance);
+                if (spriteRenderer.size.y >= objDistance + stopOffset)
+                {
+                    isChangeDistance = false;
+                }
+            }
+        }
     }
 
     public void Fire()
     {
         isFire = true;
+    }
+
+
+    public bool CanChangeRange(float distance)
+    {/*
+        if (spriteRenderer.size.y >= distance + stopOffset)
+        {
+            return true;
+        }
+        */
+        objDistance = distance;
+
+        return true;
+    }
+    public void ChangeRangeFire(float distance)
+    {
+        isChangeDistance = true;
     }
     public void UnFire()
     {

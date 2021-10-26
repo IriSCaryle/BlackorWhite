@@ -70,6 +70,7 @@ public class MessageBoard : MonoBehaviour
 
     void OpenMessage()//メッセージを表示する動作
     {
+        pleyerSclipt.freeze = true;
         GetMessage();
         blurAnimator.SetTrigger("start");
         isopend = true;

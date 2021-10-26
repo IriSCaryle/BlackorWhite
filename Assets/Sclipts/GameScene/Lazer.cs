@@ -9,7 +9,8 @@ public class Lazer : MonoBehaviour
     [Header("動作タイプ")]
     [SerializeField] MoveType moveType;
 
-    [Header("Common")] 
+    [Header("Common")]
+    [SerializeField] bool unlimited;
     [SerializeField] float coolTime;
     [SerializeField] float distance;
     [SerializeField] GameObject lazerParent;
@@ -40,6 +41,8 @@ public class Lazer : MonoBehaviour
     [SerializeField] PleyerSclipt pleyerSclipt;
     [Header("デフォルトの色")]
     [SerializeField]DefaultColor defaultColor;
+
+   
     enum MoveType
     {
         NoMove = 1,
@@ -58,6 +61,13 @@ public class Lazer : MonoBehaviour
         switch ((int)moveType)
         {
             case 1:
+                if (unlimited)
+                {
+                    if (lazerMove != null)
+                    {
+                        lazerMove.Fire();
+                    }
+                }
                 lazerParent.transform.rotation = Quaternion.AngleAxis(angle, axis);
                 coolDown = false;
   
@@ -83,8 +93,14 @@ public class Lazer : MonoBehaviour
         switch ((int)moveType)
         {
             case 1:
-               
-                Count();              
+                if (!unlimited)
+                {
+                    Count();
+                }
+                else
+                {
+                    UnlimitedRay();
+                }
                 break;
             case 2:
                
@@ -94,6 +110,33 @@ public class Lazer : MonoBehaviour
 
        
         CoolCountDown();
+    }
+
+
+    void UnlimitedRay()
+    {
+        RaycastHit2D hit2;
+        Debug.Log("Lazer:レーザー展開中");
+        hit2 = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+        Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit2.distance, Color.red, hit2.distance, false);
+        if (hit2.collider)
+        {
+            if (hit2.collider.gameObject.tag == "Wall"|| hit2.collider.gameObject.tag == "Ground")
+            {
+
+                Debug.Log("Lazer:通過可能");
+                if (lazerMove.CanChangeRange(hit2.distance))
+                {
+                    lazerMove.ChangeRangeFire(hit2.distance);
+                }
+            }
+            else if (hit2.collider.gameObject.tag == "Player")
+            {
+                Debug.Log("Lazer:あたった");
+                gameManager.PlayerLazerDead();
+            }
+        }
+       
     }
 
     void MoveRay()//レーザーの回転に沿ってRayを発射する動作

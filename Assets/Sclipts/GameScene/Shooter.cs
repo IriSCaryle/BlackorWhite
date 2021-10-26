@@ -32,19 +32,21 @@ public class Shooter : MonoBehaviour
         //発射動作
         if (this.transform.parent.localScale.x >= 1)
         {
-            Bullet.transform.position = gameObject.transform.position;
             Rigidbody2D BulletRigidBody2D = Bullet.GetComponent<Rigidbody2D>();
             Wallstick wallstick = Bullet.GetComponent<Wallstick>();
             wallstick.rb.bodyType = RigidbodyType2D.Dynamic;
+            Bullet.transform.position = gameObject.transform.position;
+            
             BulletRigidBody2D.AddForce(Vector2.right * ShotSpeed);
             Debug.Log("Bullet:Addforce");
         }
         else if(this.transform.parent.localScale .x < 0)
         {
-            Bullet.transform.position = gameObject.transform.position;
             Rigidbody2D BulletRigidBody2D = Bullet.GetComponent<Rigidbody2D>();
             Wallstick wallstick = Bullet.GetComponent<Wallstick>();
             wallstick.rb.bodyType = RigidbodyType2D.Dynamic;
+            Bullet.transform.position = gameObject.transform.position;
+            
             BulletRigidBody2D.AddForce(Vector2.left * ShotSpeed);
             Debug.Log("Bullet:Addforce");
         }

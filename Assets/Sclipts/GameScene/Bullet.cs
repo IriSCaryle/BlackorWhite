@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]float nowLife;//残り生存時間
     bool iscollision;//壁や弾にぶつかったか
     public Vector2 defaultPos;//プール位置
+    [SerializeField] Invert invert;
     // Start is called before the first frame update
     
     void Start()
@@ -31,6 +32,7 @@ public class Bullet : MonoBehaviour
                 iscollision = false;
                 nowLife = life;
                 isActive = false;
+                invert.sprite.color = Color.white;
                 this.gameObject.transform.position = defaultPos;
                 gameObject.SetActive(false);
             }
@@ -39,9 +41,18 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag =="Wall"|| collision.gameObject.tag == "Bullet")
+        Debug.Log("Bullet:衝突," + collision.gameObject.name);
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Bullet")
         {
             iscollision = true;
         }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            isActive = false;
+            this.gameObject.transform.position = defaultPos;
+            gameObject.SetActive(false);
+            Destroy(collision.gameObject);
+        }
     }
+   
 }
