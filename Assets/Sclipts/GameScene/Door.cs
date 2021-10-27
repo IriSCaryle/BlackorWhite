@@ -17,14 +17,14 @@ public class Door : MonoBehaviour
         AutomaticDooor,
         SwitchDoor,
         TimeDoor,
-
+        EnemyDoor,
     }
 
   
     public AutomaticDoor automaticDoor_param;
     public SwitchDoor switchDoor_param;
     public TimeDoor timeDoor_param;
-
+    public EnemyDoor enemyDoor_param;
     public InvertSwitchDoor invertSwitchDoor_param;
 
     public bool isOpen;//空いているか
@@ -70,6 +70,9 @@ public class Door : MonoBehaviour
             case DoorType.TimeDoor:
 
                 break;
+            case DoorType.EnemyDoor:
+                CheckObjects();
+                break;
         }
     }
 
@@ -101,7 +104,8 @@ public class Door : MonoBehaviour
         }
         else
         {
-            if (CheckSwitch() && CheckInvertSwitch()){
+            if (CheckSwitch() && CheckInvertSwitch())
+            {
 
                 isOpen = true;
             }
@@ -146,6 +150,25 @@ public class Door : MonoBehaviour
         return false;
     }
 
+    void CheckObjects()
+    {
+        if (CheckObject())
+        {
+            isOpen = true;
+        }
+        else
+        {
+            isOpen = false;
+        }
+    }
+    bool CheckObject()
+    {
+        if(enemyDoor_param.enemy1==null&& enemyDoor_param.enemy2 == null && enemyDoor_param.enemy3 == null && enemyDoor_param.enemy4 == null)
+        {
+            return true;
+        }
+        return false;
+    }
 
    bool CheckInvertSwitch()//スイッチの方向が反転したスイッチを反転します
     {
@@ -186,6 +209,8 @@ public class Door : MonoBehaviour
 public class AutomaticDoor//自動ドアクラス
 {
     public float closeTime;
+    public BoxCollider2D enterCol;
+    public BoxCollider2D exitCol;
 }
 [System.Serializable]
 public class SwitchDoor//スイッチドアクラス
@@ -212,5 +237,13 @@ public class TimeDoor//時間ドアクラス
     public float cooltime;
 
 
+}
+[System.Serializable]
+public class EnemyDoor
+{
+    public GameObject enemy1;
+    public GameObject enemy2;
+    public GameObject enemy3;
+    public GameObject enemy4; 
 }
 

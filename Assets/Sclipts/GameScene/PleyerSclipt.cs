@@ -176,7 +176,14 @@ public class PleyerSclipt : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "EnemyBullet")
+        {
+            PlayerLazerDead();
+        }
+    }
+
 
     public void PlayerGoal()//ゴール時の動作
     {
@@ -197,12 +204,16 @@ public class PleyerSclipt : MonoBehaviour
         animator.SetInteger("speed", 0);
         Rigs.SetActive(false);
         DeadParticle.Play();
-       
+
+        
         StartCoroutine("LazerDead");
     }
 
     IEnumerator LazerDead()
     {
+        yield return new WaitForSeconds(0.2f);
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        playerCollider.enabled = false;
         yield return new WaitForSeconds(2);
         DeadAnimator.SetTrigger("GameOver");
         Debug.Log("Dead:終了");

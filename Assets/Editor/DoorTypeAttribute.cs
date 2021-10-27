@@ -72,6 +72,12 @@ public class DoorTypeAttribute : Editor
                 obj.timeDoor_param.cooltime = EditorGUILayout.FloatField("閉まる時間", obj.timeDoor_param.cooltime);
                 obj.timeDoor_param.time = EditorGUILayout.FloatField("開く時間", obj.timeDoor_param.time);
                 break;
+            case Door.DoorType.EnemyDoor:
+                obj.enemyDoor_param.enemy1 = EditorGUILayout.ObjectField("敵1", obj.enemyDoor_param.enemy1, typeof(GameObject), true) as GameObject;
+                obj.enemyDoor_param.enemy2 = EditorGUILayout.ObjectField("敵2", obj.enemyDoor_param.enemy2, typeof(GameObject), true) as GameObject;
+                obj.enemyDoor_param.enemy3 = EditorGUILayout.ObjectField("敵3", obj.enemyDoor_param.enemy3, typeof(GameObject), true) as GameObject;
+                obj.enemyDoor_param.enemy4 = EditorGUILayout.ObjectField("敵4", obj.enemyDoor_param.enemy4, typeof(GameObject), true) as GameObject;
+                break;
         }
 
         if (EditorGUI.EndChangeCheck())
