@@ -64,6 +64,6 @@ public class Battely : MonoBehaviour
         animator.SetTrigger("fire");
         GameObject Bullet = Instantiate(bulletPrefab,bulletSpawnPos.transform.position,Quaternion.identity);
         Rigidbody2D rb = Bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = pivot.transform.forward * speed;
+        rb.velocity = pivot.transform.right * speed;
     }
 }

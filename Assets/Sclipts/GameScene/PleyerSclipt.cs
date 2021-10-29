@@ -159,6 +159,7 @@ public class PleyerSclipt : MonoBehaviour
     {
         
         animator.SetBool("ground", true);
+        animator.ResetTrigger("jump");
         isJump = false;
 
         if (other.gameObject.tag == "Enemy")

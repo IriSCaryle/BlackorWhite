@@ -50,7 +50,7 @@ public class Door : MonoBehaviour
     void Start()
     {
          isOpen = false;
-
+        Debug.Log("DoorInvert:"+isInvert);
    
     }
 
@@ -93,7 +93,7 @@ public class Door : MonoBehaviour
     {
         if (!isInvert)
         {
-            if (CheckSwitch())
+            if (CheckSwitch() )
             {
                 isOpen = true;
             }
@@ -121,7 +121,14 @@ public class Door : MonoBehaviour
         switch (switchDoor_param.changeNum)
         {
             case 0:
-                Debug.LogError("スイッチの数が0です");
+                if (isInvert)
+                {
+                    return true;
+                }
+                else
+                {
+                    Debug.LogError("スイッチの数が0です");
+                }
                 break;
             case 1:
                 if (switchDoor_param.switchObj.isOn)

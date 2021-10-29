@@ -14,11 +14,11 @@ public class TrackingPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isTracking)
         {
-            transform.LookAt(target.transform);
+            TransformExtensions.LookAt2D(gameObject.transform,target.transform);
         }
     }
 
