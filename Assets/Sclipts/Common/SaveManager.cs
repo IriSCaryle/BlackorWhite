@@ -3,9 +3,12 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+/// <summary>
+/// セーブデータ管理
+/// </summary>
 public class SaveManager : MonoBehaviour
 {
-    string filePath;
+    string filePath;//セーブデータのファイルパス
 
     public SaveData save = new SaveData();
 
@@ -26,7 +29,7 @@ public class SaveManager : MonoBehaviour
 
     public bool Load()
     {
-        if (File.Exists(filePath))
+        if (File.Exists(filePath))//ファイルの存在確認
         {
             Loading();
             return true;
@@ -41,7 +44,7 @@ public class SaveManager : MonoBehaviour
 
     public bool SaveDataReset()
     {
-        if (File.Exists(filePath))
+        if (File.Exists(filePath))//ファイルの存在確認
         {
             Reseting();
             return true;
@@ -54,16 +57,16 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    void Saving()
+    void Saving()//セーブ
     { 
         string json = JsonUtility.ToJson(save);
-        StreamWriter streamWriter = new StreamWriter(filePath);
+        StreamWriter streamWriter = new StreamWriter(filePath,false);
         streamWriter.Write(json);
         streamWriter.Flush();
         streamWriter.Close();
     }
 
-    void Loading()
+    void Loading()//ロード
     {
         StreamReader streamReader;
         streamReader = new StreamReader(filePath);
@@ -72,7 +75,7 @@ public class SaveManager : MonoBehaviour
 
         save = JsonUtility.FromJson<SaveData>(data);
     }
-    void Reseting()
+    void Reseting()//リセット(現在デバッグ用)
     {
         File.Delete(filePath);
     }

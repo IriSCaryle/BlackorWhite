@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// メッセージボードのメッセージクラス
+/// </summary>
 [System.Serializable]
 public class Message
 {

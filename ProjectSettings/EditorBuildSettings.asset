@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ryuiScene.unity
     guid: 1c3f1269af40e1d4ebfc2bc8cb18a1ac
+  - enabled: 1
+    path: Assets/Scenes/Stage1Scene.unity
+    guid: 22cf29b9728b1f949b9b534f682302b9
+  - enabled: 1
+    path: Assets/Scenes/SettingScene.unity
+    guid: a57b99d2a5eab1548ac049082e93dbe4
   m_configObjects: {}

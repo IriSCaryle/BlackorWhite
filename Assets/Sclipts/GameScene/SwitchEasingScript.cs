@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// uGUIをイージングさせて動かす
+/// uGUIをイージングさせて動かす   ***--過去のプロジェクトから再利用しているスクリプトです一部使用していない変数や関数など
+///                                     が含まれています                                                                   --***
 /// </summary>
 public class SwitchEasingScript : MonoBehaviour
 {

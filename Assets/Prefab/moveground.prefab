@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 460090814339348027}
   - component: {fileID: 460090814339348004}
   - component: {fileID: 460090814339348005}
-  - component: {fileID: 460090814339348024}
+  - component: {fileID: 6909941064925889278}
   m_Layer: 0
   m_Name: moveground
   m_TagString: MoveFloor
@@ -150,7 +150,7 @@ SurfaceEffector2D:
   m_UseContactForce: 1
   m_UseFriction: 1
   m_UseBounce: 0
---- !u!114 &460090814339348024
+--- !u!114 &6909941064925889278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,4 +163,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  movepos: 5
+  movepos: 20

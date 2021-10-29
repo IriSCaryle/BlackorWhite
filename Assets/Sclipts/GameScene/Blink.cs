@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// テキストを点滅させる
+/// </summary>
 public class Blink : MonoBehaviour
 {
 

@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 画面のブラーを管理する
+/// </summary>
 public class BlurChanger : MonoBehaviour
 {
     [SerializeField] SuperBlur.SuperBlur superBlur;
@@ -47,11 +49,11 @@ public class BlurChanger : MonoBehaviour
         }
     }
 
-    public void OnBlur()
+    public void OnBlur()//画面をブラーさせる
     {
         isBlur = true;
     }
-    public void OnNormal()
+    public void OnNormal()//画面のブラーを戻す
     {
         isNormal = true;
     }

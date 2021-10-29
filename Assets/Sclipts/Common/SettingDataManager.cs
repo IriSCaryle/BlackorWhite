@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+/// <summary>
+/// 設定データの管理
+/// </summary>
 public class SettingDataManager : MonoBehaviour
 {
     public SettingData settingData;
 
-    [SerializeField] string filePath;
+    [SerializeField] string filePath;//ファイルパス
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,9 +22,9 @@ public class SettingDataManager : MonoBehaviour
         Init();
     }
 
-    void Init()
+    void Init()//設定の初期化
     {
-        if (!File.Exists(filePath))
+        if (!File.Exists(filePath))//ファイルが存在しない場合 現在の解像度+現在の画面モード,音量maxで保存
         {
             settingData.resolutionX = Screen.currentResolution.width;
             settingData.resolutionY = Screen.currentResolution.height;
@@ -46,20 +49,20 @@ public class SettingDataManager : MonoBehaviour
         }
     }
 
-    public void Save()
+    public void Save()//セーブ
     {
         string json = JsonUtility.ToJson(settingData);
-        StreamWriter streamWriter = new StreamWriter(filePath);
+        StreamWriter streamWriter = new StreamWriter(filePath,false);
         streamWriter.Write(json);
         streamWriter.Flush();
         streamWriter.Close();
     }
 
-    public void Reset()
+    public void Reset()//リセット
     {
         File.Delete(filePath);
     }
-    public void Load()
+    public void Load()//ロード
     {
         StreamReader streamReader;
         streamReader = new StreamReader(filePath);

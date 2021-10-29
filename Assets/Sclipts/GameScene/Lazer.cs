@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// レーザー
+/// </summary>
 public class Lazer : MonoBehaviour
 {
-
+    [Header("動作タイプ")]
     [SerializeField] MoveType moveType;
 
-    [Header("Common")] 
+    [Header("Common")]
+    [SerializeField] bool unlimited;
     [SerializeField] float coolTime;
     [SerializeField] float distance;
     [SerializeField] GameObject lazerParent;
@@ -32,21 +35,39 @@ public class Lazer : MonoBehaviour
     bool isFinish = false;
     bool isWrap = false;
     RaycastHit2D hit;
+    [Header("ゲームマネージャー")]
+    [SerializeField] GameManager gameManager;
+    [Header("プレイヤー")]
+    [SerializeField] PleyerSclipt pleyerSclipt;
+    [Header("デフォルトの色")]
+    [SerializeField]DefaultColor defaultColor;
 
+   
     enum MoveType
     {
         NoMove = 1,
         Rotate = 2,
     }
 
+    enum DefaultColor
+    {
+        Black =0,
+        White =1,
+    }
+
 
     void Awake()
     {
-       
-
         switch ((int)moveType)
         {
             case 1:
+                if (unlimited)
+                {
+                    if (lazerMove != null)
+                    {
+                        lazerMove.Fire();
+                    }
+                }
                 lazerParent.transform.rotation = Quaternion.AngleAxis(angle, axis);
                 coolDown = false;
   
@@ -61,11 +82,7 @@ public class Lazer : MonoBehaviour
                 isWrap = false;
                 nowCoolTime = coolTime;
                 break;
-        }
-
-        Application.targetFrameRate = 60;
-
-        
+        }         
     }
     void Start()
     {
@@ -76,8 +93,14 @@ public class Lazer : MonoBehaviour
         switch ((int)moveType)
         {
             case 1:
-               
-                Count();              
+                if (!unlimited)
+                {
+                    Count();
+                }
+                else
+                {
+                    UnlimitedRay();
+                }
                 break;
             case 2:
                
@@ -89,15 +112,46 @@ public class Lazer : MonoBehaviour
         CoolCountDown();
     }
 
-    void MoveRay()
+
+    void UnlimitedRay()
     {
-        hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
-        Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
-        if (hit.collider)
+        RaycastHit2D hit2;
+        Debug.Log("Lazer:レーザー展開中");
+        hit2 = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+        Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit2.distance, Color.red, hit2.distance, false);
+        if (hit2.collider)
         {
-            if (hit.collider.gameObject.tag == "Player")
+            if (hit2.collider.gameObject.tag == "Wall"|| hit2.collider.gameObject.tag == "Ground")
+            {
+
+                Debug.Log("Lazer:通過可能");
+                if (lazerMove.CanChangeRange(hit2.distance))
+                {
+                    lazerMove.ChangeRangeFire(hit2.distance);
+                }
+            }
+            else if (hit2.collider.gameObject.tag == "Player")
             {
                 Debug.Log("Lazer:あたった");
+                gameManager.PlayerLazerDead();
+            }
+        }
+       
+    }
+
+    void MoveRay()//レーザーの回転に沿ってRayを発射する動作
+    {
+        if ((int)defaultColor != (int)pleyerSclipt.worldType)
+        {
+            hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+            Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
+            if (hit.collider)
+            {
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    Debug.Log("Lazer:あたった");
+                    gameManager.PlayerLazerDead();
+                }
             }
         }
     }
@@ -109,7 +163,7 @@ public class Lazer : MonoBehaviour
             case 1:
                 break;
             case 2:
-                if (isStart)
+                if (isStart)//レーザーを左に回転させる動作
                 {
                     if (lazerMove != null)
                     {
@@ -127,7 +181,7 @@ public class Lazer : MonoBehaviour
                         coolDown = true;
                     }
                 }
-                if (isFinish)
+                if (isFinish)//レーザーを右に回転させる動作
                 {
                     if (lazerMove != null)
                     {
@@ -150,7 +204,7 @@ public class Lazer : MonoBehaviour
     }
 
  
-    void CoolCountDown()
+    void CoolCountDown()//クールタイムを数える動作
     {
         if (coolDown)
         {
@@ -191,24 +245,27 @@ public class Lazer : MonoBehaviour
         }
     }
 
-    void Count()
+    void Count()//レーザーが照射されている時間を計り、オンオフする動作
     {
         if (isOn)
         {
             nowCountTime -= Time.deltaTime;
 
-            
-            Debug.Log("Lazer:レーザー展開中");
-            hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
-            Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
-            if (hit.collider)
+            if ((int)defaultColor != (int)pleyerSclipt.worldType)
             {
-                if (hit.collider.gameObject.tag == "Player")
+                Debug.Log("Lazer:レーザー展開中");
+                hit = Physics2D.Raycast(lazerPivot.transform.position, lazerPivot.transform.forward, distance);
+                Debug.DrawRay(lazerPivot.transform.position, lazerPivot.transform.forward * hit.distance, Color.red, 10, false);
+                if (hit.collider)
                 {
-                    Debug.Log("Lazer:あたった");
+                    if (hit.collider.gameObject.tag == "Player")
+                    {
+                        Debug.Log("Lazer:あたった");
+                        gameManager.PlayerLazerDead();
+                    }
                 }
-            }
 
+            }
             if (nowCountTime < 0)
             {
                 if (lazerMove != null)

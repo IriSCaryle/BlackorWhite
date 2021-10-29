@@ -12,6 +12,9 @@ TagManager:
   - Ground
   - Enemy
   - SettingData
+  - Goal
+  - DeadZone
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

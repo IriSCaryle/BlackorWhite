@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1803482599919048380}
   - component: {fileID: 1155305013951166578}
   - component: {fileID: 6098172132885323804}
+  - component: {fileID: 7031575219757539520}
   - component: {fileID: 1144176084}
   m_Layer: 0
   m_Name: GameManager
@@ -61,9 +62,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b956e4f0aa9114ba5f975ae4d25379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnPoint: {fileID: 0}
+  StageNum: 0
   saveManager: {fileID: 0}
   player: {fileID: 0}
+  playerSclipt: {fileID: 0}
   fade: {fileID: 0}
+  blueAnimator: {fileID: 0}
+  goalAnimator: {fileID: 0}
 --- !u!114 &1155305013951166578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +83,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeImage: {fileID: 0}
+  isFadein: 0
+  isFadeout: 0
+  alpha: 0
 --- !u!114 &6098172132885323804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +105,18 @@ MonoBehaviour:
 
 '
   - message: "\u5341\u5B57\u30AD\u30FC\u3067\u79FB\u52D5\n\u30B9\u30DA\u30FC\u30B9\u3067\u30B8\u30E3\u30F3\u30D7"
+--- !u!114 &7031575219757539520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098172132885323795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d944eec823ec24f99fc2fed35bb09e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1144176084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +132,4 @@ MonoBehaviour:
   blurAnimator: {fileID: 0}
   menuAnimator: {fileID: 0}
   isOpen: 0
+  pleyerSclipt: {fileID: 0}

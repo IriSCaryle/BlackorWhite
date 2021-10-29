@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-public class TestScript : MonoBehaviour
-{
 
-  
+public class Enemy_test : MonoBehaviour
+{
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +15,7 @@ public class TestScript : MonoBehaviour
     {
         
     }
-    IEnumerator Test()
-    {
-        Debug.Log("コルーチン発動");
-        yield break;
-    }
-
-    public void Click()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         
     }

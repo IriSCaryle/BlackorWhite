@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Invertスクリプトのプレイヤー版(リグごとにSpriteRendererが分かれてるため)
+/// Invertとほとんど変わらないです
 /// </summary>
 public class InvertPlayer : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class InvertPlayer : MonoBehaviour
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (!isTransparent)
         {
