@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5840329557059125392}
   - component: {fileID: 5840329557059125393}
   - component: {fileID: 2216232505397022515}
+  - component: {fileID: 6766238354775388041}
   m_Layer: 0
   m_Name: enemyBullet
   m_TagString: EnemyBullet
@@ -134,3 +135,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 20
+--- !u!114 &6766238354775388041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5840329557059125397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8025803458117b4981f0a4bbfb5dba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraName: InvertCam
+  isRender: 0
+  sprite: {fileID: 5840329557059125398}
+  isTransparent: 0
+  colorValue: 0
+  changeSpeed: 3
+  playerSclipt: {fileID: 0}
+  collider2D: {fileID: 5840329557059125392}
+  defaultColor: 1
+  defaultIsTrigger: 1

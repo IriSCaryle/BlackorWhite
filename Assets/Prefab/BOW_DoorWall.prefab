@@ -104,7 +104,7 @@ MonoBehaviour:
   colorValue: 0
   changeSpeed: 3
   playerSclipt: {fileID: 0}
-  collider2D: {fileID: 0}
+  collider2D: {fileID: 6297440767231762196}
   defaultColor: 1
   defaultIsTrigger: 0
 --- !u!114 &6297440767231762197
@@ -126,6 +126,8 @@ MonoBehaviour:
   doorType: 1
   automaticDoor_param:
     closeTime: 0
+    enterCol: {fileID: 0}
+    exitCol: {fileID: 0}
   switchDoor_param:
     changeNum: 1
     switchObj: {fileID: 0}
@@ -133,6 +135,11 @@ MonoBehaviour:
   timeDoor_param:
     time: 0
     cooltime: 0
+  enemyDoor_param:
+    enemy1: {fileID: 0}
+    enemy2: {fileID: 0}
+    enemy3: {fileID: 0}
+    enemy4: {fileID: 0}
   invertSwitchDoor_param:
     changeNum: 1
     switchObj: {fileID: 0}

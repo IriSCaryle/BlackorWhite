@@ -26,8 +26,8 @@ public class Invert : MonoBehaviour
     [Header("プレイヤースクリプト")]
     public PleyerSclipt playerSclipt;
     [Header("コライダー")]
-    [SerializeField] BoxCollider2D collider2D;
-    [Header("オブジェクトの初期色")]
+    [SerializeField] Collider2D collider2D;
+   [Header("オブジェクトの初期色")]
     public DefalutColor defaultColor;
     [Header("オブジェクトのisTriggerの初期値")]
     [SerializeField] bool defaultIsTrigger;
@@ -45,9 +45,9 @@ public class Invert : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GetComponent<BoxCollider2D>())//ボックスコライダーがあれば取得
+        if (GetComponent<Collider2D>())//ボックスコライダーがあれば取得
         {
-            collider2D = GetComponent<BoxCollider2D>();
+            collider2D = GetComponent<Collider2D>();
         }
         if (playerSclipt == null)//プレイヤースクリプトが無ければタグから取得
         {

@@ -324,6 +324,7 @@ MonoBehaviour:
   messageAnimator: {fileID: 0}
   blurAnimator: {fileID: 0}
   popUpUI: {fileID: 236921938}
+  pleyerSclipt: {fileID: 0}
 --- !u!114 &1881352117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,4 +344,6 @@ MonoBehaviour:
   colorValue: 0
   changeSpeed: 3
   playerSclipt: {fileID: 0}
+  collider2D: {fileID: 5404929089973652443}
   defaultColor: 1
+  defaultIsTrigger: 0

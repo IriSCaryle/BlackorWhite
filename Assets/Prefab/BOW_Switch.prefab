@@ -422,7 +422,7 @@ MonoBehaviour:
   colorValue: 0
   changeSpeed: 3
   playerSclipt: {fileID: 0}
-  collider2D: {fileID: 0}
+  collider2D: {fileID: 4322832046565906918}
   defaultColor: 1
   defaultIsTrigger: 1
 --- !u!61 &4322832046565906918

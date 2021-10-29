@@ -15,6 +15,7 @@ public class Battely : MonoBehaviour
     [SerializeField] GameObject pivot;
     [SerializeField]float time;
     [SerializeField] TrackingPlayer tracking;
+    [SerializeField] Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +61,7 @@ public class Battely : MonoBehaviour
     void Fire()
     {
         Debug.Log("Battely:発射");
+        animator.SetTrigger("fire");
         GameObject Bullet = Instantiate(bulletPrefab,bulletSpawnPos.transform.position,Quaternion.identity);
         Rigidbody2D rb = Bullet.GetComponent<Rigidbody2D>();
         rb.velocity = pivot.transform.forward * speed;
