@@ -175,6 +175,10 @@ public class PleyerSclipt : MonoBehaviour
         {
             PlayerGoal();
         }
+        if(other.gameObject.tag == "PressBlock")
+        {
+            PlayerLazerDead();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

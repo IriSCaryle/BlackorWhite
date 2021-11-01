@@ -5,7 +5,7 @@ using Cinemachine;
 public class PressBlock : MonoBehaviour
 {
     [SerializeField] CinemachineCollisionImpulseSource CinemachineCollisionImpulseSource;
-
+    [SerializeField] CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] Vector2 startPos;
     [SerializeField] float backSpeed;
     [SerializeField] float pressPower;
@@ -56,7 +56,8 @@ public class PressBlock : MonoBehaviour
     {
         if(collision.gameObject.tag =="Wall"|| collision.gameObject.tag == "Ground")
         {
-            CinemachineCollisionImpulseSource.GenerateImpulseAt(gameObject.transform.position, Vector3.down);
+            //CinemachineCollisionImpulseSource.GenerateImpulseAt(gameObject.transform.position, Vector3.down);
+            cinemachineImpulseSource.GenerateImpulseAt(gameObject.transform.position, Vector3.down);
             rb.bodyType = RigidbodyType2D.Kinematic;
             StartCoroutine("CollisionCoolDown");
         }

@@ -15,6 +15,7 @@ TagManager:
   - Goal
   - DeadZone
   - EnemyBullet
+  - PressBlock
   layers:
   - Default
   - TransparentFX
