@@ -56,8 +56,8 @@ public class PressBlock : MonoBehaviour
     {
         if(collision.gameObject.tag =="Wall"|| collision.gameObject.tag == "Ground")
         {
-            //CinemachineCollisionImpulseSource.GenerateImpulseAt(gameObject.transform.position, Vector3.down);
-            cinemachineImpulseSource.GenerateImpulseAt(gameObject.transform.position, Vector3.down);
+            CinemachineCollisionImpulseSource.GenerateImpulseAt(gameObject.transform.position, Vector2.down);
+            //cinemachineImpulseSource.;
             rb.bodyType = RigidbodyType2D.Kinematic;
             StartCoroutine("CollisionCoolDown");
         }

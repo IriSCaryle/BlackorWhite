@@ -5494,54 +5494,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005006675}
   m_CullTransparentMesh: 0
---- !u!1 &1006005636 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2411544613047661043, guid: 64dc7d65811df1c4884e9071f8e5b04c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1292968847}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1006005637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006005636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-    m_AmplitudeGain: 0.2
-    m_FrequencyGain: 0.5
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 10
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 30
-    m_PropagationSpeed: 343
 --- !u!1 &1025681046
 GameObject:
   m_ObjectHideFlags: 0
@@ -11772,7 +11724,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cinemachineImpulseSource
       value: 
-      objectReference: {fileID: 1006005637}
+      objectReference: {fileID: 0}
     - target: {fileID: 2411544613047661042, guid: 64dc7d65811df1c4884e9071f8e5b04c,
         type: 3}
       propertyPath: m_Size.y
@@ -11816,6 +11768,21 @@ PrefabInstance:
     - target: {fileID: 2411544613047661046, guid: 64dc7d65811df1c4884e9071f8e5b04c,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411544613047661046, guid: 64dc7d65811df1c4884e9071f8e5b04c,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_Randomize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411544613047661046, guid: 64dc7d65811df1c4884e9071f8e5b04c,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_ScaleWithImpact
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411544613047661046, guid: 64dc7d65811df1c4884e9071f8e5b04c,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_DirectionMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -13110,6 +13077,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1542614044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5557538325571412790, guid: 8fd8b66845c7f934c999ce8f30058b3e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5557538325417513654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1542614046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542614044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 1
 --- !u!1 &1556761827
 GameObject:
   m_ObjectHideFlags: 0
@@ -17041,6 +17030,21 @@ PrefabInstance:
       propertyPath: m_ZDamping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5557538324420969057, guid: 8fd8b66845c7f934c999ce8f30058b3e,
+        type: 3}
+      propertyPath: m_TargetMovementOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557538324420969057, guid: 8fd8b66845c7f934c999ce8f30058b3e,
+        type: 3}
+      propertyPath: m_DeadZoneDepth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557538324420969057, guid: 8fd8b66845c7f934c999ce8f30058b3e,
+        type: 3}
+      propertyPath: m_UnlimitedSoftZone
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5557538325571412788, guid: 8fd8b66845c7f934c999ce8f30058b3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17181,7 +17185,9 @@ PrefabInstance:
       propertyPath: field of view
       value: 60
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2055448788, guid: 8fd8b66845c7f934c999ce8f30058b3e, type: 3}
+    - {fileID: 977430641660605381, guid: 8fd8b66845c7f934c999ce8f30058b3e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8fd8b66845c7f934c999ce8f30058b3e, type: 3}
 --- !u!1001 &5693694424105460434
 PrefabInstance:
