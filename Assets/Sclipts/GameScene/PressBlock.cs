@@ -6,6 +6,8 @@ public class PressBlock : MonoBehaviour
 {
     [SerializeField] CinemachineCollisionImpulseSource CinemachineCollisionImpulseSource;
     [SerializeField] Vector2 startPos;
+    [SerializeField] int startRandomCoolTimeRangeMin;
+    [SerializeField] int startRandomCoolTimeRangeMax;
     [SerializeField] float backSpeed;
     [SerializeField] float pressPower;
     [SerializeField] float cooltime;
@@ -17,8 +19,10 @@ public class PressBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int random = Random.Range(startRandomCoolTimeRangeMin,startRandomCoolTimeRangeMax);
+        Debug.Log("Press_RandomTime:"+ gameObject.name+"="+random);
         rb.bodyType = RigidbodyType2D.Kinematic;
-        time = cooltime;
+        time = random;
         isCoolDown = false;
         isStart = true;
     }
