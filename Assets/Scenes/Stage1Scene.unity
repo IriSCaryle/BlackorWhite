@@ -18354,7 +18354,7 @@ MonoBehaviour:
   player: {fileID: 1576442035}
   playerSclipt: {fileID: 1998980396}
   fade: {fileID: 4947618658367931638}
-  blueAnimator: {fileID: 0}
+  blueAnimator: {fileID: 669404256}
   goalAnimator: {fileID: 233931666}
 --- !u!1001 &5693694424105460434
 PrefabInstance:

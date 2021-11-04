@@ -76,8 +76,22 @@ public class Invert : MonoBehaviour
     {
         if((int)defaultColor == (int)playerSclipt.worldType)
         {
-            isRendered();
+            //isRendered();
+            if (sprite.color == Color.white)
+            {
+                Debug.Log("invert:黒");
+                sprite.color = Color.black;
+            }
+            else if (sprite.color == Color.black)
+            {
+                Debug.Log("invert:白");
+                sprite.color = Color.white;
+            }
+
         }
+        
+            
+        
     }
     // Update is called once per frame
     void Update()

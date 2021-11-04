@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     void SaveData()//プレイヤーの位置とステージ番号をセーブします
     {
+        Debug.Log("SavingPlayerPos:"+ player.transform.position);
         saveManager.save.PlayerPos = player.transform.position;
         saveManager.save.StageNum = StageNum;
         saveManager.Save();
