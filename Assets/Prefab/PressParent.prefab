@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2411544613047661045}
   - component: {fileID: 2411544613047661042}
+  - component: {fileID: 5151677012990973735}
   - component: {fileID: 2411544613047660937}
   - component: {fileID: 2411544613047661047}
   - component: {fileID: 2411544613047661044}
@@ -116,6 +117,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5151677012990973735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2411544613047661043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8025803458117b4981f0a4bbfb5dba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraName: InvertCamera
+  isRender: 0
+  sprite: {fileID: 2411544613047661042}
+  isTransparent: 0
+  colorValue: 0
+  changeSpeed: 3
+  playerSclipt: {fileID: 0}
+  collider2D: {fileID: 0}
+  defaultColor: 1
+  defaultIsTrigger: 0
 --- !u!114 &2411544613047660937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,8 +153,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CinemachineCollisionImpulseSource: {fileID: 2411544613047661046}
   startPos: {x: 0, y: 1.11}
+  startRandomCoolTimeRangeMin: 1
+  startRandomCoolTimeRangeMax: 10
   backSpeed: 5
-  pressPower: 10
+  pressPower: 1000
   cooltime: 3
   rb: {fileID: 2411544613047661047}
   isStart: 0
@@ -220,10 +245,10 @@ MonoBehaviour:
       m_DecayTime: 0.4
       m_ScaleWithImpact: 1
       m_HoldForever: 0
-    m_ImpactRadius: 100
+    m_ImpactRadius: 10
     m_DirectionMode: 0
     m_DissipationMode: 2
-    m_DissipationDistance: 1000
+    m_DissipationDistance: 30
     m_PropagationSpeed: 343
   m_LayerMask:
     serializedVersion: 2

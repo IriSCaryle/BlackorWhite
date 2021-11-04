@@ -41,6 +41,11 @@ public class SelectWorldManager : MonoBehaviour
                 fade.FadeOut(1, "Stage1Scene");
 
                 break;
+            case 2:
+                Debug.Log("ステージ2");
+                nowloadingText.SetActive(false);
+                fade.FadeOut(1, "Stage2Scene");
+                break;
             default :
                 Debug.Log("指定したステージがありません");
                 break;
