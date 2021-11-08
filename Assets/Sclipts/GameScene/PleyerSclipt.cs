@@ -166,7 +166,7 @@ public class PleyerSclipt : MonoBehaviour
         {
             PlayerDead();
         }
-        if(other.gameObject.tag == "DeadZone")
+        if(other.gameObject.tag == "DeadZone"|| other.gameObject.tag == "PressBlock"|| other.gameObject.tag =="EnemyBall")
         {
             PlayerLazerDead();
         }
@@ -175,10 +175,7 @@ public class PleyerSclipt : MonoBehaviour
         {
             PlayerGoal();
         }
-        if(other.gameObject.tag == "PressBlock")
-        {
-            PlayerLazerDead();
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
