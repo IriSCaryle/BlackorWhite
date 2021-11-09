@@ -54,9 +54,11 @@ public class Invert : MonoBehaviour
             playerSclipt = GameObject.FindGameObjectWithTag("Player").GetComponent<PleyerSclipt>();
         }
 
-        
 
-        CheckWorldColor();
+        if (isTransparent)
+        {
+            CheckWorldColor();
+        }
     }
 
     private void OnEnable()
@@ -117,7 +119,7 @@ public class Invert : MonoBehaviour
 
     void CheckWorldColor()//(*)世界の色をチェックし背景と同化した場合はコライダーをオフにします   /* (*)世界の色:プレイヤースクリプト参照 */
     {
-        if (gameObject.tag != "Bullet")
+        if (gameObject.tag != "Bullet" || gameObject.tag != "EnemyBullet")
         {
             if ((int)defaultColor == (int)playerSclipt.worldType)//同化した場合
             {

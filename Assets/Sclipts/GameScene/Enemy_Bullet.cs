@@ -31,15 +31,12 @@ public class Enemy_Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Bullet"||collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ground")
         {
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.tag == "Wall"|| collision.gameObject.tag == "Ground")
-        {
-            Destroy(gameObject);
-        }
+
 
     }
     
