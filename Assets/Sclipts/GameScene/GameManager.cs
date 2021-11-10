@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 /// <summary>
 /// ゲーム(ステージ)の管理
 /// </summary>
@@ -24,6 +25,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator blueAnimator;
     [Header("ゴールアニメーター")]
     [SerializeField] Animator goalAnimator;
+
+    [Header("アチーブメント関連")]
+
+    [SerializeField] Animator achievementAnimator;
+
+    [SerializeField] Text achievementTitleText;
+    [SerializeField] Text achievementDetailText;
+
     [Header("シューター")]
     [SerializeField] Shooter shooter;
     // Start is called before the first frame update
@@ -152,14 +161,25 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < saveManager.save.achivements.Length; i++)
         {
-            if (saveManager.save.achivements[i].ID == achieveID)
+            if (!saveManager.save.achivements[i].isUnlock)
             {
-                saveManager.save.achivements[i].isUnlock = true;
-                CheckAllAchievementClear();
+                if (saveManager.save.achivements[i].ID == achieveID)
+                {
+                    saveManager.save.achivements[i].isUnlock = true;
+                    CheckAllAchievementClear();
+                    AchievementAnimation(i);
+                }
             }
         }
     }
     
+    void AchievementAnimation(int length)//アチーブメント解除のアニメーションを実行
+    {
+        achievementTitleText.text = saveManager.save.achivements[length].achieveName;
+        achievementDetailText.text = saveManager.save.achivements[length].detail;
+        achievementAnimator.SetTrigger("open");
+    }
+
     void CheckAllAchievementClear()
     {
         int max = saveManager.save.achivements.Length-1;
