@@ -4,25 +4,43 @@ using UnityEngine;
 using Cinemachine;
 public class PressBlock : MonoBehaviour
 {
-    [SerializeField] CinemachineCollisionImpulseSource CinemachineCollisionImpulseSource;
-    [SerializeField] Vector2 startPos;
-    [SerializeField] int startRandomCoolTimeRangeMin;
-    [SerializeField] int startRandomCoolTimeRangeMax;
-    [SerializeField] float backSpeed;
-    [SerializeField] float pressPower;
-    [SerializeField] float cooltime;
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField]bool isStart;
-    [SerializeField]bool isCoolDown;
-
+    public CinemachineCollisionImpulseSource CinemachineCollisionImpulseSource;
+    public Vector2 startPos;
+    public int startRandomCoolTimeRangeMin;
+    public int startRandomCoolTimeRangeMax;
+    public int pressTime;
+    public float backSpeed;
+    public float pressPower;
+    public float cooltime;
+    public Rigidbody2D rb;
+    public bool isStart;
+    public bool isCoolDown;
+    public PressTimeType pressTimeType;
     float time;
+
+
+    public enum PressTimeType
+    {
+        Random,
+        cons,
+    }
     // Start is called before the first frame update
     void Start()
     {
-        int random = Random.Range(startRandomCoolTimeRangeMin,startRandomCoolTimeRangeMax);
-        Debug.Log("Press_RandomTime:"+ gameObject.name+"="+random);
+        switch (pressTimeType)
+        {
+            case PressTimeType.cons:
+                time = pressTime;
+                break;
+            case PressTimeType.Random:
+                int random = Random.Range(startRandomCoolTimeRangeMin, startRandomCoolTimeRangeMax);
+                Debug.Log("Press_RandomTime:" + gameObject.name + "=" + random);
+                time = random;
+                break;
+        }
+       
         rb.bodyType = RigidbodyType2D.Kinematic;
-        time = random;
+       
         isCoolDown = false;
         isStart = true;
     }
