@@ -12,11 +12,16 @@ public class SaveManager : MonoBehaviour
 
     public SaveData save = new SaveData();
 
+    [SerializeField] AchievementManager achievement;
     // Start is called before the first frame update
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
         filePath = Application.persistentDataPath + "/" + "Savedata.json";
+        if (!Load())
+        {
+            save.achivements = achievement.DefaultAchievements.ToArray();
+        }
     }
 
     public bool Save()
@@ -60,10 +65,17 @@ public class SaveManager : MonoBehaviour
     void Saving()//セーブ
     { 
         string json = JsonUtility.ToJson(save);
+        Debug.Log("[JsonDataSaving]\n" + json);
         StreamWriter streamWriter = new StreamWriter(filePath,false);
         streamWriter.Write(json);
         streamWriter.Flush();
         streamWriter.Close();
+    }
+
+    public void DebugJson()
+    {
+        string json = JsonUtility.ToJson(save);
+        Debug.Log("[JsonDataSaving]\n" + json);
     }
 
     void Loading()//ロード
@@ -72,11 +84,14 @@ public class SaveManager : MonoBehaviour
         streamReader = new StreamReader(filePath);
         string data = streamReader.ReadToEnd();
         streamReader.Close();
-
+        Debug.Log("[JsonDataLoading]\n" + data);
         save = JsonUtility.FromJson<SaveData>(data);
     }
     void Reseting()//リセット(現在デバッグ用)
     {
         File.Delete(filePath);
+        save = new SaveData();
+        save.achivements = achievement.DefaultAchievements.ToArray();
+
     }
 }

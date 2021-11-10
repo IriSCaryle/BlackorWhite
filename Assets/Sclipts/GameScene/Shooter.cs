@@ -17,11 +17,24 @@ public class Shooter : MonoBehaviour
     [SerializeField]GameObject Bulletpool;
     [Header("プールマネージャー")]
     [SerializeField] BulletPoolManager bulletPoolManager;
+    int FireNum;
     void Update()
     {
         if (!PleyerSclipt.freeze)
         {
             if (Input.GetButtonDown("Fire1")) Shot();
+        }
+    }
+
+    public (bool,int) AchievementClear()
+    {
+        if(FireNum == 0)
+        {
+            return (true,5);
+        }
+        else
+        {
+            return (false, 0);
         }
     }
 
@@ -39,6 +52,7 @@ public class Shooter : MonoBehaviour
             
             BulletRigidBody2D.AddForce(Vector2.right * ShotSpeed);
             Debug.Log("Bullet:Addforce");
+            FireNum += 1;
         }
         else if(this.transform.parent.localScale .x < 0)
         {
@@ -49,6 +63,7 @@ public class Shooter : MonoBehaviour
             
             BulletRigidBody2D.AddForce(Vector2.left * ShotSpeed);
             Debug.Log("Bullet:Addforce");
+            FireNum += 1;
         }
     }
 }

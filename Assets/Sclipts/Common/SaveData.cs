@@ -10,4 +10,7 @@ public class SaveData
     public int StageNum;
 
     public Vector3 PlayerPos;
+
+    public Achievement[] achivements ;
+
 }
