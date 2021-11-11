@@ -13,6 +13,11 @@ public class SelectWorldManager : MonoBehaviour
     [SerializeField] GameObject nowloadingText;
     [Header("次のステージ番号")]
     [SerializeField] int nextStageNum;
+
+    [Header("最大ステージ数")]
+
+    [SerializeField] int maxStageNum;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +32,8 @@ public class SelectWorldManager : MonoBehaviour
         nowloadingText.SetActive(true);
         saveManager.Load();
         nextStageNum = saveManager.save.StageNum;
-
-        switch (nextStageNum)
+        maxStageNum = saveManager.maxStage;
+        switch (nextStageNum)//ノーマルステージ
         {
             case 0:
                 Debug.Log("ステージ0");
@@ -46,10 +51,24 @@ public class SelectWorldManager : MonoBehaviour
                 nowloadingText.SetActive(false);
                 fade.FadeOut(1, "Stage2Scene");
                 break;
+
             default :
                 Debug.Log("指定したステージがありません");
                 break;
 
+        }
+
+       
+
+        if (saveManager.maxStage < nextStageNum)
+        {
+            Debug.Log("エクストラステージに移行します");
+            switch (nextStageNum)
+            {
+                default :
+                    Debug.Log("ステージが設定されていません管理者に問い合わせてね");
+                    break;
+            }
         }
         
     }

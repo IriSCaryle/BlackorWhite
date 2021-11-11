@@ -7,13 +7,24 @@ using System.IO;
 /// </summary>
 public class SettingDataManager : MonoBehaviour
 {
+    public static SettingDataManager instance;
+
     public SettingData settingData;
 
     [SerializeField] string filePath;//ファイルパス
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance ==null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         filePath = Application.persistentDataPath + "/" + "Config.json";
     }
 

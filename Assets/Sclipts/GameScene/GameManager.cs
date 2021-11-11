@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator blueAnimator;
     [Header("ゴールアニメーター")]
     [SerializeField] Animator goalAnimator;
-
+    [Header("エクストラステージのポップ")]
+    [SerializeField] GameObject extraStageEnablePopUp;
     [Header("アチーブメント関連")]
 
     [SerializeField] Animator achievementAnimator;
@@ -127,8 +128,22 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         blueAnimator.SetTrigger("start");
         goalAnimator.SetTrigger("Goal");
+        yield return new WaitForSeconds(1);
+        CheckExtraStage();
         yield break;
     }
+
+    void CheckExtraStage()
+    {
+        if (saveManager != null && saveManager.maxStage < saveManager.save.StageNum)
+        {
+            extraStageEnablePopUp.SetActive(true); //エクストラステージの出現を知らせる
+
+            Invoke("OnClickBackToMenu",2);
+        }
+    }
+
+    
 
     public void OnClickNextStage()//次のステージへ行く動作
     {
@@ -166,8 +181,10 @@ public class GameManager : MonoBehaviour
                 if (saveManager.save.achivements[i].ID == achieveID)
                 {
                     saveManager.save.achivements[i].isUnlock = true;
+                    saveManager.Save();
                     CheckAllAchievementClear();
                     AchievementAnimation(i);
+                    
                 }
             }
         }

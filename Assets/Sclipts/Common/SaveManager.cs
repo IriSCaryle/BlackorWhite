@@ -8,15 +8,30 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SaveManager : MonoBehaviour
 {
+    static public SaveManager instance;
+
     string filePath;//セーブデータのファイルパス
 
     public SaveData save = new SaveData();
 
     [SerializeField] AchievementManager achievement;
+
+
+    [Header("ノーマルステージ最大ステージ数")]
+    public int maxStage;
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         filePath = Application.persistentDataPath + "/" + "Savedata.json";
         if (!Load())
         {
