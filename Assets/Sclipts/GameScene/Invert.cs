@@ -138,6 +138,7 @@ public class Invert : MonoBehaviour
                 if (collider2D != null && defaultIsTrigger == true)
                 {
                     collider2D.enabled = true;
+                
                 }
                 else if (collider2D != null && defaultIsTrigger == false)
                 {
