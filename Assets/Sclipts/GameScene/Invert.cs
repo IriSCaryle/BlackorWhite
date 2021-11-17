@@ -63,12 +63,7 @@ public class Invert : MonoBehaviour
 
     private void OnEnable()
     {
-        if (gameObject.tag == "Bullet")
-        {
-            Debug.Log("Bullet:黒白検出");
-           
-            BulletCheckColor();
-        }
+        
     }
 
    
@@ -76,24 +71,21 @@ public class Invert : MonoBehaviour
 
     public void BulletCheckColor()
     {
-        if((int)defaultColor == (int)playerSclipt.worldType)
+        if (gameObject.tag == "Bullet")
         {
             //isRendered();
-            if (sprite.color == Color.white)
-            {
-                Debug.Log("invert:黒");
-                sprite.color = Color.black;
-            }
-            else if (sprite.color == Color.black)
+            if ((int)playerSclipt.worldType ==0 && sprite.color == Color.black)//sprite.color == Color.white)
             {
                 Debug.Log("invert:白");
                 sprite.color = Color.white;
             }
-
-        }
-        
+            else if ((int)playerSclipt.worldType == 1 && sprite.color == Color.white) //sprite.color == Color.black)
+            {
+                Debug.Log("invert:黒");
+                sprite.color = Color.black;
+            }
             
-        
+        }     
     }
     // Update is called once per frame
     void Update()

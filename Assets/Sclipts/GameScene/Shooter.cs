@@ -41,7 +41,9 @@ public class Shooter : MonoBehaviour
     public void Shot()//ブロック動作
     {
         GameObject Bullet = bulletPoolManager.FindBullet();//プールマネージャから発射可能なオブジェクトを検索・取得
-        
+
+        Invert invert = Bullet.GetComponent<Invert>();
+        invert.BulletCheckColor();
         //発射動作
         if (this.transform.parent.localScale.x >= 1)
         {

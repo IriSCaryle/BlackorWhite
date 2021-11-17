@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour
             isActive = false;
             this.gameObject.transform.position = defaultPos;
             gameObject.SetActive(false);
-            Destroy(collision.gameObject);
+           
         }
     }
    

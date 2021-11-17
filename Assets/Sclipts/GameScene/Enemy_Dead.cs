@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_test : MonoBehaviour
+public class Enemy_Dead : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,8 +15,10 @@ public class Enemy_test : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnParticleSystemStopped()
     {
-        
+        Destroy(gameObject.transform.parent.gameObject);
     }
+
+
 }
