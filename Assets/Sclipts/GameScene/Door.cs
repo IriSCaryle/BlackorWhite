@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 /// <summary>
 /// ドアというか扉のスクリプト
 /// </summary>
@@ -10,6 +11,10 @@ public class Door : MonoBehaviour
     public Vector2 openPos;//開けているときの位置
     public GameObject doorObj;//prefab
     public float speed;//開閉速度
+
+    public CinemachineVirtualCamera playerCinemachine;//開閉アニメ用
+    public Transform playerTransform;//開閉アニメ用;
+    public PleyerSclipt playerSclipt;//開閉アニメ用;
 
     public DoorType doorType;//ドアの開閉条件
     public enum DoorType
@@ -51,6 +56,26 @@ public class Door : MonoBehaviour
     {
          isOpen = false;
         Debug.Log("DoorInvert:"+isInvert);
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerSclipt = player.GetComponent<PleyerSclipt>();
+        playerTransform = player.transform;
+
+        switch (doorType)
+        {
+            case DoorType.AutomaticDooor://自動ドア
+
+                break;
+            case DoorType.SwitchDoor://スイッチでドアが開きます
+                
+                break;
+            case DoorType.TimeDoor://時間でドアが開きます
+
+                break;
+            case DoorType.EnemyDoor:
+
+                break;
+        }
    
     }
 
@@ -66,6 +91,7 @@ public class Door : MonoBehaviour
                 break;
             case DoorType.SwitchDoor:
                 CheckSwitches();
+
                 break;
             case DoorType.TimeDoor:
 
@@ -95,6 +121,10 @@ public class Door : MonoBehaviour
         {
             if (CheckSwitch() )
             {
+                if (!isOpen)
+                {
+                    StartCoroutine("DoorOpenAnim");
+                }
                 isOpen = true;
             }
             else
@@ -106,6 +136,10 @@ public class Door : MonoBehaviour
         {
             if (CheckSwitch() && CheckInvertSwitch())
             {
+                if (!isOpen)
+                {
+                    StartCoroutine("DoorOpenAnim");
+                }
 
                 isOpen = true;
             }
@@ -161,6 +195,10 @@ public class Door : MonoBehaviour
     {
         if (CheckObject())
         {
+            if (!isOpen)
+            {
+                StartCoroutine("DoorOpenAnim");
+            }
             isOpen = true;
         }
         else
@@ -176,6 +214,18 @@ public class Door : MonoBehaviour
         }
         return false;
     }
+    IEnumerator DoorOpenAnim()
+    {
+        playerSclipt.freeze = true;
+        yield return new WaitForSeconds(1);
+        playerCinemachine.Follow = gameObject.transform;
+        yield return new WaitForSeconds(3);
+        playerCinemachine.Follow = playerTransform;
+        yield return new WaitForSeconds(1.5f);
+        playerSclipt.freeze = false;
+        yield break;
+    }
+
 
    bool CheckInvertSwitch()//スイッチの方向が反転したスイッチを反転します
     {
@@ -225,7 +275,7 @@ public class SwitchDoor//スイッチドアクラス
     public int changeNum;
     public Switch switchObj;
     public Switch switchObj2;
-    
+
 }
 
 [System.Serializable]
@@ -234,7 +284,9 @@ public class InvertSwitchDoor//反転スイッチドアクラス
     public int changeNum;
     public InvertSwitch switchObj;
     public InvertSwitch switchObj2;
+
 }
+
 
 [System.Serializable]
 public class TimeDoor//時間ドアクラス
@@ -251,6 +303,7 @@ public class EnemyDoor
     public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
-    public GameObject enemy4; 
+    public GameObject enemy4;
+
 }
 

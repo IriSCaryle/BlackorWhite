@@ -41,6 +41,11 @@ public class DoorTypeAttribute : Editor
 
         obj.speed = EditorGUILayout.FloatField("開閉速度", obj.speed);
 
+
+        obj.playerTransform = EditorGUILayout.ObjectField("プレイヤー", obj.playerTransform, typeof(Transform), true) as Transform;
+        obj.playerCinemachine = EditorGUILayout.ObjectField("Cinemachine", obj.playerCinemachine, typeof(Cinemachine.CinemachineVirtualCamera), true) as Cinemachine.CinemachineVirtualCamera;
+        obj.playerSclipt = EditorGUILayout.ObjectField("PlayerScript", obj.playerSclipt, typeof(PleyerSclipt), true) as PleyerSclipt;
+
         EditorGUILayout.LabelField("Debug", TitleLabelstyle);
         GUILayout.Space(10);
         obj.isOpen = EditorGUILayout.Toggle("isOpen", obj.isOpen);
@@ -77,6 +82,7 @@ public class DoorTypeAttribute : Editor
                 obj.enemyDoor_param.enemy2 = EditorGUILayout.ObjectField("敵2", obj.enemyDoor_param.enemy2, typeof(GameObject), true) as GameObject;
                 obj.enemyDoor_param.enemy3 = EditorGUILayout.ObjectField("敵3", obj.enemyDoor_param.enemy3, typeof(GameObject), true) as GameObject;
                 obj.enemyDoor_param.enemy4 = EditorGUILayout.ObjectField("敵4", obj.enemyDoor_param.enemy4, typeof(GameObject), true) as GameObject;
+               
                 break;
         }
 

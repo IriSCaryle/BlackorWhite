@@ -65,6 +65,11 @@ public class SelectWorldManager : MonoBehaviour
             Debug.Log("エクストラステージに移行します");
             switch (nextStageNum)
             {
+                case 3:
+                    nowloadingText.SetActive(false);
+                    fade.FadeOut(1, "ExtraStage1Scene");
+                    break;
+
                 default :
                     Debug.Log("ステージが設定されていません管理者に問い合わせてね");
                     break;

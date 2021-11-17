@@ -16733,6 +16733,21 @@ PrefabInstance:
       propertyPath: isInvert
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6297440767231762197, guid: d30e6398adbcd0646a16fc29136df4c5,
+        type: 3}
+      propertyPath: playerSclipt
+      value: 
+      objectReference: {fileID: 1998980396}
+    - target: {fileID: 6297440767231762197, guid: d30e6398adbcd0646a16fc29136df4c5,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 477437212}
+    - target: {fileID: 6297440767231762197, guid: d30e6398adbcd0646a16fc29136df4c5,
+        type: 3}
+      propertyPath: playerCinemachine
+      value: 
+      objectReference: {fileID: 2140589574}
     - target: {fileID: 6297440767231762198, guid: d30e6398adbcd0646a16fc29136df4c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18276,6 +18291,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9df79752f0b11e4992ca29724bb466c, type: 3}
+--- !u!114 &2140589574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7146372892909368613, guid: b9df79752f0b11e4992ca29724bb466c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2140589573}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2145012777
 GameObject:
   m_ObjectHideFlags: 0
