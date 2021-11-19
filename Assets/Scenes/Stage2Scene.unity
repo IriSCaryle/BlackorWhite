@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 6098172131812983120}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2959,7 +2959,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 21
+  m_SortingOrder: 62
   m_TargetDisplay: 0
 --- !u!224 &408051469
 RectTransform:
@@ -3270,7 +3270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449835884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 343.917, y: -3.577, z: 0}
+  m_LocalPosition: {x: 342.945, y: -3.577, z: 0}
   m_LocalScale: {x: 0.664004, y: 0.7097187, z: 1}
   m_Children: []
   m_Father: {fileID: 1045305639}
@@ -3316,13 +3316,13 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 12.560722, y: 5.750476}
+    newSize: {x: 9.63129, y: 5.750476}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12.56072, y: 5.750476}
+  m_Size: {x: 9.63129, y: 5.750476}
   m_EdgeRadius: 0
 --- !u!212 &449835888
 SpriteRenderer:
@@ -3368,7 +3368,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 12.560722, y: 5.750476}
+  m_Size: {x: 9.63129, y: 5.750476}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5715,7 +5715,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5595246312192813624}
-        m_MethodName: OnClickBackToMenu
+        m_MethodName: GameClearBackToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10139,7 +10139,6 @@ Transform:
   - {fileID: 269719308}
   - {fileID: 2079056434}
   - {fileID: 639012424}
-  - {fileID: 1391997517}
   m_Father: {fileID: 1087444882}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11584,12 +11583,12 @@ PrefabInstance:
     - target: {fileID: 2787679501983182479, guid: 7ce13150e44b8e44fb1d16f5758e8536,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 310.1
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 2787679501983182479, guid: 7ce13150e44b8e44fb1d16f5758e8536,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.7
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2787679501983182479, guid: 7ce13150e44b8e44fb1d16f5758e8536,
         type: 3}
@@ -11742,7 +11741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206481459}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 351.18, y: -3.577, z: 0}
+  m_LocalPosition: {x: 350.21, y: -3.577, z: 0}
   m_LocalScale: {x: 0.664004, y: 0.7097187, z: 1}
   m_Children: []
   m_Father: {fileID: 1045305639}
@@ -11788,13 +11787,13 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 9.3, y: 5.750476}
+    newSize: {x: 12.223469, y: 5.750476}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.3, y: 5.750476}
+  m_Size: {x: 12.22347, y: 5.750476}
   m_EdgeRadius: 0
 --- !u!212 &1206481463
 SpriteRenderer:
@@ -11840,7 +11839,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 9.3, y: 5.750476}
+  m_Size: {x: 12.223469, y: 5.750476}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -18258,137 +18257,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1391997516
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1391997517}
-  - component: {fileID: 1391997520}
-  - component: {fileID: 1391997519}
-  - component: {fileID: 1391997518}
-  m_Layer: 0
-  m_Name: wall (34)
-  m_TagString: Wall
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1391997517
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391997516}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 343.06, y: 1.303, z: 0}
-  m_LocalScale: {x: 0.664004, y: 0.7097187, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1045305639}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1391997518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391997516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8025803458117b4981f0a4bbfb5dba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraName: InvertCam
-  isRender: 0
-  sprite: {fileID: 1391997520}
-  isTransparent: 1
-  colorValue: 0
-  changeSpeed: 3
-  playerSclipt: {fileID: 1998980396}
-  collider2D: {fileID: 1391997519}
-  defaultColor: 0
-  defaultIsTrigger: 0
---- !u!61 &1391997519
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391997516}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 2.9202046, y: 7.9633346}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 1
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.920205, y: 7.963335}
-  m_EdgeRadius: 0
---- !u!212 &1391997520
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391997516}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d7e780b6990480245a63a9bec0542774, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 2.9202046, y: 7.9633346}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &1392646522
 GameObject:
   m_ObjectHideFlags: 0
@@ -23920,7 +23788,7 @@ GameObject:
   - component: {fileID: 1882017516}
   - component: {fileID: 1882017515}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ExtraCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24419,7 +24287,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5595246312192813624}
-        m_MethodName: OnClickBackToMenu
+        m_MethodName: GameOverBacktoTitle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27441,6 +27309,8 @@ MonoBehaviour:
   achievementAnimator: {fileID: 2071359162}
   achievementTitleText: {fileID: 1847562652}
   achievementDetailText: {fileID: 1971245739}
+  isActiveAchievements: 0
+  AchievementAnimReserve: 
   shooter: {fileID: 1203950249}
 --- !u!1001 &5693694424105460434
 PrefabInstance:
@@ -27766,12 +27636,12 @@ PrefabInstance:
     - target: {fileID: 7146372892909368614, guid: b9df79752f0b11e4992ca29724bb466c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 310.1
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 7146372892909368614, guid: b9df79752f0b11e4992ca29724bb466c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.7
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7146372892909368614, guid: b9df79752f0b11e4992ca29724bb466c,
         type: 3}
@@ -27827,6 +27697,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 494392355797524760, guid: 1e290f02706d00e4dbb5792b9d87c7a6,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 5595246312192813624}
     - target: {fileID: 7608653675131031034, guid: 1e290f02706d00e4dbb5792b9d87c7a6,
         type: 3}
       propertyPath: m_Name
@@ -27887,11 +27762,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7608653677103947169, guid: 1e290f02706d00e4dbb5792b9d87c7a6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7608653677176980124, guid: 1e290f02706d00e4dbb5792b9d87c7a6,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -27924,12 +27794,12 @@ PrefabInstance:
     - target: {fileID: 9196606523560484729, guid: e76ea4267485722418595c35c91e2357,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 310.1
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 9196606523560484729, guid: e76ea4267485722418595c35c91e2357,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.7
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 9196606523560484729, guid: e76ea4267485722418595c35c91e2357,
         type: 3}

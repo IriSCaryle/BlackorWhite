@@ -35,6 +35,8 @@ public class SaveManager : MonoBehaviour
         filePath = Application.persistentDataPath + "/" + "Savedata.json";
         if (!Load())
         {
+            save = new SaveData();
+            save.StageNum = 1;
             save.achivements = achievement.DefaultAchievements.ToArray();
         }
     }
@@ -106,6 +108,7 @@ public class SaveManager : MonoBehaviour
     {
         File.Delete(filePath);
         save = new SaveData();
+        save.StageNum = 1;
         save.achivements = achievement.DefaultAchievements.ToArray();
 
     }

@@ -981,7 +981,7 @@ MonoBehaviour:
   bullets: []
   bulletsScripts: []
   bulletLimits: 40
-  bulletLifeTime: 5
+  bulletLifeTime: 20
   bullet: {fileID: 2437747193586354013, guid: 23b8670ff607608469117ebd2e931f94, type: 3}
   defaultPos: {fileID: 574393305}
   playerScript: {fileID: 1998980396}
@@ -2240,7 +2240,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 17
+  m_SortingOrder: 62
   m_TargetDisplay: 0
 --- !u!224 &408051469
 RectTransform:
@@ -2508,7 +2508,7 @@ PrefabInstance:
     - target: {fileID: 9196606523560484729, guid: e76ea4267485722418595c35c91e2357,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.92
+      value: -55.39
       objectReference: {fileID: 0}
     - target: {fileID: 9196606523560484729, guid: e76ea4267485722418595c35c91e2357,
         type: 3}
@@ -4068,7 +4068,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5595246312192813624}
-        m_MethodName: OnClickBackToMenu
+        m_MethodName: GameClearBackToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7910,7 +7910,7 @@ PrefabInstance:
     - target: {fileID: 2787679501983182479, guid: 7ce13150e44b8e44fb1d16f5758e8536,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.92
+      value: -55.39
       objectReference: {fileID: 0}
     - target: {fileID: 2787679501983182479, guid: 7ce13150e44b8e44fb1d16f5758e8536,
         type: 3}
@@ -7945,7 +7945,7 @@ PrefabInstance:
     - target: {fileID: 2787679501983182479, guid: 7ce13150e44b8e44fb1d16f5758e8536,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2787679501983182479, guid: 7ce13150e44b8e44fb1d16f5758e8536,
         type: 3}
@@ -15401,7 +15401,7 @@ PrefabInstance:
     - target: {fileID: 2819889814141598091, guid: c9089ca0dba6cd64ca4a6107e29f825c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2819889814141598091, guid: c9089ca0dba6cd64ca4a6107e29f825c,
         type: 3}
@@ -16482,7 +16482,7 @@ PrefabInstance:
     - target: {fileID: 6297440767231762198, guid: d30e6398adbcd0646a16fc29136df4c5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6297440767231762198, guid: d30e6398adbcd0646a16fc29136df4c5,
         type: 3}
@@ -16725,7 +16725,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5595246312192813624}
-        m_MethodName: OnClickBackToMenu
+        m_MethodName: GameOverBacktoTitle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17021,7 +17021,7 @@ PrefabInstance:
     - target: {fileID: 4322832046565906916, guid: f27bd210eea38434a873303bf8badd24,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4322832046565906916, guid: f27bd210eea38434a873303bf8badd24,
         type: 3}
@@ -17547,7 +17547,7 @@ PrefabInstance:
     - target: {fileID: 2819889814141598091, guid: c9089ca0dba6cd64ca4a6107e29f825c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2819889814141598091, guid: c9089ca0dba6cd64ca4a6107e29f825c,
         type: 3}
@@ -17979,7 +17979,7 @@ PrefabInstance:
     - target: {fileID: 7146372892909368614, guid: b9df79752f0b11e4992ca29724bb466c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.92
+      value: -55.39
       objectReference: {fileID: 0}
     - target: {fileID: 7146372892909368614, guid: b9df79752f0b11e4992ca29724bb466c,
         type: 3}
@@ -18322,7 +18322,7 @@ PrefabInstance:
     - target: {fileID: 3842358288260278038, guid: 73c4b4b09a4951e4fb890979180aaa05,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3842358288260278038, guid: 73c4b4b09a4951e4fb890979180aaa05,
         type: 3}
@@ -18435,6 +18435,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy01test
+      objectReference: {fileID: 0}
+    - target: {fileID: 4806491715135827652, guid: db59f3cedc8a0d249a2ebd82d6f7df40,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4806491715135827653, guid: db59f3cedc8a0d249a2ebd82d6f7df40,
         type: 3}
@@ -18689,6 +18694,8 @@ MonoBehaviour:
   achievementAnimator: {fileID: 184261347}
   achievementTitleText: {fileID: 184261346}
   achievementDetailText: {fileID: 184261345}
+  isActiveAchievements: 0
+  AchievementAnimReserve: 
   shooter: {fileID: 1203950249}
 --- !u!1001 &5693694424105460434
 PrefabInstance:

@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text achievementTitleText;
     [SerializeField] Text achievementDetailText;
 
+    public bool isActiveAchievements;
+
+    [SerializeField]List<int> AchievementAnimReserve;
+
     [Header("シューター")]
     [SerializeField] Shooter shooter;
     // Start is called before the first frame update
@@ -43,7 +47,7 @@ public class GameManager : MonoBehaviour
         saveManager = GameObject.FindGameObjectWithTag("SaveManager").GetComponent<SaveManager>();
         playerSclipt = player.GetComponent<PleyerSclipt>();
         CheckSave();
-
+        isActiveAchievements = true;
         if (PlayerPrefs.GetInt("Load?")==1)//コンティニューを選択した場合セーブデータをロードします
         {
             Debug.Log("Save:Continueなのでロードします");
@@ -71,7 +75,15 @@ public class GameManager : MonoBehaviour
     void LoadingSaveData()//セーブデータをロードしプレイヤーの位置を同期します
     {
         saveManager.Load();
-        player.transform.position = saveManager.save.PlayerPos;
+        if(saveManager.save.PlayerPos.x ==0 && saveManager.save.PlayerPos.y == 0&& saveManager.save.PlayerPos.z == 0)
+        {
+            player.transform.position = SpawnPoint.transform.position;
+        }
+        else
+        {
+            player.transform.position = saveManager.save.PlayerPos;
+        }
+        
         
     }
 
@@ -90,6 +102,22 @@ public class GameManager : MonoBehaviour
         fade.FadeOut(1,"TitleScene");
     }
 
+    public void GameClearBackToMenu()
+    {
+        Time.timeScale = 1;
+        fade.FadeOut(1, "TitleScene");
+    }
+
+    public void GameOverBacktoTitle()
+    {
+        saveManager.save.PlayerPos = SpawnPoint.transform.position;
+        saveManager.save.StageNum = StageNum;
+        saveManager.Save();
+        Time.timeScale = 1;
+        fade.FadeOut(1, "TitleScene");
+    }
+
+   
     public void Retry()//リトライの処理
     {
         saveManager.save.PlayerPos = SpawnPoint.transform.position;
@@ -109,17 +137,23 @@ public class GameManager : MonoBehaviour
     {
         playerSclipt.PlayerGoal();
 
-        GoalCheckAchievement();
+        
 
         if (saveManager != null)
         { 
             saveManager.save.StageNum += 1;
+            saveManager.save.PlayerPos.x = 0;
+            saveManager.save.PlayerPos.y = 0;
+            saveManager.save.PlayerPos.z = 0;
             saveManager.Save();
+            
+            StartCoroutine("Goal");
+          
         }
 
-       
+        GoalCheckAchievement();
 
-        StartCoroutine("Goal");
+
     }
 
     IEnumerator Goal()//ゴール演出
@@ -128,19 +162,26 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         blueAnimator.SetTrigger("start");
         goalAnimator.SetTrigger("Goal");
-        yield return new WaitForSeconds(1);
-        CheckExtraStage();
+        
+        yield return StartCoroutine(ExtraStage());
+       
+    }
+
+    IEnumerator ExtraStage()
+    {
+        if (saveManager.maxStage < saveManager.save.StageNum)
+        {
+            CheckExtraStage();
+            yield return new WaitForSecondsRealtime(4);
+            GameClearBackToMenu();
+        }
         yield break;
     }
 
     void CheckExtraStage()
-    {
-        if (saveManager != null && saveManager.maxStage < saveManager.save.StageNum)
-        {
+    {        
+            Debug.Log("エキストラ出現");
             extraStageEnablePopUp.SetActive(true); //エクストラステージの出現を知らせる
-
-            Invoke("OnClickBackToMenu",2);
-        }
     }
 
     
@@ -183,18 +224,58 @@ public class GameManager : MonoBehaviour
                     saveManager.save.achivements[i].isUnlock = true;
                     saveManager.Save();
                     CheckAllAchievementClear();
-                    AchievementAnimation(i);
-                    
+                    AchievementReserve(i);
                 }
             }
         }
     }
-    
+
+    void AchievementReserve(int id)
+    {
+        AchievementAnimReserve.Add(id);
+    }
+
+    bool CheckAchieveAnimList()
+    {
+        if (AchievementAnimReserve.Count != 0)
+        {
+            AchievementAnimPlay(AchievementAnimReserve[0]);
+            AchievementAnimReserve.RemoveAt(0);
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void AchievementAnimPlay(int id)
+    {
+        AchievementAnimation(id);
+    }
+
+    private void Update()
+    {
+        if (isActiveAchievements)
+        {
+            if (CheckAchieveAnimList())
+            {
+                isActiveAchievements = false;
+            }
+            else
+            {
+                isActiveAchievements = true;
+            }
+        }
+    }
+
     void AchievementAnimation(int length)//アチーブメント解除のアニメーションを実行
     {
         achievementTitleText.text = saveManager.save.achivements[length].achieveName;
         achievementDetailText.text = saveManager.save.achivements[length].detail;
         achievementAnimator.SetTrigger("open");
+        isActiveAchievements = false;
     }
 
     void CheckAllAchievementClear()
@@ -214,9 +295,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
+ 
 }

@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 6098172131812983120}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4600,7 +4600,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 21
+  m_SortingOrder: 62
   m_TargetDisplay: 0
 --- !u!224 &408051469
 RectTransform:
@@ -8244,7 +8244,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5595246312192813624}
-        m_MethodName: OnClickBackToMenu
+        m_MethodName: GameClearBackToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21488,7 +21488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1334812290
 Transform:
   m_ObjectHideFlags: 0
@@ -28781,7 +28781,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5595246312192813624}
-        m_MethodName: OnClickBackToMenu
+        m_MethodName: GameOverBacktoTitle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30152,7 +30152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 24726326f0d24dc41875ec34f94e95b2, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -30160,7 +30160,7 @@ SpriteRenderer:
   m_Size: {x: 1.86, y: 1.81}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2133644916
@@ -30888,6 +30888,8 @@ MonoBehaviour:
   achievementAnimator: {fileID: 2071359162}
   achievementTitleText: {fileID: 1847562652}
   achievementDetailText: {fileID: 1971245739}
+  isActiveAchievements: 0
+  AchievementAnimReserve: 
   shooter: {fileID: 1203950249}
 --- !u!1001 &5693694424105460434
 PrefabInstance:

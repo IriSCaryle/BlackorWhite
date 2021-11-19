@@ -34,7 +34,7 @@ public class TitleManager : MonoBehaviour
             DisableExtraButton();
         }
 
-        if(saveManager.save.StageNum <saveManager.maxStage)
+        if(saveManager.save.StageNum <=saveManager.maxStage)
         {
             DisableExtraButton();
         }
@@ -98,6 +98,8 @@ public class TitleManager : MonoBehaviour
         else
         {
             fade.FadeOut(1, "Stage1Scene");
+            saveManager.save.StageNum = 1;
+            saveManager.Save();
             PlayerPrefs.SetInt("Load?", 0);
             PlayerPrefs.Save();
         }
