@@ -86,6 +86,12 @@ public class DoorTypeAttribute : Editor
                 break;
         }
 
+        EditorGUILayout.LabelField("Audio", TitleLabelstyle);
+        GUILayout.Space(10);
+
+        obj.SE_audSource = EditorGUILayout.ObjectField("AudioSource", obj.SE_audSource, typeof(AudioSource), true) as AudioSource;
+
+
         if (EditorGUI.EndChangeCheck())
         {
             EditorUtility.SetDirty(obj);

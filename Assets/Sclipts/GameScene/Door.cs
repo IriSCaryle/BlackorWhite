@@ -35,6 +35,9 @@ public class Door : MonoBehaviour
     public bool isOpen;//空いているか
 
     public bool isInvert;//
+
+    public AudioSource SE_audSource;
+
     void OnDrawGizmos()
     {
         switch (doorType)
@@ -123,9 +126,11 @@ public class Door : MonoBehaviour
             {
                 if (!isOpen)
                 {
+                    
                     StartCoroutine("DoorOpenAnim");
                 }
                 isOpen = true;
+               
             }
             else
             {
@@ -138,10 +143,12 @@ public class Door : MonoBehaviour
             {
                 if (!isOpen)
                 {
+                    
                     StartCoroutine("DoorOpenAnim");
                 }
 
                 isOpen = true;
+                
             }
             else
             {
@@ -211,14 +218,17 @@ public class Door : MonoBehaviour
         if(enemyDoor_param.enemy1==null&& enemyDoor_param.enemy2 == null && enemyDoor_param.enemy3 == null && enemyDoor_param.enemy4 == null)
         {
             return true;
+            
         }
         return false;
     }
     IEnumerator DoorOpenAnim()
     {
+        SE_audSource.Play();
         playerSclipt.freeze = true;
         yield return new WaitForSeconds(1);
         playerCinemachine.Follow = gameObject.transform;
+ 
         yield return new WaitForSeconds(3);
         playerCinemachine.Follow = playerTransform;
         yield return new WaitForSeconds(1.5f);

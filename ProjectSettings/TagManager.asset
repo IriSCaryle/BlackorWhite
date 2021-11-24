@@ -18,6 +18,8 @@ TagManager:
   - PressBlock
   - EnemyBall
   - GameManager
+  - AudSE
+  - AudBGM
   layers:
   - Default
   - TransparentFX

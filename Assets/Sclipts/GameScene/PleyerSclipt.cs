@@ -42,6 +42,13 @@ public class PleyerSclipt : MonoBehaviour
     public WorldType worldType;
     [Header("初期の世界の色")]
     public WorldType defaultWorld;
+
+    [Header("AudioSource")]
+    [SerializeField] AudioSource BGM_audSource;
+
+    [SerializeField] AudioSource SE_audSource;
+    [Header("各クリップ")]
+    [SerializeField] AudioClip SE_avility;
     public enum WorldType 
     {
         Black =0,
@@ -146,7 +153,9 @@ public class PleyerSclipt : MonoBehaviour
                     worldType = WorldType.Black;
                     break;
             }
-            
+            SE_audSource.clip = SE_avility;
+           
+            SE_audSource.Play();
             avilityCoolTime = true;
         }
         else

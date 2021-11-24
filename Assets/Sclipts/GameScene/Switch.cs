@@ -21,10 +21,16 @@ public class Switch : MonoBehaviour
     
     [SerializeField] PopUpUI popUpUI;
 
+    [SerializeField] AudioSource SE_audSource;
+
+    [SerializeField] PleyerSclipt player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PleyerSclipt>();
+        }
     }
 
     // Update is called once per frame
@@ -50,9 +56,13 @@ public class Switch : MonoBehaviour
     {
         if (isRange)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (!player.freeze)
             {
-                isOn = !isOn;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    isOn = !isOn;
+                    SE_audSource.Play();
+                }
             }
         }
     }

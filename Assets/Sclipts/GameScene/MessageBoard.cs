@@ -19,6 +19,8 @@ public class MessageBoard : MonoBehaviour
     [SerializeField] Animator blurAnimator;
     [Header("UI")]
     [SerializeField] PopUpUI popUpUI;
+    [Header("AudioSource")]
+    [SerializeField] AudioSource SE_audSource;
     GameObject target;
     bool isopend;
     bool isEnter;
@@ -72,6 +74,7 @@ public class MessageBoard : MonoBehaviour
     {
         pleyerSclipt.freeze = true;
         GetMessage();
+        SE_audSource.Play();
         blurAnimator.SetTrigger("start");
         isopend = true;
         messageAnimator.SetTrigger("start");
