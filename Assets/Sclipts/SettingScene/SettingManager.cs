@@ -75,6 +75,16 @@ public class SettingManager : MonoBehaviour
         }
     }
 
+
+    public void BGMVolChange()
+    {
+        settingDataManager.SetBGM(bgm.value);
+    }
+    public void SEVolChange()
+    {
+        settingDataManager.SetSE(se.value);
+    }
+
     public void OnClickBack()//戻るボタン動作
     {
         fade.FadeOut(1,"TitleScene");
@@ -155,15 +165,7 @@ public class SettingManager : MonoBehaviour
     }
 
  
-    public void OnChangeBGM()
-    {
-        //未割当
-    }
-
-    public void OnChangeSE()
-    {
-
-    }
+   
 
 
     

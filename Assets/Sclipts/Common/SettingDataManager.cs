@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Audio;
 /// <summary>
 /// 設定データの管理
 /// </summary>
@@ -12,6 +13,8 @@ public class SettingDataManager : MonoBehaviour
     public SettingData settingData;
 
     [SerializeField] string filePath;//ファイルパス
+    [SerializeField] AudioMixer audioMixer;
+    const float AUDIO_DEFAULT_VOL = 0f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +29,8 @@ public class SettingDataManager : MonoBehaviour
         }
         
         filePath = Application.persistentDataPath + "/" + "Config.json";
+
+        
     }
 
     private void Start()
@@ -53,11 +58,41 @@ public class SettingDataManager : MonoBehaviour
                     Debug.LogError("Setting:指定外のウィンドウモードです,フルスクリーンにします");
                     break;
             }
-            settingData.bgmVolume = 100;
-            settingData.seVolume = 100;
+            settingData.bgmVolume = AUDIO_DEFAULT_VOL;
+            settingData.seVolume = AUDIO_DEFAULT_VOL;
+            SetAudioVolme();
 
             Save();
         }
+        else
+        {
+            Load();
+
+            SetAudioVolme();
+
+        }
+    }
+
+    public void SetBGM(float bgm)
+    {
+        audioMixer.SetFloat("BGM",bgm);
+        settingData.bgmVolume = bgm;
+    }
+    public void SetSE(float se)
+    {
+        audioMixer.SetFloat("SE",se);
+        settingData.seVolume =se;
+    }
+
+
+
+    void SetAudioVolme()
+    {
+        
+        audioMixer.SetFloat("BGM", settingData.bgmVolume);
+        audioMixer.SetFloat("SE", settingData.seVolume);
+
+       
     }
 
     public void Save()//セーブ
@@ -72,6 +107,10 @@ public class SettingDataManager : MonoBehaviour
     public void Reset()//リセット
     {
         File.Delete(filePath);
+        settingData = new SettingData();
+        settingData.seVolume = AUDIO_DEFAULT_VOL;
+        settingData.bgmVolume = AUDIO_DEFAULT_VOL;
+
     }
     public void Load()//ロード
     {

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 public class TitleManager : MonoBehaviour
 {
     [Header("フェードスクリプト")]
     [SerializeField] Fade fade;
     [Header("セーブ管理スクリプト")]
     [SerializeField] SaveManager saveManager;
+    [Header("設定管理スクリプト")]
+    [SerializeField] SettingDataManager settingDataManager;
     [Header("コンティニューボタン")]
     [SerializeField] Button continueButton;
     [Header("エキストラボタン")]
@@ -16,8 +19,14 @@ public class TitleManager : MonoBehaviour
     [Header("デバッグボタン(ryuiSceneへ移動したい際に使用)")]
     [SerializeField] bool isDebug;
     [SerializeField] GameObject extraInfoPop;
-   
+    [Header("AudioSource")]
+    [SerializeField] AudioSource SE_audSource;
+    [SerializeField] AudioSource BGM_audSource;
+    [Header("AudioClip")]
+    [SerializeField] AudioClip SE_decide;
+    [SerializeField] AudioClip SE_cansel;
   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,11 +54,14 @@ public class TitleManager : MonoBehaviour
             Invoke("DisableInfoPop",5);
         }
 
+
+       
+
         fade.FadeIn(1);
 
     }
 
-
+  
     void DisableInfoPop()
     {
         extraInfoPop.SetActive(false);
@@ -75,6 +87,19 @@ public class TitleManager : MonoBehaviour
         
     }
 
+    
+
+    public void DecidedSE()
+    {
+        SE_audSource.clip = SE_decide;
+        SE_audSource.Play();
+    }
+
+    public void CanselSE()
+    {
+        SE_audSource.clip = SE_cansel;
+        SE_audSource.Play();
+    }
     public void OnClickExtraStart()
     {
         //fade.FadeOut(1, "ExtraStage1");
@@ -125,6 +150,7 @@ public class TitleManager : MonoBehaviour
     public void _OnClickReset()//セーブデータ削除ボダン動作
     {
         saveManager.SaveDataReset();
+        settingDataManager.Reset();
     }
     public void OnClickQuit()//終了ボタン動作
     {
