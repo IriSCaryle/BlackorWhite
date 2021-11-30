@@ -6165,3 +6165,5 @@ MonoBehaviour:
   BGM_audSource: {fileID: 182756627}
   SE_audSource: {fileID: 909710859}
   SE_avility: {fileID: 8300000, guid: 42c98d56e13d400418eb8f46a8a78b59, type: 3}
+  SE_damage: {fileID: 8300000, guid: 72bb5a0ebf2ae9d46be5f2912e2578e4, type: 3}
+  SE_gameover: {fileID: 8300000, guid: 68932cc47ea908a45b989e0a9264d7a5, type: 3}

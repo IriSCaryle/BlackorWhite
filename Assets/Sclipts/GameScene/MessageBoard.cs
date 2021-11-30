@@ -27,6 +27,9 @@ public class MessageBoard : MonoBehaviour
     bool isExit;
     [Header("プレイヤースクリプト")]
     [SerializeField] PleyerSclipt pleyerSclipt;
+
+    [SerializeField] AudioClip SE_open;
+    [SerializeField] AudioClip SE_close;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +77,7 @@ public class MessageBoard : MonoBehaviour
     {
         pleyerSclipt.freeze = true;
         GetMessage();
+        SE_audSource.clip = SE_open;
         SE_audSource.Play();
         blurAnimator.SetTrigger("start");
         isopend = true;
@@ -83,7 +87,9 @@ public class MessageBoard : MonoBehaviour
         
     }
     void CloseMessage()//メッセージを非表示にする動作
-    {   
+    {
+        SE_audSource.clip = SE_close;
+        SE_audSource.Play();
         blurAnimator.SetTrigger("stop");
         messageAnimator.SetTrigger("stop");
         isopend = false;

@@ -19,6 +19,10 @@ public class SettingManager : MonoBehaviour
     [Header("各スライド")]
     [SerializeField] Slider bgm;
     [SerializeField] Slider se;
+    [Header("Audio")]
+    [SerializeField] AudioSource aud_SE;
+    [SerializeField] AudioClip SE_decide;
+    [SerializeField] AudioClip SE_cansel;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,11 +91,15 @@ public class SettingManager : MonoBehaviour
 
     public void OnClickBack()//戻るボタン動作
     {
+        aud_SE.clip = SE_cansel;
+        aud_SE.Play();
         fade.FadeOut(1,"TitleScene");
     }
 
     public void OnClickApply()//適用ボタン動作
     {
+        aud_SE.clip = SE_decide;
+        aud_SE.Play();
         AssignResolution();
         AssignWindowMode();
         AssignBGM_SE();

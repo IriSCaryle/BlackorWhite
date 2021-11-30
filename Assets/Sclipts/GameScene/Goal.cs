@@ -7,7 +7,8 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
-
+    [SerializeField] AudioSource aud_SE;
+    
     // Start is called before the first frame update
     void Start()
     {

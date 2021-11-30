@@ -1158,8 +1158,8 @@ MonoBehaviour:
   extraInfoPop: {fileID: 260145763}
   SE_audSource: {fileID: 800187385}
   BGM_audSource: {fileID: 175884812}
-  SE_decide: {fileID: 0}
-  SE_cansel: {fileID: 0}
+  SE_decide: {fileID: 8300000, guid: b6f4642a6fbd23e40b10f3102944efed, type: 3}
+  SE_cansel: {fileID: 8300000, guid: d4fba0f123d53bc4baf0e5f4d37aefa4, type: 3}
 --- !u!4 &724541482
 Transform:
   m_ObjectHideFlags: 0

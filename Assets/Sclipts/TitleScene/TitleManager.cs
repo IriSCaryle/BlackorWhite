@@ -116,17 +116,20 @@ public class TitleManager : MonoBehaviour
     {
         if (isDebug)
         {
+            saveManager.save.StageNum = 1;
+            saveManager.Save();
             fade.FadeOut(1, "ryuiScene");
             PlayerPrefs.SetInt("Load?", 0);
             PlayerPrefs.Save();
         }
         else
         {
-            fade.FadeOut(1, "Stage1Scene");
-            saveManager.save.StageNum = 1;
-            saveManager.Save();
             PlayerPrefs.SetInt("Load?", 0);
             PlayerPrefs.Save();
+            saveManager.save.StageNum = 1;
+            saveManager.Save();
+            fade.FadeOut(1, "Stage1Scene");
+
         }
     }
     public void OnClickContinue()//コンティニューボタン動作

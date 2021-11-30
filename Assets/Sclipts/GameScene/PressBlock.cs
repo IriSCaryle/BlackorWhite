@@ -17,7 +17,7 @@ public class PressBlock : MonoBehaviour
     public bool isCoolDown;
     public PressTimeType pressTimeType;
     float time;
-
+    public AudioSource aud_SE;
 
     public enum PressTimeType
     {
@@ -79,6 +79,7 @@ public class PressBlock : MonoBehaviour
         {
             CinemachineCollisionImpulseSource.GenerateImpulseAt(gameObject.transform.position, Vector2.down);
             rb.bodyType = RigidbodyType2D.Kinematic;
+            aud_SE.Play();
             StartCoroutine("CollisionCoolDown");
         }
     }

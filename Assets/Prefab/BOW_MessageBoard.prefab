@@ -455,6 +455,8 @@ MonoBehaviour:
   popUpUI: {fileID: 236921938}
   SE_audSource: {fileID: 856576732}
   pleyerSclipt: {fileID: 0}
+  SE_open: {fileID: 8300000, guid: b6f4642a6fbd23e40b10f3102944efed, type: 3}
+  SE_close: {fileID: 8300000, guid: ce790e6ec1bf60e42af0e67a1e4b3cc0, type: 3}
 --- !u!114 &1881352117
 MonoBehaviour:
   m_ObjectHideFlags: 0

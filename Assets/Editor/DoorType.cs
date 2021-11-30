@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(Door))]
-public class DoorTypeAttribute : Editor
+public class DoorType : Editor
 {
     SerializedProperty _list;
     public override void OnInspectorGUI()

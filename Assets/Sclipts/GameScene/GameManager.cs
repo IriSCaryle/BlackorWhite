@@ -40,6 +40,13 @@ public class GameManager : MonoBehaviour
 
     [Header("シューター")]
     [SerializeField] Shooter shooter;
+
+    [Header("Audio")]
+    [SerializeField] AudioSource aud_SE;
+    [SerializeField] AudioClip SE_negative;
+    [SerializeField] AudioClip SE_positive;
+    [SerializeField] AudioClip SE_achievement;
+    [SerializeField] AudioClip SE_goal;
     // Start is called before the first frame update
     void Awake()
     {
@@ -97,6 +104,8 @@ public class GameManager : MonoBehaviour
 
     public void OnClickBackToMenu()//タイトルメニューに戻る動作
     {
+        aud_SE.clip = SE_positive;
+        aud_SE.Play();
         Time.timeScale = 1;
         SaveData();
         fade.FadeOut(1,"TitleScene");
@@ -104,12 +113,16 @@ public class GameManager : MonoBehaviour
 
     public void GameClearBackToMenu()
     {
+        aud_SE.clip = SE_positive;
+        aud_SE.Play();
         Time.timeScale = 1;
         fade.FadeOut(1, "TitleScene");
     }
 
     public void GameOverBacktoTitle()
     {
+        aud_SE.clip = SE_positive;
+        aud_SE.Play();
         saveManager.save.PlayerPos = SpawnPoint.transform.position;
         saveManager.save.StageNum = StageNum;
         saveManager.Save();
@@ -120,6 +133,8 @@ public class GameManager : MonoBehaviour
    
     public void Retry()//リトライの処理
     {
+        aud_SE.clip = SE_positive;
+        aud_SE.Play();
         saveManager.save.PlayerPos = SpawnPoint.transform.position;
         saveManager.save.StageNum = StageNum;
         saveManager.Save();
@@ -136,12 +151,9 @@ public class GameManager : MonoBehaviour
     public void StageGoal()//プレイヤーのゴールしたことを知らせステージ番号を次に設定しゴール演出を再生します
     {
         playerSclipt.PlayerGoal();
-
-        
-
         if (saveManager != null)
-        { 
-            saveManager.save.StageNum += 1;
+        {
+            saveManager.save.StageNum = StageNum+1 ;
             saveManager.save.PlayerPos.x = 0;
             saveManager.save.PlayerPos.y = 0;
             saveManager.save.PlayerPos.z = 0;
@@ -274,6 +286,8 @@ public class GameManager : MonoBehaviour
     {
         achievementTitleText.text = saveManager.save.achivements[length].achieveName;
         achievementDetailText.text = saveManager.save.achivements[length].detail;
+        aud_SE.clip = SE_achievement;
+        aud_SE.Play();
         achievementAnimator.SetTrigger("open");
         isActiveAchievements = false;
     }

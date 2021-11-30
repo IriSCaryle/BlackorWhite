@@ -49,6 +49,8 @@ public class PleyerSclipt : MonoBehaviour
     [SerializeField] AudioSource SE_audSource;
     [Header("各クリップ")]
     [SerializeField] AudioClip SE_avility;
+    [SerializeField] AudioClip SE_damage;
+    [SerializeField] AudioClip SE_gameover;
     public enum WorldType 
     {
         Black =0,
@@ -153,8 +155,7 @@ public class PleyerSclipt : MonoBehaviour
                     worldType = WorldType.Black;
                     break;
             }
-            SE_audSource.clip = SE_avility;
-           
+            SE_audSource.clip = SE_avility;           
             SE_audSource.Play();
             avilityCoolTime = true;
         }
@@ -204,6 +205,7 @@ public class PleyerSclipt : MonoBehaviour
 
     public void PlayerDead()//死んだ時の動作と演出再生
     {
+
         freeze = true;
         animator.SetInteger("speed", 0); 
         StartCoroutine("Dead");
@@ -211,6 +213,8 @@ public class PleyerSclipt : MonoBehaviour
 
     public void PlayerLazerDead()//レーザーで死亡した際の動作と演出再生
     {
+        SE_audSource.clip = SE_damage;
+        SE_audSource.Play();
         freeze = true;
         animator.SetInteger("speed", 0);
         Rigs.SetActive(false);
@@ -227,6 +231,8 @@ public class PleyerSclipt : MonoBehaviour
         playerCollider.enabled = false;
         yield return new WaitForSeconds(2);
         DeadAnimator.SetTrigger("GameOver");
+        SE_audSource.clip = SE_gameover;
+        SE_audSource.Play();
         Debug.Log("Dead:終了");
         Debug.Log("timescale1");
         yield break;
@@ -238,9 +244,13 @@ public class PleyerSclipt : MonoBehaviour
         Rigs.SetActive(false);
         rb.bodyType = RigidbodyType2D.Kinematic;
         playerCollider.enabled = false;
-        DeadParticle.Play();        
+        DeadParticle.Play();
+        SE_audSource.clip = SE_damage;
+        SE_audSource.Play();
         yield return new WaitForSeconds(2);
         DeadAnimator.SetTrigger("GameOver");
+        SE_audSource.clip = SE_gameover;
+        SE_audSource.Play();
         Debug.Log("Dead:終了");
         yield break;
     }

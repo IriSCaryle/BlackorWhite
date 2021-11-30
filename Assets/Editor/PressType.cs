@@ -22,6 +22,7 @@ public class PressType : Editor
         obj.isStart = EditorGUILayout.Toggle("isStart", obj.isStart);
         obj.isCoolDown = EditorGUILayout.Toggle("isCoolDown", obj.isCoolDown);
         obj.pressTimeType = (PressBlock.PressTimeType)EditorGUILayout.EnumPopup("落下時間タイプ", obj.pressTimeType);
+        obj.aud_SE = EditorGUILayout.ObjectField("AudioSource",obj.aud_SE,typeof(AudioSource),true) as AudioSource;
         switch (obj.pressTimeType)
         {
             case PressBlock.PressTimeType.Random:
@@ -33,6 +34,11 @@ public class PressType : Editor
                 obj.pressTime = EditorGUILayout.IntField("落下時間",obj.pressTime);
 
                 break;
+        }
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(obj);
         }
     }
 }
