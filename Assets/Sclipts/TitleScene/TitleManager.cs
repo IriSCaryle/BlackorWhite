@@ -102,6 +102,7 @@ public class TitleManager : MonoBehaviour
     }
     public void OnClickExtraStart()
     {
+        DecidedSE();
         //fade.FadeOut(1, "ExtraStage1");
         PlayerPrefs.SetInt("Load?", 0);
         PlayerPrefs.Save();
@@ -109,6 +110,7 @@ public class TitleManager : MonoBehaviour
 
     public void OnClickAchieve()
     {
+        DecidedSE();
         fade.FadeOut(1, "AchieveScene");
     }
 
@@ -116,6 +118,7 @@ public class TitleManager : MonoBehaviour
     {
         if (isDebug)
         {
+            DecidedSE();
             saveManager.save.StageNum = 1;
             saveManager.Save();
             fade.FadeOut(1, "ryuiScene");
@@ -124,6 +127,7 @@ public class TitleManager : MonoBehaviour
         }
         else
         {
+            DecidedSE(); 
             PlayerPrefs.SetInt("Load?", 0);
             PlayerPrefs.Save();
             saveManager.save.StageNum = 1;
@@ -139,7 +143,7 @@ public class TitleManager : MonoBehaviour
             saveManager.save.StageNum = 0;
             saveManager.Save();
         }
-       
+        DecidedSE();
         saveManager.Load();
         fade.FadeOut(1,"SelectWorldScene");
         PlayerPrefs.SetInt("Load?",1);
@@ -147,16 +151,19 @@ public class TitleManager : MonoBehaviour
     }
     public void OnClickSetting()//設定ボタン動作
     {
+        DecidedSE();
         fade.FadeOut(1, "SettingScene");
     }
     
     public void _OnClickReset()//セーブデータ削除ボダン動作
     {
+        DecidedSE();
         saveManager.SaveDataReset();
         settingDataManager.Reset();
     }
     public void OnClickQuit()//終了ボタン動作
     {
+        DecidedSE();
         Application.Quit();
     }
 }

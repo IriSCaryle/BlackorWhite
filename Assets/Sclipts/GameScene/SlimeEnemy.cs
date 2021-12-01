@@ -17,6 +17,7 @@ public class SlimeEnemy : MonoBehaviour
 
     [SerializeField] GameObject pos1;
     [SerializeField] GameObject pos2;
+    [SerializeField] AudioSource aud_SE;
     public bool chase;
     bool moveReady;
 
@@ -99,6 +100,7 @@ public class SlimeEnemy : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bullet")
         {
+            aud_SE.Play();
             CheckColor();
             particle.Play();
             collider2D.enabled = false;

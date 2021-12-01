@@ -17,6 +17,9 @@ public class Shooter : MonoBehaviour
     [SerializeField]GameObject Bulletpool;
     [Header("プールマネージャー")]
     [SerializeField] BulletPoolManager bulletPoolManager;
+    [Header("Audio")]
+    [SerializeField] AudioSource aud_SE;
+    [SerializeField] AudioClip SE_blockFire;
     int FireNum;
     void Update()
     {
@@ -47,6 +50,8 @@ public class Shooter : MonoBehaviour
         //発射動作
         if (this.transform.parent.localScale.x >= 1)
         {
+            aud_SE.clip = SE_blockFire;
+            aud_SE.Play();
             Rigidbody2D BulletRigidBody2D = Bullet.GetComponent<Rigidbody2D>();
             Wallstick wallstick = Bullet.GetComponent<Wallstick>();
             wallstick.rb.bodyType = RigidbodyType2D.Dynamic;
@@ -58,6 +63,8 @@ public class Shooter : MonoBehaviour
         }
         else if(this.transform.parent.localScale .x < 0)
         {
+            aud_SE.clip = SE_blockFire;
+            aud_SE.Play();
             Rigidbody2D BulletRigidBody2D = Bullet.GetComponent<Rigidbody2D>();
             Wallstick wallstick = Bullet.GetComponent<Wallstick>();
             wallstick.rb.bodyType = RigidbodyType2D.Dynamic;

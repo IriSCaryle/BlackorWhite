@@ -7,6 +7,7 @@ using UnityEngine;
 public class Wallstick : MonoBehaviour
 {
     public Rigidbody2D rb;
+    [SerializeField] AudioSource aud_SE;
     void Start()
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -14,9 +15,10 @@ public class Wallstick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Ground")
         {
-
+            aud_SE.Play();
             rb.bodyType = RigidbodyType2D.Kinematic;
         }       
     }

@@ -6008,6 +6008,8 @@ MonoBehaviour:
   PleyerSclipt: {fileID: 4775630089873475771}
   Bulletpool: {fileID: 0}
   bulletPoolManager: {fileID: 0}
+  aud_SE: {fileID: 909710859}
+  SE_blockFire: {fileID: 8300000, guid: 496aced7f0ba09b41babb0a843cd49fe, type: 3}
 --- !u!1 &6803903084615895724
 GameObject:
   m_ObjectHideFlags: 0
