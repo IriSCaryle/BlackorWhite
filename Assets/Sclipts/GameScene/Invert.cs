@@ -144,12 +144,12 @@ public class Invert : MonoBehaviour
     {
         if (isRender)
         {
-            Debug.Log("invertCam:映っている");
+            Debug.Log("invertCam:映っている:"+ gameObject.name);
             ChangeInvertBool();
         }
         if (!isRender)
         {
-            Debug.Log("invertCam:映っていない");
+            Debug.Log("invertCam:映っていない:" + gameObject.name);
             ChangeColorNotRender();
         }
     }
@@ -215,7 +215,9 @@ public class Invert : MonoBehaviour
         if (Camera.current.tag == cameraName)
         {
             isRender = true;
+           // Debug.Log("Render:"+Camera.current.tag+","+gameObject.name);
         }
+       
     }
         
 }

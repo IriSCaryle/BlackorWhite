@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8025803458117b4981f0a4bbfb5dba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraName: InvertCamera
+  cameraName: InvertCam
   isRender: 0
   sprite: {fileID: 7705254291148342490}
   isTransparent: 0
