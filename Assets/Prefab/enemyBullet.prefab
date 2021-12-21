@@ -150,7 +150,7 @@ MonoBehaviour:
   cameraName: InvertCam
   isRender: 0
   sprite: {fileID: 5840329557059125398}
-  isTransparent: 0
+  isTransparent: 1
   colorValue: 0
   changeSpeed: 3
   playerSclipt: {fileID: 0}

@@ -103,7 +103,7 @@ public class TitleManager : MonoBehaviour
     public void OnClickExtraStart()
     {
         DecidedSE();
-        //fade.FadeOut(1, "ExtraStage1");
+        fade.FadeOut(1, "ExtraStage1Scene");
         PlayerPrefs.SetInt("Load?", 0);
         PlayerPrefs.Save();
     }

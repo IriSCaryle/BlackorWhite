@@ -3005,6 +3005,16 @@ PrefabInstance:
       propertyPath: startRandomCoolTimeRangeMax
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2411544613047660937, guid: 64dc7d65811df1c4884e9071f8e5b04c,
+        type: 3}
+      propertyPath: pressTimeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411544613047660937, guid: 64dc7d65811df1c4884e9071f8e5b04c,
+        type: 3}
+      propertyPath: pressTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2411544613047661044, guid: 64dc7d65811df1c4884e9071f8e5b04c,
         type: 3}
       propertyPath: m_Size.y
